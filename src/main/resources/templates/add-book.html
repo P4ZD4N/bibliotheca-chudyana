@@ -21,6 +21,7 @@
     <main>
       <form th:action="@{/add-book}" th:object="${book}" method="POST" >
         <div>
+          <input type="hidden" th:field="*{id}" />
           <label>Tytuł</label><input type="text" th:field="*{title}" required>
 
           <br>
