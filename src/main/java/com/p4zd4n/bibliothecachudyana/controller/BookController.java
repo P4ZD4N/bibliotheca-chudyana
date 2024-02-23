@@ -85,4 +85,11 @@ public class BookController {
 
         return "add-book";
     }
+
+    @GetMapping("/delete-book")
+    public String deleteBook(@RequestParam("bookId") Integer id) {
+        Book bookToDelete = bookDAO.findById(id);
+        bookDAO.delete(bookToDelete);
+        return "redirect:/books";
+    }
 }
