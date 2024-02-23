@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+  <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" th:href="@{header.css}" />
+      <link rel="stylesheet" th:href="@{body.css}" />
+      <link rel="stylesheet" th:href="@{main-add-book.css}" />
+      <link rel="stylesheet" th:href="@{footer.css}" />
+      <title>Dodaj książkę</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>
+          <span>Bibliotheca</span>
+          <span>Chudyana</span>
+        </h1>
+      </a>
+    </header>
+
+    <main>
+      <form th:action="@{/add-book}" th:object="${book}" method="POST" >
+        <div>
+          <label>Tytuł</label><input type="text" th:field="*{title}" required>
+
+          <br>
+
+          <label>Imię autora</label><input type="text" th:field="*{authorName}" required>
+
+          <br>
+
+          <label>Nazwisko autora</label><input type="text" th:field="*{authorLastName}" required>
+
+          <br>
+
+          <label>Data publikacji</label><input type="text" th:field="*{releaseDate}" placeholder="YYYY-MM-DD" required>
+
+          <br>
+
+          <label>Kategoria</label><input type="text" th:field="*{category}" required>
+
+          <br>
+
+          <input type="submit" value="Dodaj">
+        </div>
+      </form>
+
+      <a href="/books">Powrót</a>
+    </main>
+
+    <footer>
+      <section>
+          <p>Coded and designed by Wiktor C.</p>
+      </section>
+      <section>
+          <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+      </section>
+    </footer>
+  </body>
+</html>

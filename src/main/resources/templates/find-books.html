@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{header.css}" />
+  <link rel="stylesheet" th:href="@{body.css}" />
+  <link rel="stylesheet" th:href="@{main-find-book.css}" />
+  <link rel="stylesheet" th:href="@{footer.css}" />
+    <title>Znajdź książki</title>
+</head>
+<body>
+  <header>
+    <a href="/">
+      <h1>
+        <span>Bibliotheca</span>
+        <span>Chudyana</span>
+      </h1>
+    </a>
+  </header>
+
+  <main>
+    <form th:action="@{/find-books}" th:object="${searchForm}" method="POST">
+      <div>
+        <label>Wyszukaj po:</label>
+        <select th:field="*{searchBy}">
+          <option th:value="title">Tytuł</option>
+          <option th:value="authorName">Imię autora</option>
+          <option th:value="authorLastName">Nazwisko autora</option>
+          <option th:value="releaseYear">Rok publikacji</option>
+          <option th:value="category">Kategoria</option>
+        </select>
+
+        <br>
+
+        <input type="text" th:field="*{keyword}"/>
+
+        <br>
+
+        <input type="submit" value="Wyszukaj" />
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <section>
+      <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+      <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+  <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" th:href="@{header.css}" />
+      <link rel="stylesheet" th:href="@{body.css}" />
+      <link rel="stylesheet" th:href="@{main-books.css}" />
+      <link rel="stylesheet" th:href="@{footer.css}" />
+      <title>Wszystkie książki</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>
+          <span>Bibliotheca</span>
+          <span>Chudyana</span>
+        </h1>
+      </a>
+    </header>
+
+    <main>
+      <section id="actions">
+        <h1>Akcje</h1>
+        <div>
+          <a href="/find-books">Znajdź książkę</a>
+          <br><br>
+          <a href="/add-book">Dodaj książkę</a>
+          <br><br>
+          <a href="/">Strona główna</a>
+        </div>
+      </section>
+      
+      <section id="show-books">
+        <h1>Wszystkie książki</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Tytuł</th>
+              <th>Imię autora</th>
+              <th>Nazwisko autora</th>
+              <th>Data publikacji</th>
+              <th>Kategoria</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="book : ${books}">
+              <td th:text="${book.getId()}"></td>
+              <td th:text="${book.getTitle()}"></td>
+              <td th:text="${book.getAuthorName()}"></td>
+              <td th:text="${book.getAuthorLastName()}"></td>
+              <td th:text="${book.getReleaseDate()}"></td>
+              <td th:text="${book.getCategory()}"></td>
+            </tr>
+          </tbody>
+
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <section>
+          <p>Coded and designed by Wiktor C.</p>
+      </section>
+      <section>
+          <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+      </section>
+    </footer>
+  </body>
+</html>

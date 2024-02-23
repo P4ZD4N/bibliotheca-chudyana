@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{header.css}" />
+        <link rel="stylesheet" th:href="@{body.css}" />
+        <link rel="stylesheet" th:href="@{main-index.css}" />
+        <link rel="stylesheet" th:href="@{footer.css}" />
+        <title>Bibliotheca Chudyana</title>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <span>Bibliotheca</span>
+                <span>Chudyana</span>
+            </h1>
+        </header>
+
+        <main>
+            <a href="/books" id="check-all-books">
+                <section>
+                    <p>Sprawdź wszystkie nasze książki!</p>
+                </section>
+            </a>
+
+            <a href="#top-categories" id="top-categories">
+                <section>
+                    <p>TOP Kategorie</p>
+                </section>
+            </a>
+
+            <a href="#statistics" id="statistics">
+                <section>
+                    <p>Statystyki</p>
+                </section>
+            </a>
+
+            <a href="#newness" id="newness">
+                <section>
+                    <p>Nowości</p>
+                </section>
+            </a>
+        </main>
+
+        <footer>
+            <section>
+                <p>Coded and designed by Wiktor C.</p>
+            </section>
+            <section>
+                <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+            </section>
+        </footer>
+    </body>
+</html>
