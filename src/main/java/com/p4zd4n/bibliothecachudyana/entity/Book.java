@@ -55,13 +55,13 @@ public class Book {
     }
 
     @Column(name = "release_date")
-    private LocalDate releaseDate;
+    private String releaseDate;
 
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -78,7 +78,7 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String authorName, String authorLastName, LocalDate releaseDate) {
+    public Book(String title, String authorName, String authorLastName, String releaseDate) {
         this.title = title;
         this.authorName = authorName;
         this.authorLastName = authorLastName;
