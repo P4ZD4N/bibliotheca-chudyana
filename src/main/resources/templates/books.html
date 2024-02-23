@@ -6,6 +6,7 @@
       <link rel="stylesheet" th:href="@{body.css}" />
       <link rel="stylesheet" th:href="@{main-books.css}" />
       <link rel="stylesheet" th:href="@{footer.css}" />
+      <script src="confirm-delete.js"></script>
       <title>Wszystkie książki</title>
   </head>
   <body>
@@ -37,17 +38,26 @@
               <th>Nazwisko autora</th>
               <th>Data publikacji</th>
               <th>Kategoria</th>
+              <th>Akcje</th>
             </tr>
           </thead>
 
           <tbody>
             <tr th:each="book : ${books}">
-              <td th:text="${book.getId()}"></td>
-              <td th:text="${book.getTitle()}"></td>
-              <td th:text="${book.getAuthorName()}"></td>
-              <td th:text="${book.getAuthorLastName()}"></td>
-              <td th:text="${book.getReleaseDate()}"></td>
-              <td th:text="${book.getCategory()}"></td>
+              <td th:text="${book.id}"></td>
+              <td th:text="${book.title}"></td>
+              <td th:text="${book.authorName}"></td>
+              <td th:text="${book.authorLastName}"></td>
+              <td th:text="${book.releaseDate}"></td>
+              <td th:text="${book.category}"></td>
+              <td id="show-books_actions">
+                <a class="button-update" th:href="@{/update-book(bookId=${book.id})}">Aktualizuj</a>
+                <a class="button-delete"
+                   th:href="@{/delete-book(bookId=${book.id})}"
+                   onclick="return confirmDelete()">
+                    Usuń
+                </a>
+              </td>
             </tr>
           </tbody>
 
