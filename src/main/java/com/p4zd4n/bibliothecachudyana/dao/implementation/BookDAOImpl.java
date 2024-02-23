@@ -74,6 +74,7 @@ public class BookDAOImpl implements BookDAO {
         entityManager.persist(book);
     }
 
+    @Transactional
     @Override
     public void update(Book book) {
         entityManager.merge(book);
