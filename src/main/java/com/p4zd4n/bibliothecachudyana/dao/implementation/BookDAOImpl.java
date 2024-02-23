@@ -80,6 +80,7 @@ public class BookDAOImpl implements BookDAO {
         entityManager.merge(book);
     }
 
+    @Transactional
     @Override
     public void delete(Book book) {
         entityManager.remove(book);
