@@ -15,7 +15,7 @@ main section {
     height: 100%;
 }
 
-a {
+main a {
     text-decoration: none;
     color: white;
     text-align: center;
