@@ -55,8 +55,11 @@ public class BookController {
     }
 
     @PostMapping("/add-book")
-    public String addBook(@ModelAttribute("book") Book book) {
-        bookDAO.save(book);
+    public String addBook(@RequestParam(required = false) Integer id, @ModelAttribute("book") Book book) {
+        if (id == null)
+            bookDAO.save(book);
+        else
+            bookDAO.update(book);
         return "redirect:/books";
     }
 
@@ -72,5 +75,14 @@ public class BookController {
         String keyword = searchForm.getKeyword();
 
         return "redirect:/books?searchBy=" + searchBy + "&keyword=" + keyword;
+    }
+
+    @GetMapping("/update-book")
+    public String showUpdateBookForm(@RequestParam("bookId") Integer id, Model model) {
+        Book book = bookDAO.findById(id);
+
+        model.addAttribute("book", book);
+
+        return "add-book";
     }
 }
