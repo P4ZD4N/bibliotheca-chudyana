@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{header.css}" />
+    <link rel="stylesheet" th:href="@{body.css}" />
+    <link rel="stylesheet" th:href="@{newreleases/main-new-releases.css}" />
+    <link rel="stylesheet" th:href="@{footer.css}" />
+    <title>Nowości</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>
+          <span>Bibliotheca</span>
+          <span>Chudyana</span>
+        </h1>
+      </a>
+
+      <a href="/new-releases">
+        <h1>
+          <span>Nowości</span>
+        </h1>
+      </a>
+
+      <a>
+
+      </a>
+    </header>
+
+    <main>
+      <section id="actions">
+        <a href="/">Strona główna</a>
+      </section>
+
+      <section id="show-books">
+        <table>
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Tytuł</th>
+            <th>Imię autora</th>
+            <th>Nazwisko autora</th>
+            <th>Data publikacji</th>
+            <th>Kategoria</th>
+            <th>Data dodania</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr th:each="newBook : ${newBooks}">
+            <td th:text="${newBook.id}"></td>
+            <td th:text="${newBook.title}"></td>
+            <td th:text="${newBook.authorName}"></td>
+            <td th:text="${newBook.authorLastName}"></td>
+            <td th:text="${newBook.releaseDate}"></td>
+            <td th:text="${newBook.category}"></td>
+            <td th:text="${newBook.addToLibraryDate}"></td>
+          </tr>
+          </tbody>
+
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <section>
+        <p>Coded and designed by Wiktor C.</p>
+      </section>
+      <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+      </section>
+    </footer>
+  </body>
+</html>
