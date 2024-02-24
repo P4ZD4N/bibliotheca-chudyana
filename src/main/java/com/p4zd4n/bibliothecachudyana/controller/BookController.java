@@ -92,4 +92,9 @@ public class BookController {
         bookDAO.delete(bookToDelete);
         return "redirect:/books";
     }
+
+    @GetMapping("/top-categories")
+    public String showTopCategories(Model model) {
+        return "/topcategories/top-categories";
+    }
 }
