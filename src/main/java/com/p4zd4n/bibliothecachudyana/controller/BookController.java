@@ -51,11 +51,11 @@ public class BookController {
     @GetMapping("/add-book")
     public String showAddBookForm(Model model) {
         model.addAttribute("book", new Book());
-        return "add-book";
+        return "save-book";
     }
 
-    @PostMapping("/add-book")
-    public String addBook(@RequestParam(required = false) Integer id, @ModelAttribute("book") Book book) {
+    @PostMapping("/save-book")
+    public String saveBook(@RequestParam(required = false) Integer id, @ModelAttribute("book") Book book) {
         if (id == null)
             bookDAO.save(book);
         else
@@ -83,7 +83,7 @@ public class BookController {
 
         model.addAttribute("book", book);
 
-        return "add-book";
+        return "save-book";
     }
 
     @GetMapping("/delete-book")
