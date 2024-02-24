@@ -6,7 +6,7 @@
       <link rel="stylesheet" th:href="@{body.css}" />
       <link rel="stylesheet" th:href="@{main-add-book.css}" />
       <link rel="stylesheet" th:href="@{footer.css}" />
-      <title>Dodaj książkę</title>
+      <title>Zapisz książkę</title>
   </head>
   <body>
     <header>
@@ -19,7 +19,7 @@
     </header>
 
     <main>
-      <form th:action="@{/add-book}" th:object="${book}" method="POST" >
+      <form th:action="@{/save-book}" th:object="${book}" method="POST" >
         <div>
           <input type="hidden" th:field="*{id}" />
           <label>Tytuł</label><input type="text" th:field="*{title}" required>
@@ -42,7 +42,7 @@
 
           <br>
 
-          <input type="submit" value="Dodaj">
+          <input type="submit" value="Zapisz">
         </div>
       </form>
 
