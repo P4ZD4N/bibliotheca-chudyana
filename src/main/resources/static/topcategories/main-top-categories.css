@@ -48,8 +48,16 @@ table {
     font-size: 1.1em;
 }
 
+table a {
+    width: 90%;
+}
+
 th {
     background-color: #1A1A1A;
+}
+
+th:last-of-type {
+    width: 20%
 }
 
 tr:nth-child(odd){
