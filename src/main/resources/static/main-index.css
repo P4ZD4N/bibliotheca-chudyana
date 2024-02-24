@@ -62,14 +62,14 @@ main a {
     font-size: 32px;
 }
 
-#newness {
+#new-releases {
     background-color: #49B454;
     transition: background-color 200ms ease-out, 
                 width 200ms ease-out, 
                 font-size 200ms ease-out;
 }
 
-#newness:hover {
+#new-releases:hover {
     background-color: #03520b;
     width: 19%;
     font-size: 32px;
