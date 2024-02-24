@@ -76,6 +76,17 @@ public class Book {
         this.category = category;
     }
 
+    @Column(name = "add_to_library_date")
+    private LocalDate addToLibraryDate;
+
+    public LocalDate getAddToLibraryDate() {
+        return addToLibraryDate;
+    }
+
+    public void setAddToLibraryDate(LocalDate addToLibraryDate) {
+        this.addToLibraryDate = addToLibraryDate;
+    }
+
     public Book() {}
 
     public Book(String title, String authorName, String authorLastName, String releaseDate) {
