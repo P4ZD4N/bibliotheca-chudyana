@@ -50,8 +50,8 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public List<Book> findByReleaseYear(String releaseYear) {
         return entityManager
-                .createQuery("SELECT book FROM Book book WHERE FUNCTION('YEAR', book.releaseDate) = :year", Book.class)
-                .setParameter("year", releaseYear)
+                .createQuery("SELECT book FROM Book book WHERE book.releaseDate LIKE CONCAT(:releaseYear, '%')", Book.class)
+                .setParameter("releaseYear", releaseYear)
                 .getResultList();
     }
 
