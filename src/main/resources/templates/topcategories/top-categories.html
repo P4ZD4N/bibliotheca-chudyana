@@ -18,6 +18,9 @@
         </header>
 
         <main>
+            <ul>
+                <li th:each="category : ${topCategories}" th:text="${category}"></li>
+            </ul>
         </main>
 
         <footer>
