@@ -45,13 +45,13 @@ public class BookController {
             books = bookDAO.findAll();
         }
         model.addAttribute("books", books);
-        return "books";
+        return "books/books";
     }
 
     @GetMapping("/add-book")
     public String showAddBookForm(Model model) {
         model.addAttribute("book", new Book());
-        return "save-book";
+        return "books/save-book";
     }
 
     @PostMapping("/save-book")
@@ -66,7 +66,7 @@ public class BookController {
     @GetMapping("/find-books")
     public String showFindBooksForm(Model model) {
         model.addAttribute("searchForm", new SearchForm());
-        return "find-books";
+        return "books/find-books";
     }
 
     @PostMapping("/find-books")
@@ -83,7 +83,7 @@ public class BookController {
 
         model.addAttribute("book", book);
 
-        return "save-book";
+        return "books/save-book";
     }
 
     @GetMapping("/delete-book")
