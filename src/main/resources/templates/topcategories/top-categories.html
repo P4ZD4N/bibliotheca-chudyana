@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" th:href="@{header.css}" />
         <link rel="stylesheet" th:href="@{body.css}" />
+        <link rel="stylesheet" th:href="@{/topcategories/main-top-categories.css}" />
         <link rel="stylesheet" th:href="@{footer.css}" />
         <title>TOP Kategorie</title>
     </head>
@@ -15,12 +16,43 @@
                     <span>Chudyana</span>
                 </h1>
             </a>
+
+            <a href="/top-categories">
+                <h1>
+                    <span>TOP</span>
+                    <span>Kategorie</span>
+                </h1>
+            </a>
+
+            <a>
+
+            </a>
         </header>
 
         <main>
-            <ul>
-                <li th:each="category : ${topCategories}" th:text="${category}"></li>
-            </ul>
+            <section id="actions">
+                <a href="#">Znajdź kategorie</a>
+                <br>
+                <a href="/">Strona główna</a>
+            </section>
+
+            <section id="show-categories">
+                <table>
+                    <thead>
+                        <th>Pozycja</th>
+                        <th>Kategoria</th>
+                        <th>Ilość książek</th>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="category, iterStat : ${topCategories}">
+                            <td th:text="${iterStat.index + 1}"></td>
+                            <td th:text="${category.key}"></td>
+                            <td th:text="${category.value}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
         </main>
 
         <footer>
