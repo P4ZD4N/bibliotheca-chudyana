@@ -42,6 +42,7 @@
                         <th>Pozycja</th>
                         <th>Kategoria</th>
                         <th>Ilość książek</th>
+                        <th>Akcje</th>
                     </thead>
 
                     <tbody>
@@ -49,6 +50,13 @@
                             <td th:text="${iterStat.index + 1}"></td>
                             <td th:text="${category.key}"></td>
                             <td th:text="${category.value}"></td>
+                            <td>
+                                <a class="button-check"
+                                   th:href="@{/books(searchBy='category', keyword=${category.key})}"
+                                >
+                                    Sprawdź
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
