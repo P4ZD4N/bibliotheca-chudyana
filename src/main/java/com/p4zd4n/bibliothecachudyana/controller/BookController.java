@@ -106,4 +106,11 @@ public class BookController {
 
         return "/topcategories/top-categories";
     }
+
+    @GetMapping("/new-releases")
+    public String showNewReleases(Model model) {
+        List<Book> newBooks = bookDAO.findAll();
+        model.addAttribute("newBooks", newBooks);
+        return "/newreleases/new-releases";
+    }
 }
