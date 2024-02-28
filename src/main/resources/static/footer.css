@@ -5,6 +5,17 @@ footer {
     justify-content: space-between;
     align-items: center;
     background-color: #1A1A1A;
+    font-size: 20px;
     padding: 20px;
     height: 5vh;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+    transition: font-size 200ms ease-out;
+}
+
+footer a:hover {
+    font-size: 0.95em;
 }
