@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +56,9 @@ public class BookController {
 
     @GetMapping("/add-book")
     public String showAddBookForm(Model model) {
-        model.addAttribute("book", new Book());
+        Book book = new Book();
+        book.setAddToLibraryDate(LocalDate.now());
+        model.addAttribute("book", book);
         return "books/save-book";
     }
 
