@@ -112,7 +112,7 @@ public class BookController {
 
     @GetMapping("/new-releases")
     public String showNewReleases(Model model) {
-        List<Book> newBooks = bookDAO.findAll();
+        List<Book> newBooks = bookService.getNewReleases();
         model.addAttribute("newBooks", newBooks);
         return "/newreleases/new-releases";
     }
