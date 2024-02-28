@@ -5,8 +5,10 @@ import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
 import org.hibernate.sql.ast.tree.expression.Collation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -54,5 +56,24 @@ public class BookServiceImpl implements BookService {
                 .stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+    }
+
+    @Override
+    public List<Book> getNewReleases() {
+        List<Book> allBooks = bookDAO.findAll();
+        return getListOfNewReleases(allBooks);
+    }
+
+    private List<Book> getListOfNewReleases(List<Book> allBooks) {
+        List<Book> newReleases = new ArrayList<>();
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dateOneWeekAgo = currentDate.minusWeeks(1);
+
+        for (Book book : allBooks)
+            if (book.getAddToLibraryDate().isAfter(dateOneWeekAgo) || book.getAddToLibraryDate().isEqual(dateOneWeekAgo))
+                newReleases.add(book);
+
+        return newReleases;
     }
 }
