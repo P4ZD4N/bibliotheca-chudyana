@@ -89,10 +89,11 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String authorName, String authorLastName, String releaseDate) {
+    public Book(String title, String authorName, String authorLastName, String releaseDate, LocalDate addToLibraryDate) {
         this.title = title;
         this.authorName = authorName;
         this.authorLastName = authorLastName;
         this.releaseDate = releaseDate;
+        this.addToLibraryDate = addToLibraryDate;
     }
 }
