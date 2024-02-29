@@ -44,6 +44,8 @@ input[type="submit"] {
     border: none;
     background-color: #1A1A1A;
     border-radius: 50px;
+    transition: color 200ms ease-out,
+                background-color 200ms ease-out;
 }
 
 input[type="submit"]:hover {
