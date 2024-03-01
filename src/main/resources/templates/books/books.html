@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
   <head>
       <meta charset="UTF-8">
       <link rel="stylesheet" th:href="@{header.css}" />
@@ -34,8 +34,8 @@
       <section id="actions">
           <a href="/find-books">Znajdź książkę</a>
           <br>
-          <a href="/add-book">Dodaj książkę</a>
-          <br>
+          <a href="/add-book" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Dodaj książkę</a>
+          <br sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
           <a href="/">Strona główna</a>
       </section>
       
@@ -49,7 +49,7 @@
               <th>Nazwisko autora</th>
               <th>Data publikacji</th>
               <th>Kategoria</th>
-              <th>Akcje</th>
+              <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Akcje</th>
             </tr>
           </thead>
 
@@ -61,7 +61,7 @@
               <td th:text="${book.authorLastName}"></td>
               <td th:text="${book.releaseDate}"></td>
               <td th:text="${book.category}"></td>
-              <td id="show-books_actions">
+              <td id="show-books_actions" sec:authorize="hasRole('EMPLOYEE')">
                 <a class="button-update" th:href="@{/update-book(bookId=${book.id})}">Aktualizuj</a>
                 <a class="button-delete"
                    th:href="@{/delete-book(bookId=${book.id})}"
