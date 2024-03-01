@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" th:href="@{header.css}" />
@@ -16,6 +16,12 @@
                     <span>Chudyana</span>
                 </h1>
             </a>
+
+            <div>
+                <a href="/login">Zaloguj</a>
+                <a href="/register">Zarejestruj</a>
+                <span sec:authorize="isAuthenticated()" sec:authentication="principal.username"></span>
+            </div>
         </header>
 
         <main>
