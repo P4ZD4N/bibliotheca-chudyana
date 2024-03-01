@@ -1,6 +1,8 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
+import com.p4zd4n.bibliothecachudyana.dao.AuthorityDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
+import com.p4zd4n.bibliothecachudyana.entity.Authority;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,9 @@ public class SecurityController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private AuthorityDAO authorityDAO;
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
@@ -31,7 +36,7 @@ public class SecurityController {
     public String register(@ModelAttribute("user") User user) {
         user.setEnabled(1);
         userDAO.save(user);
-        System.out.println(user.getUsername() + " " + user.getPassword() + " " + user.getEnabled());
+        authorityDAO.save(new Authority(user.getUsername(), "ROLE_USER"));
         return "redirect:/";
     }
 }
