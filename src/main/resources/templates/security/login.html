@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{header.css}" />
+        <link rel="stylesheet" th:href="@{body.css}" />
+        <link rel="stylesheet" th:href="@{security/main.css}" />
+        <link rel="stylesheet" th:href="@{footer.css}" />
+        <title>Login</title>
+    </head>
+    <body>
+        <header>
+            <a href="/">
+                <h1>
+                    <span>Bibliotheca</span>
+                    <span>Chudyana</span>
+                </h1>
+            </a>
+
+            <a href="/login">
+                <h1>
+                    <span>Zaloguj</span>
+                    <span>Się</span>
+                </h1>
+            </a>
+
+            <a>
+
+            </a>
+        </header>
+
+        <main>
+            <form th:action="@{/}" method="POST" >
+                <div>
+                    <p th:if="${param.error}">Błędna nazwa użytkownika / hasło!</p>
+                    <label>Nazwa użytkownika</label><input type="text" name="username" required>
+
+                    <br>
+
+                    <label>Hasło</label><input type="password" name="password" required>
+
+                    <br>
+
+                    <input type="submit" value="Zaloguj">
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <section>
+                <p>Coded and designed by Wiktor C.</p>
+            </section>
+            <section>
+                <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+            </section>
+        </footer>
+    </body>
+</html>
