@@ -15,21 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Controller
-public class BookController {
+public class BooksController {
 
     @Autowired
     private BookService bookService;
 
     @Autowired
     private BookDAO bookDAO;
-
-    @GetMapping("/")
-    public String showStartPage() {
-        return "index";
-    }
 
     @GetMapping("/books")
     public String showBooks(
@@ -99,21 +93,5 @@ public class BookController {
         Book bookToDelete = bookDAO.findById(id);
         bookDAO.delete(bookToDelete);
         return "redirect:/books";
-    }
-
-    @GetMapping("/top-categories")
-    public String showTopCategories(Model model) {
-        Map<String, Integer> topCategories = bookService.getTopCategories();
-
-        model.addAttribute("topCategories", topCategories);
-
-        return "/topcategories/top-categories";
-    }
-
-    @GetMapping("/new-releases")
-    public String showNewReleases(Model model) {
-        List<Book> newBooks = bookService.getNewReleases();
-        model.addAttribute("newBooks", newBooks);
-        return "/newreleases/new-releases";
     }
 }
