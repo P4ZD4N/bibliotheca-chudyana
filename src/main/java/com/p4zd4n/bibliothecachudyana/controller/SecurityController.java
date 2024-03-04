@@ -34,7 +34,14 @@ public class SecurityController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("user") User user) {
+    public String register(@ModelAttribute("user") User user, Model model) {
+        User existingUser = userDAO.findByUsername(user.getUsername());
+
+        if (existingUser != null) {
+            model.addAttribute("error", "Użytkownik o podanej nazwie już istnieje!");
+            return "security/register";
+        }
+
         String hashedPassword = PasswordEncoder.encodePassword(user.getPassword());
 
         user.setEnabled(1);
