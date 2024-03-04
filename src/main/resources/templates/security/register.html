@@ -37,6 +37,7 @@
   <main>
     <form th:action="@{/register}" th:object="${user}" method="POST" >
       <div>
+        <p th:if="${error}" th:text="${error}"></p>
         <label>Nazwa użytkownika</label><input type="text" th:field="*{username}" required>
 
         <br>
