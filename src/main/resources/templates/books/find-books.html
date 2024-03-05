@@ -27,7 +27,11 @@
     <div>
       <a href="/login">Zaloguj</a>
       <a href="/register">Zarejestruj</a>
-      <span sec:authorize="isAuthenticated()" sec:authentication="principal.username"></span>
+      <span sec:authorize="isAuthenticated()">
+          <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+              <span sec:authentication="principal.username"></span>
+          </a>
+      </span>
       <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
           <input type="submit" value="Wyloguj">
       </form>
