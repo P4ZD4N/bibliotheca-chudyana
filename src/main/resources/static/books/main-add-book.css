@@ -5,22 +5,22 @@ main {
     justify-content: center;
 }
 
-form {
+main form {
     display: flex;
     justify-content: center;
     text-align: center;
     font-size: 24px;
 }
 
-form div {
+main form div {
     width: 50%;
 }
 
-label {
+main label {
     font-weight: 700;
 }
 
-input {
+main input {
     font-family: "Montserrat", sans-serif;
     color: white;
     text-align: center;
@@ -36,7 +36,7 @@ input {
     outline: none;
 }
 
-input[type="submit"] {
+main input[type="submit"] {
     display: block;
     margin: 0 auto;
     height: 35px;
@@ -48,7 +48,7 @@ input[type="submit"] {
                 background-color 200ms ease-out;
 }
 
-input[type="submit"]:hover {
+main input[type="submit"]:hover {
     cursor: pointer;
     color: #1A1A1A;
     background-color: white;
