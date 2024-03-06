@@ -109,6 +109,17 @@ public class Book {
         this.price = price;
     }
 
+    @Column(name = "quantity_in_stock")
+    private Integer quantityInStock;
+
+    public Integer getQuantityInStock() {
+        return quantityInStock;
+    }
+
+    public void setQuantityInStock(Integer quantityInStock) {
+        this.quantityInStock = quantityInStock;
+    }
+
     public Book() {}
 
     public Book(String title, String authorName, String authorLastName, String releaseDate, LocalDate addToLibraryDate) {
