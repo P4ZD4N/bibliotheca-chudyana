@@ -66,7 +66,7 @@
           <tbody>
             <tr th:each="book : ${books}">
               <td class="show-books_actions">
-                  <a class="button-more-info">Więcej</a>
+                  <a class="button-more-info" th:href="@{'/books/' + ${book.id}}">Więcej</a>
               </td>
               <td th:text="${book.title}"></td>
               <td th:text="${book.authorName}"></td>
