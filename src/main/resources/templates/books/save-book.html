@@ -70,6 +70,10 @@
 
           <br>
 
+          <label>Ilość w magazynie</label><input type="text" th:field="*{quantityInStock}" required>
+
+          <br>
+
           <input type="hidden" th:field="*{addToLibraryDate}" th:value="${book.addToLibraryDate}" />
 
           <input type="submit" value="Zapisz">
