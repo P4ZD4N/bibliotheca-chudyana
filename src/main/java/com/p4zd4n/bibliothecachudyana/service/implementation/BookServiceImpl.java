@@ -74,4 +74,22 @@ public class BookServiceImpl implements BookService {
 
         return newReleases;
     }
+
+    @Override
+    public String getStatusOfBookById(int id) {
+        String status;
+        Book book = bookDAO.findById(id);
+        int quantityInStock = book.getQuantityInStock();
+
+        if (0 > quantityInStock)
+            status = "error";
+        else if (quantityInStock == 0)
+            status = "unavailable";
+        else if (10 >= quantityInStock)
+            status = "last_items";
+        else
+            status = "available";
+
+        return status;
+    }
 }
