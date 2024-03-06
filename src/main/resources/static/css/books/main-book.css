@@ -13,9 +13,23 @@ main .details {
 }
 
 main .details ul {
+    padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     list-style: none;
+}
+
+main .details ul .available {
+    color: rgb(82, 226, 94);
+}
+
+main .details ul .last_items {
+    color: rgb(192, 126, 27);
+}
+
+main .details ul .unavailable {
+    color: rgb(194, 50, 50);
 }
