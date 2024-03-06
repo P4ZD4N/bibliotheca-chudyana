@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/header.css}" />
     <link rel="stylesheet" th:href="@{/css/body.css}" />
-    <link rel="stylesheet" th:href="@{/css/books/main-books.css}" />
+    <link rel="stylesheet" th:href="@{/css/books/main-book.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <script src="books/confirm-delete.js"></script>
     <title th:text="${book.title}"></title>
@@ -40,7 +40,33 @@
     </header>
 
     <main>
-      <p th:text="${book.title}"></p>
+      <h1 th:text="${book.title}"></h1>
+
+      <section class="details">
+        <ul>
+          <li th:text="'ID: ' + ${book.id}"></li>
+          <li th:text="'Kategoria: ' + ${book.category}"></li>
+          <li th:text="'Liczba stron: ' + ${book.numberOfPages}"></li>
+
+          <br>
+
+          <li th:text="'Imię autora: ' + ${book.authorName}"></li>
+          <li th:text="'Nazwisko autora: ' + ${book.authorLastName}"></li>
+
+          <br>
+
+          <li th:text="'Data wydania: ' + ${book.releaseDate}"></li>
+          <li th:text="'W bibliotece od: ' + ${book.addToLibraryDate}"></li>
+
+          <br>
+
+          <li th:text="'Cena: ' + ${book.price} + ' zł'"></li>
+        </ul>
+      </section>
+
+      <section class="actions">
+
+      </section>
     </main>
 
     <footer>
