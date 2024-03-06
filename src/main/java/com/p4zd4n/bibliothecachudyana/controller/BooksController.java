@@ -48,7 +48,11 @@ public class BooksController {
     @GetMapping("/books/{id}")
     public String showBookDetails(@PathVariable Integer id, Model model) {
         Book book = bookDAO.findById(id);
+        String status = bookService.getStatusOfBookById(id);
+
         model.addAttribute("book", book);
+        model.addAttribute("status", status);
+
         return "/books/book";
     }
 
