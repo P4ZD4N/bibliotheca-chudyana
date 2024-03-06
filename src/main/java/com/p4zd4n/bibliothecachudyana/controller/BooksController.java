@@ -8,10 +8,7 @@ import com.p4zd4n.bibliothecachudyana.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -46,6 +43,13 @@ public class BooksController {
         }
         model.addAttribute("books", books);
         return "books/books";
+    }
+
+    @GetMapping("/books/{id}")
+    public String showBookDetails(@PathVariable Integer id, Model model) {
+        Book book = bookDAO.findById(id);
+        model.addAttribute("book", book);
+        return "/books/book";
     }
 
     @GetMapping("/add-book")
