@@ -8,4 +8,5 @@ import java.util.Map;
 public interface BookService {
     Map<String, Integer> getTopCategories();
     List<Book> getNewReleases();
+    String getStatusOfBookById(int id);
 }
