@@ -43,10 +43,7 @@ main a:hover {
 }
 
 .show-books_actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
+    min-width: 200px;
 }
 
 .show-books_actions .button-update {
