@@ -61,6 +61,12 @@
           <br>
 
           <li th:text="'Cena: ' + ${book.price} + ' zł'"></li>
+
+          <br>
+
+          <li th:if="${status eq 'available'}" class="available">Dostępne w magazynie!</li>
+          <li th:if="${status eq 'last_items'}" class="last_items">Ostatnie sztuki!</li>
+          <li th:if="${status eq 'unavailable'}" class="unavailable">Brak w magazynie!</li>
         </ul>
       </section>
 
