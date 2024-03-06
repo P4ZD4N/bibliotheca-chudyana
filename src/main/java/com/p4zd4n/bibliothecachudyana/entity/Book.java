@@ -87,6 +87,28 @@ public class Book {
         this.addToLibraryDate = addToLibraryDate;
     }
 
+    @Column(name = "number_of_pages")
+    private Integer numberOfPages;
+
+    public Integer getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public void setNumberOfPages(Integer numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
+    @Column(name = "price")
+    private Double price;
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public Book() {}
 
     public Book(String title, String authorName, String authorLastName, String releaseDate, LocalDate addToLibraryDate) {
