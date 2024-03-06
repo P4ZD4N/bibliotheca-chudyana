@@ -62,6 +62,14 @@
 
           <br>
 
+          <label>Liczba stron</label><input type="text" th:field="*{numberOfPages}" required>
+
+          <br>
+
+          <label>Cena</label><input type="text" th:field="*{price}" required>
+
+          <br>
+
           <input type="hidden" th:field="*{addToLibraryDate}" th:value="${book.addToLibraryDate}" />
 
           <input type="submit" value="Zapisz">
