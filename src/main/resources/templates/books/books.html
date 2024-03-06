@@ -52,6 +52,7 @@
         <table>
           <thead>
             <tr>
+              <th></th>
               <th>Tytuł</th>
               <th>Imię autora</th>
               <th>Nazwisko autora</th>
@@ -64,13 +65,16 @@
 
           <tbody>
             <tr th:each="book : ${books}">
+              <td class="show-books_actions">
+                  <a class="button-more-info">Więcej</a>
+              </td>
               <td th:text="${book.title}"></td>
               <td th:text="${book.authorName}"></td>
               <td th:text="${book.authorLastName}"></td>
               <td th:text="${book.category}"></td>
               <td th:text="${book.numberOfPages}"></td>
               <td th:text="${book.price}"></td>
-              <td id="show-books_actions" sec:authorize="hasRole('EMPLOYEE')">
+              <td class="show-books_actions" sec:authorize="hasRole('EMPLOYEE')">
                 <a class="button-update" th:href="@{/update-book(bookId=${book.id})}">Aktualizuj</a>
                 <a class="button-delete"
                    th:href="@{/delete-book(bookId=${book.id})}"
