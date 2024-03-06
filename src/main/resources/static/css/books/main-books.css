@@ -42,29 +42,41 @@ main a:hover {
     align-items: center;
 }
 
-#show-books_actions {
+.show-books_actions {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 200px;
 }
 
-#show-books_actions .button-update {
+.show-books_actions .button-update {
     background-color: #2e7ec9;
     transition: color 200ms ease-out,
                 background-color 200ms ease-out;
     width: 55%;
 }
 
-#show-books_action .button-update:hover {
+.show-books_actions .button-update:hover {
     cursor: pointer;
     color: #1A1A1A;
     background-color: white;
 }
 
-#show-books_actions .button-delete {
+.show-books_actions .button-delete {
     background-color: #c92e2e;
+    transition: color 200ms ease-out,
+                background-color 200ms ease-out;
     width: 35%;
+}
+
+.show-books_actions .button-delete:hover {
+    cursor: pointer;
+    color: #1A1A1A;
+    background-color: white;
+}
+
+.button-more-info {
+    width: 55%;
 }
 
 table {
