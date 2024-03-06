@@ -52,24 +52,24 @@
         <table>
           <thead>
             <tr>
-              <th>Id</th>
               <th>Tytuł</th>
               <th>Imię autora</th>
               <th>Nazwisko autora</th>
-              <th>Data publikacji</th>
               <th>Kategoria</th>
+              <th>Liczba stron</th>
+              <th>Cena (PLN)</th>
               <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Akcje</th>
             </tr>
           </thead>
 
           <tbody>
             <tr th:each="book : ${books}">
-              <td th:text="${book.id}"></td>
               <td th:text="${book.title}"></td>
               <td th:text="${book.authorName}"></td>
               <td th:text="${book.authorLastName}"></td>
-              <td th:text="${book.releaseDate}"></td>
               <td th:text="${book.category}"></td>
+              <td th:text="${book.numberOfPages}"></td>
+              <td th:text="${book.price}"></td>
               <td id="show-books_actions" sec:authorize="hasRole('EMPLOYEE')">
                 <a class="button-update" th:href="@{/update-book(bookId=${book.id})}">Aktualizuj</a>
                 <a class="button-delete"
