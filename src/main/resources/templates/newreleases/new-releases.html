@@ -46,11 +46,10 @@
         <table>
           <thead>
           <tr>
-            <th>Id</th>
+            <th></th>
             <th>Tytuł</th>
             <th>Imię autora</th>
             <th>Nazwisko autora</th>
-            <th>Data publikacji</th>
             <th>Kategoria</th>
             <th>Data dodania</th>
           </tr>
@@ -58,11 +57,12 @@
 
           <tbody>
           <tr th:each="newBook : ${newBooks}">
-            <td th:text="${newBook.id}"></td>
+            <td class="show-books_actions">
+              <a class="button-more-info" th:href="@{'/books/' + ${newBook.id}}">Więcej</a>
+            </td>
             <td th:text="${newBook.title}"></td>
             <td th:text="${newBook.authorName}"></td>
             <td th:text="${newBook.authorLastName}"></td>
-            <td th:text="${newBook.releaseDate}"></td>
             <td th:text="${newBook.category}"></td>
             <td th:text="${newBook.addToLibraryDate}"></td>
           </tr>
