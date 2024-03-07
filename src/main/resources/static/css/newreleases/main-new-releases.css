@@ -31,6 +31,14 @@ main a:hover {
     background-color: white;
 }
 
+main .show-books_actions {
+    min-width: 200px;
+}
+
+main .button-more-info {
+    width: 55%;
+}
+
 #actions {
     padding-bottom: 15px;
 }
