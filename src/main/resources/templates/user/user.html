@@ -38,7 +38,7 @@
       <div th:if="${authorities != null}">
         <p>Role:</p>
         <ul th:each="authority : ${authorities}">
-          <li th:text="${authority}"></li>
+          <li th:text="${authority.authority}"></li>
         </ul>
       </div>
     </main>
