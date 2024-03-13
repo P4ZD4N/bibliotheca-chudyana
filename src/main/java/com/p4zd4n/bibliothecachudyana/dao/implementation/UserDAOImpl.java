@@ -3,6 +3,7 @@ package com.p4zd4n.bibliothecachudyana.dao.implementation;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,13 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User findByUsername(String username) {
-        return entityManager.find(User.class, username);
+        try {
+            return entityManager.createQuery("SELECT user FROM User user WHERE user.username = :username", User.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
