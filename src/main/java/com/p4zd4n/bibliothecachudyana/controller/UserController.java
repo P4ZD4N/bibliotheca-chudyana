@@ -2,6 +2,7 @@ package com.p4zd4n.bibliothecachudyana.controller;
 
 import com.p4zd4n.bibliothecachudyana.dao.AuthorityDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
+import com.p4zd4n.bibliothecachudyana.entity.Authority;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,13 @@ public class UserController {
     @GetMapping("/user/{username}")
     public String displayUserDetails(@PathVariable String username, Model model) {
         User user = userDAO.findByUsername(username);
-        List<String> authorities = authorityDAO.getUserAuthorities(username);
+
+        List<Authority> authorities = null;
+        if (user != null)
+            authorities = user.getAuthorities();
 
         model.addAttribute("user", user);
-        if (authorities.size() > 0)
+        if (authorities != null && authorities.size() > 0)
             model.addAttribute("authorities", authorities);
 
         return "/user/user";
