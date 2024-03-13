@@ -1,17 +1,46 @@
 package com.p4zd4n.bibliothecachudyana.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
     @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "enabled")
+    private Integer enabled;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Authority> authorities;
+
+    public User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -21,9 +50,6 @@ public class User {
         this.username = username;
     }
 
-    @Column(name = "password")
-    private String password;
-
     public String getPassword() {
         return password;
     }
@@ -32,21 +58,26 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "enabled")
-    private int enabled;
-
-    public int getEnabled() {
+    public Integer getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(int enabled) {
+    public void setEnabled(Integer enabled) {
         this.enabled = enabled;
     }
 
-    public User() {}
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public void addAuthority(Authority authority) {
+        if (authorities == null)
+            authorities = new ArrayList<>();
+
+        authorities.add(authority);
     }
 }
