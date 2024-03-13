@@ -46,9 +46,9 @@ public class SecurityController {
 
         user.setEnabled(1);
         user.setPassword("{bcrypt}" + hashedPassword);
+        user.addAuthority(new Authority("ROLE_USER", user));
 
         userDAO.save(user);
-        authorityDAO.save(new Authority(user.getUsername(), "ROLE_USER"));
 
         return "redirect:/";
     }
