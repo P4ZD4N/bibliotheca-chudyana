@@ -1,29 +1,37 @@
 package com.p4zd4n.bibliothecachudyana.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "authorities")
 public class Authority {
 
     @Id
-    @Column(name = "username")
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-    public String getUsername() {
-        return username;
-    }
+    @ManyToOne()
+    @JoinColumn(name = "username", referencedColumnName = "username")
+    private User user;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Id
     @Column(name = "authority")
     private String authority;
+
+    public Authority() {}
+
+    public Authority(String authority, User user) {
+        this.authority = authority;
+        this.user = user;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAuthority() {
         return authority;
@@ -33,10 +41,11 @@ public class Authority {
         this.authority = authority;
     }
 
-    public Authority() {}
+    public User getUser() {
+        return user;
+    }
 
-    public Authority(String username, String authority) {
-        this.username = username;
-        this.authority = authority;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
