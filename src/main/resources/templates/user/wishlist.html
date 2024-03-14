@@ -38,6 +38,36 @@
 </header>
 
 <main>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Tytuł</th>
+        <th>Cena</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr th:each="item : ${userWishlist}">
+        <td>
+          <a th:href="@{'/books/' + ${item.book.id}}">Więcej</a>
+        </td>
+        <td th:text="${item.book.title}"></td>
+        <td th:text="${item.book.price}"></td>
+        <td>
+          <form th:action="@{/remove-from-wishlist}" method="POST">
+            <input type="hidden" th:name="bookId" th:value="${item.book.id}" />
+            <button type="submit">Usuń z listy życzeń</button>
+          </form>
+        </td>
+        <td>
+          Dodaj do koszyka
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
 </main>
 
 <footer>
