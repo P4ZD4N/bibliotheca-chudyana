@@ -35,4 +35,11 @@ public class UserController {
 
         return "/user/user";
     }
+
+    @GetMapping("/user/{username}/wishlist")
+    public String displayUserWishlist(@PathVariable String username, Model model) {
+        User user = userDAO.findByUsername(username);
+        model.addAttribute("user", user);
+        return "/user/wishlist";
+    }
 }
