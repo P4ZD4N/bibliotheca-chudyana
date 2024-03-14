@@ -2,16 +2,14 @@ package com.p4zd4n.bibliothecachudyana.service.implementation;
 
 import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
-import com.p4zd4n.bibliothecachudyana.entity.Authority;
-import com.p4zd4n.bibliothecachudyana.entity.User;
-import com.p4zd4n.bibliothecachudyana.entity.Wishlist;
-import com.p4zd4n.bibliothecachudyana.entity.WishlistItem;
+import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import com.p4zd4n.bibliothecachudyana.util.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -58,6 +56,14 @@ public class UserServiceImpl implements UserService {
         Wishlist wishlist = new Wishlist(user);
         wishlist.setItems(new ArrayList<>());
         user.setWishlist(wishlist);
-        // user.getWishlist().getItems().add(new WishlistItem(wishlist, bookDAO.findById(1)));
+    }
+
+    @Override
+    public void addBookToWishlist(User user, Book book) {
+        Wishlist userWishlist = user.getWishlist();
+        List<WishlistItem> wishlistItems = userWishlist.getItems();
+        WishlistItem newWishlistItem = new WishlistItem(userWishlist, book);
+
+        wishlistItems.add(newWishlistItem);
     }
 }
