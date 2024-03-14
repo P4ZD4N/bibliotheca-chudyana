@@ -27,6 +27,9 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Authority> authorities;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Wishlist wishlist;
+
     public User() {}
 
     public User(String username, String password) {
@@ -72,6 +75,14 @@ public class User {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 
     public void addAuthority(Authority authority) {
