@@ -7,4 +7,5 @@ public interface UserService {
     boolean isUserAlreadyRegistered(User user);
     void registerUser(User user);
     void addBookToWishlist(User user, Book book);
+    void removeBookFromWishlist(User user, Book book);
 }

@@ -2,6 +2,7 @@ package com.p4zd4n.bibliothecachudyana.service.implementation;
 
 import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
+import com.p4zd4n.bibliothecachudyana.dao.WishlistItemDAO;
 import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import com.p4zd4n.bibliothecachudyana.util.PasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -18,10 +20,13 @@ public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;
 
+    private WishlistItemDAO wishlistItemDAO;
+
     @Autowired
-    public UserServiceImpl(UserDAO userDAO, BookDAO bookDAO) {
+    public UserServiceImpl(UserDAO userDAO, BookDAO bookDAO, WishlistItemDAO wishlistItemDAO) {
         this.userDAO = userDAO;
         this.bookDAO = bookDAO;
+        this.wishlistItemDAO = wishlistItemDAO;
     }
 
     @Override
@@ -65,5 +70,15 @@ public class UserServiceImpl implements UserService {
         WishlistItem newWishlistItem = new WishlistItem(userWishlist, book);
 
         wishlistItems.add(newWishlistItem);
+    }
+
+    @Override
+    public void removeBookFromWishlist(User user, Book book) {
+        Wishlist userWishlist = user.getWishlist();
+        List<WishlistItem> wishlistItems = userWishlist.getItems();
+
+        wishlistItems.removeIf(wishlistItem -> wishlistItem.getBook().equals(book));
+
+        wishlistItemDAO.deleteBookFromWishlist(user, book);
     }
 }
