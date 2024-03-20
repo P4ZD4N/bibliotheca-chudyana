@@ -82,4 +82,41 @@ public class UserController {
 
         return "redirect:/user/" + username;
     }
+
+    @GetMapping("/user/{username}/cart")
+    public String displayUserCart(@PathVariable String username, Model model) {
+        User user = userDAO.findByUsername(username);
+        List<CartItem> userCart = user.getCart().getItems();
+
+        model.addAttribute("user", user);
+        model.addAttribute("userCart", userCart);
+
+        return "/user/cart";
+    }
+
+    @PostMapping("/add-to-cart")
+    public String addToCart(@RequestParam("bookId") Integer id, Authentication authentication) {
+        String username = authentication.getName();
+
+        User user = userDAO.findByUsername(username);
+        Book book = bookDAO.findById(id);
+
+        userService.addBookToCart(user, book);
+
+        userDAO.save(user);
+
+        return "redirect:/user/" + username;
+    }
+
+    @PostMapping("/remove-from-cart")
+    public String removeFromCart(@RequestParam("bookId") Integer id, Authentication authentication) {
+        String username = authentication.getName();
+
+        User user = userDAO.findByUsername(username);
+        Book book = bookDAO.findById(id);
+
+        userService.removeBookFromCart(user, book);
+
+        return "redirect:/user/" + username;
+    }
 }
