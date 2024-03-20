@@ -62,7 +62,10 @@
           </form>
         </td>
         <td>
-          Dodaj do koszyka
+          <form th:action="@{/add-to-cart}" method="POST">
+            <input type="hidden" th:name="bookId" th:value="${item.book.id}" />
+            <button type="submit">Dodaj do koszyka</button>
+          </form>
         </td>
       </tr>
     </tbody>
