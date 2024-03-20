@@ -1,6 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.service.implementation;
 
 import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
+import com.p4zd4n.bibliothecachudyana.dao.CartItemDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.dao.WishlistItemDAO;
 import com.p4zd4n.bibliothecachudyana.entity.*;
@@ -22,11 +23,14 @@ public class UserServiceImpl implements UserService {
 
     private WishlistItemDAO wishlistItemDAO;
 
+    private CartItemDAO cartItemDAO;
+
     @Autowired
-    public UserServiceImpl(UserDAO userDAO, BookDAO bookDAO, WishlistItemDAO wishlistItemDAO) {
+    public UserServiceImpl(UserDAO userDAO, BookDAO bookDAO, WishlistItemDAO wishlistItemDAO, CartItemDAO cartItemDAO) {
         this.userDAO = userDAO;
         this.bookDAO = bookDAO;
         this.wishlistItemDAO = wishlistItemDAO;
+        this.cartItemDAO = cartItemDAO;
     }
 
     @Override
@@ -41,6 +45,7 @@ public class UserServiceImpl implements UserService {
         enableUser(user);
         addDefaultAuthority(user);
         createUserWishlist(user);
+        createUserCart(user);
         userDAO.save(user);
     }
 
@@ -63,6 +68,12 @@ public class UserServiceImpl implements UserService {
         user.setWishlist(wishlist);
     }
 
+    private void createUserCart(User user) {
+        Cart cart = new Cart(user);
+        cart.setItems(new ArrayList<>());
+        user.setCart(cart);
+    }
+
     @Override
     public void addBookToWishlist(User user, Book book) {
         Wishlist userWishlist = user.getWishlist();
@@ -80,5 +91,25 @@ public class UserServiceImpl implements UserService {
         wishlistItems.removeIf(wishlistItem -> wishlistItem.getBook().equals(book));
 
         wishlistItemDAO.deleteBookFromWishlist(user, book);
+    }
+
+    @Override
+    public void addBookToCart(User user, Book book) {
+        Cart userCart = user.getCart();
+        List<CartItem> cartItems = userCart.getItems();
+
+        CartItem newCartItem = new CartItem(userCart, book);
+
+        cartItems.add(newCartItem);
+    }
+
+    @Override
+    public void removeBookFromCart(User user, Book book) {
+        Cart userCart = user.getCart();
+        List<CartItem> cartItems = userCart.getItems();
+
+        cartItems.removeIf(cartItem -> cartItem.getBook().equals(book));
+
+        cartItemDAO.deleteBookFromCart(user, book);
     }
 }

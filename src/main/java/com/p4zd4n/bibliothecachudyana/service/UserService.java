@@ -8,4 +8,6 @@ public interface UserService {
     void registerUser(User user);
     void addBookToWishlist(User user, Book book);
     void removeBookFromWishlist(User user, Book book);
+    void addBookToCart(User user, Book book);
+    void removeBookFromCart(User user, Book book);
 }
