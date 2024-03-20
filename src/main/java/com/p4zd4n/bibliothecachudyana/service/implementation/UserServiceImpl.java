@@ -80,7 +80,18 @@ public class UserServiceImpl implements UserService {
         List<WishlistItem> wishlistItems = userWishlist.getItems();
         WishlistItem newWishlistItem = new WishlistItem(userWishlist, book);
 
-        wishlistItems.add(newWishlistItem);
+        if (!isNewWishlistItemAlreadyInWishlist(wishlistItems, newWishlistItem))
+            wishlistItems.add(newWishlistItem);
+    }
+
+    private boolean isNewWishlistItemAlreadyInWishlist(
+            List<WishlistItem> wishlistItems, WishlistItem newWishlistItem
+    ) {
+        for (WishlistItem wishlistItem : wishlistItems) {
+            if (wishlistItem.getBook().getId().equals(newWishlistItem.getBook().getId()))
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -100,7 +111,18 @@ public class UserServiceImpl implements UserService {
 
         CartItem newCartItem = new CartItem(userCart, book);
 
-        cartItems.add(newCartItem);
+        if (!isNewCartItemAlreadyInCart(cartItems, newCartItem))
+            cartItems.add(newCartItem);
+    }
+
+    private boolean isNewCartItemAlreadyInCart(
+            List<CartItem> cartItems, CartItem newCartItem
+    ) {
+        for (CartItem cartItem : cartItems) {
+            if (cartItem.getBook().getId().equals(newCartItem.getBook().getId()))
+                return true;
+        }
+        return false;
     }
 
     @Override
