@@ -3,7 +3,7 @@ package com.p4zd4n.bibliothecachudyana.controller;
 
 import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
-import com.p4zd4n.bibliothecachudyana.search.SearchForm;
+import com.p4zd4n.bibliothecachudyana.util.SearchForm;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
