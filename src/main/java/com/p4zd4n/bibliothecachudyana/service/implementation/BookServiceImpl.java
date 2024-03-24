@@ -81,11 +81,11 @@ public class BookServiceImpl implements BookService {
         Book book = bookDAO.findById(id);
         int quantityInStock = book.getQuantityInStock();
 
-        if (0 > quantityInStock)
+        if (quantityInStock < 0)
             status = "error";
         else if (quantityInStock == 0)
             status = "unavailable";
-        else if (10 >= quantityInStock)
+        else if (quantityInStock <= 10)
             status = "last_items";
         else
             status = "available";
