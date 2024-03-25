@@ -50,9 +50,15 @@
         <li th:text="${item.book.title}"></li>
     </ul>
 
-    <!-- <form th:action="@{/order}" method="POST">
+    <form th:action="@{/order}" th:object="${order}" method="POST">
+        <input type="hidden" th:field="*{id}" th:value="${order.id}" />
+        <input type="hidden" name="username" th:value="${username}" />
+        <input type="hidden" th:field="*{orderDate}" th:value="${order.orderDate}" />
+        <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
+        <input type="hidden" th:field="*{status}" th:value="${order.status}" />
+        <input type="hidden" th:field="*{shippingAddress}" th:value="*{shippingAddress}">
         <button type="submit">Tak</button>
-    </form> -->
+    </form>
     <form th:action="@{'/user/' + ${username} + '/cart'}" method="GET">
         <button type="submit">Nie</button>
     </form>
