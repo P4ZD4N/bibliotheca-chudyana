@@ -1,10 +1,9 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
-import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
-import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import com.p4zd4n.bibliothecachudyana.entity.WishlistItem;
+import com.p4zd4n.bibliothecachudyana.service.BookService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,17 +20,14 @@ import java.util.List;
 public class WishlistController {
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private BookDAO bookDAO;
+    private BookService bookService;
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/user/{username}/wishlist")
     public String displayUserWishlist(@PathVariable String username, Model model) {
-        User user = userDAO.findByUsername(username);
+        User user = userService.findByUsername(username);
         List<WishlistItem> userWishlist = user.getWishlist().getItems();
 
         model.addAttribute("user", user);
@@ -44,12 +40,12 @@ public class WishlistController {
     public String addToWishlist(@RequestParam("bookId") Integer id, Authentication authentication) {
         String username = authentication.getName();
 
-        User user = userDAO.findByUsername(username);
-        Book book = bookDAO.findById(id);
+        User user = userService.findByUsername(username);
+        Book book = bookService.findById(id);
 
         userService.addBookToWishlist(user, book);
 
-        userDAO.save(user);
+        userService.save(user);
 
         return "redirect:/user/" + username;
     }
@@ -58,8 +54,8 @@ public class WishlistController {
     public String removeFromWishlist(@RequestParam("bookId") Integer id, Authentication authentication) {
         String username = authentication.getName();
 
-        User user = userDAO.findByUsername(username);
-        Book book = bookDAO.findById(id);
+        User user = userService.findByUsername(username);
+        Book book = bookService.findById(id);
 
         userService.removeBookFromWishlist(user, book);
 
