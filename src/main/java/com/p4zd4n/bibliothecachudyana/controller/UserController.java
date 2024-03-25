@@ -1,8 +1,5 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
-import com.p4zd4n.bibliothecachudyana.dao.AuthorityDAO;
-import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
-import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +14,11 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private AuthorityDAO authorityDAO;
-
-    @Autowired
-    private BookDAO bookDAO;
-
-    @Autowired
     private UserService userService;
 
     @GetMapping("/user/{username}")
     public String displayUserDetails(@PathVariable String username, Model model) {
-        User user = userDAO.findByUsername(username);
+        User user = userService.findByUsername(username);
 
         List<Authority> authorities = null;
         List<Order> orders = null;
@@ -41,9 +29,9 @@ public class UserController {
         }
 
         model.addAttribute("user", user);
-        if (authorities != null && authorities.size() > 0)
+        if (authorities != null && !authorities.isEmpty())
             model.addAttribute("authorities", authorities);
-        if (orders != null && orders.size() > 0)
+        if (orders != null && !orders.isEmpty())
             model.addAttribute("orders", orders);
 
         return "/user/user";
