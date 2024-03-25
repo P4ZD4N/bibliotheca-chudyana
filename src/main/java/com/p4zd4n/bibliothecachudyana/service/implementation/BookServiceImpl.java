@@ -21,6 +21,56 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book findById(int id) {
+        return bookDAO.findById(id);
+    }
+
+    @Override
+    public List<Book> findByTitle(String title) {
+        return bookDAO.findByTitle(title);
+    }
+
+    @Override
+    public List<Book> findByAuthorName(String authorFirstName) {
+        return bookDAO.findByAuthorName(authorFirstName);
+    }
+
+    @Override
+    public List<Book> findByAuthorLastName(String authorLastName) {
+        return bookDAO.findByAuthorLastName(authorLastName);
+    }
+
+    @Override
+    public List<Book> findByReleaseYear(String publicationYear) {
+        return bookDAO.findByReleaseYear(publicationYear);
+    }
+
+    @Override
+    public List<Book> findByCategory(String category) {
+        return bookDAO.findByCategory(category);
+    }
+
+    @Override
+    public List<Book> findAll() {
+        return bookDAO.findAll();
+    }
+
+    @Override
+    public void save(Book book) {
+        bookDAO.save(book);
+    }
+
+    @Override
+    public void update(Book book) {
+        bookDAO.update(book);
+    }
+
+    @Override
+    public void delete(Book book) {
+        bookDAO.delete(book);
+    }
+
+    @Override
     public Map<String, Integer> getTopCategories() {
         List<Book> allBooks = bookDAO.findAll();
         Set<String> categories = getSetOfDistinctCategories(allBooks);
