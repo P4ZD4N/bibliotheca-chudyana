@@ -5,6 +5,7 @@ import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.entity.CartItem;
 import com.p4zd4n.bibliothecachudyana.entity.User;
+import com.p4zd4n.bibliothecachudyana.service.BookService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,17 +22,14 @@ import java.util.List;
 public class CartController {
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private BookDAO bookDAO;
-
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookService bookService;
 
     @GetMapping("/user/{username}/cart")
     public String displayUserCart(@PathVariable String username, Model model) {
-        User user = userDAO.findByUsername(username);
+        User user = userService.findByUsername(username);
         List<CartItem> userCart = user.getCart().getItems();
 
         model.addAttribute("user", user);
@@ -44,12 +42,12 @@ public class CartController {
     public String addToCart(@RequestParam("bookId") Integer id, Authentication authentication) {
         String username = authentication.getName();
 
-        User user = userDAO.findByUsername(username);
-        Book book = bookDAO.findById(id);
+        User user = userService.findByUsername(username);
+        Book book = bookService.findById(id);
 
         userService.addBookToCart(user, book);
 
-        userDAO.save(user);
+        userService.save(user);
 
         return "redirect:/user/" + username;
     }
@@ -58,8 +56,8 @@ public class CartController {
     public String removeFromCart(@RequestParam("bookId") Integer id, Authentication authentication) {
         String username = authentication.getName();
 
-        User user = userDAO.findByUsername(username);
-        Book book = bookDAO.findById(id);
+        User user = userService.findByUsername(username);
+        Book book = bookService.findById(id);
 
         userService.removeBookFromCart(user, book);
 
