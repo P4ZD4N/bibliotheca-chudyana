@@ -23,13 +23,7 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private CartItemDAO cartItemDAO;
 
     @Autowired
     private UserService userService;
@@ -39,7 +33,7 @@ public class OrderController {
     public String displayOrderForm(Model model, Authentication authentication) {
         String username = authentication.getName();
 
-        User user = userDAO.findByUsername(username);
+        User user = userService.findByUsername(username);
         Cart userCart = user.getCart();
         List<CartItem> userCartItems = userCart.getItems();
 
@@ -66,7 +60,7 @@ public class OrderController {
             @ModelAttribute("order") Order order,
             @RequestParam("username") String username, Model model
     ) {
-        User user = userDAO.findByUsername(username);
+        User user = userService.findByUsername(username);
         List<CartItem> userCartItems = user.getCart().getItems();
 
         order.setUser(user);
@@ -87,7 +81,7 @@ public class OrderController {
             @ModelAttribute("order") Order order,
             @RequestParam("username") String username
     ) {
-        User user = userDAO.findByUsername(username);
+        User user = userService.findByUsername(username);
         List<CartItem> userCartItems = user.getCart().getItems();
 
         order.setUser(user);
