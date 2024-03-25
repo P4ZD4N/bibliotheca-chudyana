@@ -133,4 +133,14 @@ public class UserServiceImpl implements UserService {
 
         cartItemDAO.deleteBookFromCart(user, book);
     }
+
+    @Override
+    public void removeAllBooksFromCart(User user) {
+        Cart userCart = user.getCart();
+        List<CartItem> cartItems = userCart.getItems();
+
+        cartItems.clear();
+
+        cartItemDAO.deleteAllBooksFromCart(user);
+    }
 }
