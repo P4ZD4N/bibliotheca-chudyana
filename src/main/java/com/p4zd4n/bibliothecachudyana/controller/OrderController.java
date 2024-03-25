@@ -33,21 +33,7 @@ public class OrderController {
     public String displayOrderForm(Model model, Authentication authentication) {
         String username = authentication.getName();
 
-        User user = userService.findByUsername(username);
-        Cart userCart = user.getCart();
-        List<CartItem> userCartItems = userCart.getItems();
-
-        Order order = new Order();
-        order.setUser(user);
-        order.setOrderDate(LocalDate.now());
-
-        Double orderTotalAmount = 0D;
-        for (CartItem cartItem : userCartItems) {
-            orderTotalAmount += cartItem.getBook().getPrice();
-        }
-
-        order.setTotalAmount(orderTotalAmount);
-        order.setStatus("IN_PROGRESS");
+        Order order = orderService.createOrder(username);
 
         model.addAttribute("order", order);
         model.addAttribute("username", username);
@@ -93,7 +79,7 @@ public class OrderController {
                 cartItem.getBook().setQuantityInStock(cartItem.getBook().getQuantityInStock() - 1);
         }
 
-        orderService.createOrder(order);
+        orderService.saveOrder(order);
         userService.removeAllBooksFromCart(user);
 
         return "redirect:/user/" + username;
