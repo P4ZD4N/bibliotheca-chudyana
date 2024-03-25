@@ -14,7 +14,7 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
