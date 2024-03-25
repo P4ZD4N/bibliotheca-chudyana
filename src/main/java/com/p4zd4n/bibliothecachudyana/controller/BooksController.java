@@ -1,7 +1,6 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
 
-import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.util.SearchForm;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
@@ -19,9 +18,6 @@ public class BooksController {
     @Autowired
     private BookService bookService;
 
-    @Autowired
-    private BookDAO bookDAO;
-
     @GetMapping("/books")
     public String showBooks(
             @RequestParam(required = false) String searchBy,
@@ -31,15 +27,15 @@ public class BooksController {
         List<Book> books;
         if (searchBy != null && keyword != null) {
             books = switch (searchBy) {
-                case "title" -> bookDAO.findByTitle(keyword);
-                case "authorName" -> bookDAO.findByAuthorName(keyword);
-                case "authorLastName" -> bookDAO.findByAuthorLastName(keyword);
-                case "releaseYear" -> bookDAO.findByReleaseYear(keyword);
-                case "category" -> bookDAO.findByCategory(keyword);
+                case "title" -> bookService.findByTitle(keyword);
+                case "authorName" -> bookService.findByAuthorName(keyword);
+                case "authorLastName" -> bookService.findByAuthorLastName(keyword);
+                case "releaseYear" -> bookService.findByReleaseYear(keyword);
+                case "category" -> bookService.findByCategory(keyword);
                 default -> throw new IllegalArgumentException();
             };
         } else {
-            books = bookDAO.findAll();
+            books = bookService.findAll();
         }
         model.addAttribute("books", books);
         return "books/books";
@@ -47,7 +43,7 @@ public class BooksController {
 
     @GetMapping("/books/{id}")
     public String showBookDetails(@PathVariable Integer id, Model model) {
-        Book book = bookDAO.findById(id);
+        Book book = bookService.findById(id);
         String status = bookService.getStatusOfBookById(id);
 
         model.addAttribute("book", book);
@@ -67,9 +63,9 @@ public class BooksController {
     @PostMapping("/save-book")
     public String saveBook(@RequestParam(required = false) Integer id, @ModelAttribute("book") Book book) {
         if (id == null)
-            bookDAO.save(book);
+            bookService.save(book);
         else
-            bookDAO.update(book);
+            bookService.update(book);
         return "redirect:/books";
     }
 
@@ -89,7 +85,7 @@ public class BooksController {
 
     @GetMapping("/update-book")
     public String showUpdateBookForm(@RequestParam("bookId") Integer id, Model model) {
-        Book book = bookDAO.findById(id);
+        Book book = bookService.findById(id);
 
         model.addAttribute("book", book);
 
@@ -98,8 +94,8 @@ public class BooksController {
 
     @GetMapping("/delete-book")
     public String deleteBook(@RequestParam("bookId") Integer id) {
-        Book bookToDelete = bookDAO.findById(id);
-        bookDAO.delete(bookToDelete);
+        Book bookToDelete = bookService.findById(id);
+        bookService.delete(bookToDelete);
         return "redirect:/books";
     }
 }
