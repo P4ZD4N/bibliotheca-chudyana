@@ -4,6 +4,7 @@ import com.p4zd4n.bibliothecachudyana.dao.CartItemDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.OrderService;
+import com.p4zd4n.bibliothecachudyana.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -29,6 +30,9 @@ public class OrderController {
 
     @Autowired
     private CartItemDAO cartItemDAO;
+
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/order-form")
@@ -94,6 +98,7 @@ public class OrderController {
         }
 
         orderService.createOrder(order);
+        userService.removeAllBooksFromCart(user);
 
         return "redirect:/user/" + username;
     }
