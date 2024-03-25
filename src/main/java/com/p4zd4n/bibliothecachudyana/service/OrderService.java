@@ -4,5 +4,6 @@ import com.p4zd4n.bibliothecachudyana.entity.Order;
 
 public interface OrderService {
 
-    void createOrder(Order order);
+    void saveOrder(Order order);
+    Order createOrder(String username);
 }
