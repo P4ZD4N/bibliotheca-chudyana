@@ -89,6 +89,8 @@ public class OrderController {
 
         for (CartItem cartItem : userCartItems) {
             order.getItems().add(new OrderItem(order, cartItem.getBook()));
+            if (cartItem.getBook().getQuantityInStock() > 0)
+                cartItem.getBook().setQuantityInStock(cartItem.getBook().getQuantityInStock() - 1);
         }
 
         orderService.createOrder(order);
