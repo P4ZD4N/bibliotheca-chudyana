@@ -1,7 +1,9 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
+import com.p4zd4n.bibliothecachudyana.dao.CartItemDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.*;
+import com.p4zd4n.bibliothecachudyana.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,12 @@ public class OrderController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private CartItemDAO cartItemDAO;
 
 
     @GetMapping("/order-form")
@@ -68,5 +76,25 @@ public class OrderController {
         model.addAttribute("username", username);
 
         return "/order/order-confirmation";
+    }
+
+    @PostMapping("/order")
+    public String createOrder(
+            @ModelAttribute("order") Order order,
+            @RequestParam("username") String username
+    ) {
+        User user = userDAO.findByUsername(username);
+        List<CartItem> userCartItems = user.getCart().getItems();
+
+        order.setUser(user);
+        order.setItems(new ArrayList<>());
+
+        for (CartItem cartItem : userCartItems) {
+            order.getItems().add(new OrderItem(order, cartItem.getBook()));
+        }
+
+        orderService.createOrder(order);
+
+        return "redirect:/user/" + username;
     }
 }
