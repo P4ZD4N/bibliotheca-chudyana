@@ -33,12 +33,18 @@ public class UserController {
         User user = userDAO.findByUsername(username);
 
         List<Authority> authorities = null;
-        if (user != null)
+        List<Order> orders = null;
+
+        if (user != null) {
             authorities = user.getAuthorities();
+            orders = user.getOrders();
+        }
 
         model.addAttribute("user", user);
         if (authorities != null && authorities.size() > 0)
             model.addAttribute("authorities", authorities);
+        if (orders != null && orders.size() > 0)
+            model.addAttribute("orders", orders);
 
         return "/user/user";
     }
