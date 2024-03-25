@@ -35,14 +35,28 @@
       <h1 th:if="${user == null}">Nie ma takiego użytkownika!</h1>
       <h1 th:if="${user}" th:text="${user.username}"></h1>
 
-      <div th:if="${authorities != null}">
+      <section th:if="${authorities != null}">
         <p>Role:</p>
         <ul th:each="authority : ${authorities}">
           <li th:text="${authority.authority}"></li>
         </ul>
         <a th:href="'/user/' + ${user.username} + '/wishlist'">Lista życzeń</a>
         <a th:href="'/user/' + ${user.username} + '/cart'">Koszyk</a>
-      </div>
+      </section>
+
+      <section th:if="${orders != null}">
+        <p>Zamówienia:</p>
+        <ul th:each="order : ${orders}">
+          <li th:text="${order.id}"></li>
+          <li th:text="${order.orderDate}"></li>
+          <li th:text="${order.totalAmount}"></li>
+          <li th:text="${order.shippingAddress}"></li>
+          <li th:text="${order.status}"></li>
+          <ul th:each="orderItem : ${order.items}">
+            <li th:text="${orderItem.book.title}"></li>
+          </ul>
+        </ul>
+      </section>
     </main>
 
     <footer>
