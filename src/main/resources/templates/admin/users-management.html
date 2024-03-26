@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/main-users-management.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title></title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <div>
+        <a href="/login">Zaloguj</a>
+        <a href="/register">Zarejestruj</a>
+        <span sec:authorize="isAuthenticated()">
+            <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+                <span sec:authentication="principal.username"></span>
+            </a>
+        </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <section id="actions">
+        <a href="#">Znajdź użytkownika</a>
+        <br>
+        <a href="#">Dodaj użytkownika</a>
+        <br>
+        <a href="/">Strona główna</a>
+    </section>
+
+    <section id="show-users">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nazwa użytkownika</th>
+                    <th>Role</th>
+                    <th>Aktywny</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td>
+                        <ul th:each="authority : ${user.authorities}">
+                            <li th:text="${authority.authority}"></li>
+                        </ul>
+                    </td>
+                    <td th:text="${user.enabled == 1 ? 'TAK' : 'NIE'}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </section>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>
