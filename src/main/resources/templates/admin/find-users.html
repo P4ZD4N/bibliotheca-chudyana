@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/main-find-users.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title>Znajdź użytkowników</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <a href="/users-management">
+        <h1>
+            <span>Wszyscy</span>
+            <span>użytkownicy</span>
+        </h1>
+    </a>
+
+    <div>
+        <a href="/login">Zaloguj</a>
+        <a href="/register">Zarejestruj</a>
+        <span sec:authorize="isAuthenticated()">
+          <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+              <span sec:authentication="principal.username"></span>
+          </a>
+      </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <form th:action="@{/users-management/find-users}" th:object="${findUsersForm}" method="POST">
+        <div>
+            <label>ID</label><input type="text" th:field="*{id}" />
+
+            <br>
+
+            <label>Nazwa użytkownika</label><input type="text" th:field="*{username}" />
+
+            <br>
+
+            <label>User<input type="checkbox" th:field="*{authorities}" th:value="ROLE_USER" /></label>
+            <label>Employee<input type="checkbox" th:field="*{authorities}" th:value="ROLE_EMPLOYEE" /></label>
+            <label>Manager<input type="checkbox" th:field="*{authorities}" th:value="ROLE_MANAGER" /></label>
+            <label>Admin<input type="checkbox" th:field="*{authorities}" th:value="ROLE_ADMIN" /></label>
+
+            <br>
+
+            <label>Dostępność
+                <select th:field="*{enabled}">
+                    <option value="">Dostępni i niedostępni</option>
+                    <option th:value="0">Niedostępni</option>
+                    <option th:value="1">Dostępni</option>
+                </select>
+            </label>
+
+            <br><br>
+
+            <input type="submit" value="Wyszukaj" />
+        </div>
+    </form>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>
