@@ -1,6 +1,5 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
-
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.util.FindBooksForm;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
@@ -18,7 +17,6 @@ public class BooksController {
 
     @Autowired
     private BookService bookService;
-
 
     @GetMapping("/books")
     public String showBooks(
