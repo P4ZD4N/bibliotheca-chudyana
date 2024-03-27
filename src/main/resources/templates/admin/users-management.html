@@ -6,7 +6,8 @@
     <link rel="stylesheet" th:href="@{/css/body.css}" />
     <link rel="stylesheet" th:href="@{/css/admin/main-users-management.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
-    <title></title>
+    <script src="/js/confirm-delete-user.js"></script>
+    <title>Zarządzanie użytkownikami</title>
 </head>
 <body>
 <header>
@@ -35,7 +36,7 @@
     <section id="actions">
         <a href="/users-management/find-users">Znajdź użytkownika</a>
         <br>
-        <a href="#">Dodaj użytkownika</a>
+        <a href="/users-management/add-user">Dodaj użytkownika</a>
         <br>
         <a href="/">Strona główna</a>
     </section>
@@ -48,6 +49,7 @@
                     <th>Nazwa użytkownika</th>
                     <th>Role</th>
                     <th>Aktywny</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -61,6 +63,14 @@
                         </ul>
                     </td>
                     <td th:text="${user.enabled == 1 ? 'TAK' : 'NIE'}"></td>
+                    <td class="show-users_actions">
+                        <a class="button-update" th:href="@{/users-management/update-user(userId=${user.id})}">Aktualizuj</a>
+                        <a class="button-delete"
+                           th:href="@{/users-management/delete-user(userId=${user.id})}"
+                           onclick="return confirmDeleteUser()">
+                            Usuń
+                        </a>
+                    </td>
                 </tr>
             </tbody>
 
