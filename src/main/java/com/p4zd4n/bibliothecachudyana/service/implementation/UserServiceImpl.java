@@ -33,8 +33,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findById(Integer id) {
+        return userDAO.findById(id);
+    }
+
+    @Override
     public User findByUsername(String username) {
         return userDAO.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findByAuthorities(List<String> authorities) {
+        return userDAO.findByAuthorities(authorities);
+    }
+
+    @Override
+    public List<User> findByStatus(Integer status) {
+        return userDAO.findByStatus(status);
     }
 
     @Override

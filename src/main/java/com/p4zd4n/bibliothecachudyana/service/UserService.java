@@ -1,12 +1,16 @@
 package com.p4zd4n.bibliothecachudyana.service;
 
+import com.p4zd4n.bibliothecachudyana.entity.Authority;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 
 import java.util.List;
 
 public interface UserService {
+    User findById(Integer id);
     User findByUsername(String username);
+    List<User> findByAuthorities(List<String> authorities);
+    List<User> findByStatus(Integer status);
     List<User> findAll();
     void save(User user);
     void update(User user);
