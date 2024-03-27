@@ -35,6 +35,12 @@
       <h1 th:if="${user == null}">Nie ma takiego użytkownika!</h1>
       <h1 th:if="${user}" th:text="${user.username}"></h1>
 
+      <section sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
+        <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
+        <a href="#" sec:authorize="hasRole('MANAGER')">Panel managera</a>
+        <a href="#" sec:authorize="hasRole('ADMIN')">Panel pracownika</a>
+      </section>
+
       <section th:if="${authorities != null}">
         <p>Role:</p>
         <ul th:each="authority : ${authorities}">
