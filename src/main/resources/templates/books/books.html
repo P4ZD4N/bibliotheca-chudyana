@@ -6,7 +6,7 @@
       <link rel="stylesheet" th:href="@{/css/body.css}" />
       <link rel="stylesheet" th:href="@{/css/books/main-books.css}" />
       <link rel="stylesheet" th:href="@{/css/footer.css}" />
-      <script src="books/confirm-delete.js"></script>
+      <script src="/js/confirm-delete-book.js"></script>
       <title>Wszystkie książki</title>
   </head>
   <body>
@@ -80,7 +80,7 @@
                 <a class="button-update" th:href="@{/update-book(bookId=${book.id})}">Aktualizuj</a>
                 <a class="button-delete"
                    th:href="@{/delete-book(bookId=${book.id})}"
-                   onclick="return confirmDelete()">
+                   onclick="return confirmDeleteBook()">
                     Usuń
                 </a>
               </td>
