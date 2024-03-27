@@ -48,10 +48,33 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> findByReleaseYear(String releaseYear) {
+    public List<Book> findByMinReleaseYear(String minReleaseYear) {
         return entityManager
-                .createQuery("SELECT book FROM Book book WHERE book.releaseDate LIKE CONCAT(:releaseYear, '%')", Book.class)
-                .setParameter("releaseYear", releaseYear)
+                .createQuery("SELECT book FROM Book book WHERE " +
+                               "SUBSTRING(book.releaseDate, 1, 4) >= :minReleaseYear", Book.class)
+                .setParameter("minReleaseYear", minReleaseYear)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMaxReleaseYear(String maxReleaseYear) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE " +
+                               "SUBSTRING(book.releaseDate, 1, 4) <= :maxReleaseYear", Book.class)
+                .setParameter("maxReleaseYear", maxReleaseYear)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMinAndMaxReleaseYear(String minReleaseYear, String maxReleaseYear) {
+        return entityManager
+                .createQuery(
+                        "SELECT book FROM Book book WHERE " +
+                          "SUBSTRING(book.releaseDate, 1, 4) >= :minReleaseYear AND " +
+                          "SUBSTRING(book.releaseDate, 1, 4) <= :maxReleaseYear", Book.class
+                )
+                .setParameter("minReleaseYear", minReleaseYear)
+                .setParameter("maxReleaseYear", maxReleaseYear)
                 .getResultList();
     }
 
@@ -60,6 +83,78 @@ public class BookDAOImpl implements BookDAO {
         return entityManager
                 .createQuery("SELECT book FROM Book book WHERE book.category LIKE CONCAT('%', :category, '%')", Book.class)
                 .setParameter("category", category)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMinPrice(Double minPrice) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.price >= :minPrice", Book.class)
+                .setParameter("minPrice", minPrice)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMaxPrice(Double maxPrice) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.price <= :maxPrice", Book.class)
+                .setParameter("maxPrice", maxPrice)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMinAndMaxPrice(Double minPrice, Double maxPrice) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.price >= :minPrice AND book.price <= :maxPrice", Book.class)
+                .setParameter("minPrice", minPrice)
+                .setParameter("maxPrice", maxPrice)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMinPages(Integer minPages) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.numberOfPages >= :minPages", Book.class)
+                .setParameter("minPages", minPages)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMaxPages(Integer maxPages) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.numberOfPages <= :maxPages", Book.class)
+                .setParameter("maxPages", maxPages)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findByMinAndMaxPages(Integer minPages, Integer maxPages) {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE " +
+                               "book.numberOfPages >= :minPages AND book.numberOfPages <= :maxPages", Book.class)
+                .setParameter("minPages", minPages)
+                .setParameter("maxPages", maxPages)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findUnavailable() {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.quantityInStock = 0", Book.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findLastItems() {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.quantityInStock <= 10", Book.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Book> findAvailable() {
+        return entityManager
+                .createQuery("SELECT book FROM Book book WHERE book.quantityInStock >= 11", Book.class)
                 .getResultList();
     }
 
