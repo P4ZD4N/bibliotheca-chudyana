@@ -1,7 +1,6 @@
 package com.p4zd4n.bibliothecachudyana.dao.implementation;
 
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
-import com.p4zd4n.bibliothecachudyana.entity.Authority;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;

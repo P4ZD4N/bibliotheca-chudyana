@@ -1,6 +1,5 @@
 package com.p4zd4n.bibliothecachudyana.dao;
 
-import com.p4zd4n.bibliothecachudyana.entity.Authority;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 
 import java.util.List;
