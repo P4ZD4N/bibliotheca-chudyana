@@ -1,6 +1,10 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
+import com.p4zd4n.bibliothecachudyana.entity.Authority;
+import com.p4zd4n.bibliothecachudyana.entity.Cart;
+import com.p4zd4n.bibliothecachudyana.entity.Wishlist;
 import com.p4zd4n.bibliothecachudyana.util.FindUsersForm;
+import com.p4zd4n.bibliothecachudyana.util.PasswordEncoder;
 import org.springframework.ui.Model;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
@@ -69,6 +73,59 @@ public class AdminController {
         return "/admin/users-management";
     }
 
+    @GetMapping("/users-management/add-user")
+    public String displayAddUserForm(Model model) {
+        User user = new User();
+
+        model.addAttribute("user", user);
+
+        return "/admin/save-user";
+    }
+
+    @PostMapping("/users-management/save-user")
+    public String saveUser(
+            @RequestParam(required = false) Integer id,
+            @RequestParam("authoritiesAsString") List<String> authoritiesAsString,
+            @ModelAttribute("user") User user,
+            Model model) {
+
+        if (id == null) {
+            boolean isUserAlreadyRegistered = userService.isUserAlreadyRegistered(user);
+            if (isUserAlreadyRegistered) {
+                model.addAttribute("error", "Użytkownik o podanej nazwie już istnieje!");
+                return "/admin/save-user";
+            } else {
+                String hashedPassword = PasswordEncoder.encodePassword(user.getPassword());
+                user.setPassword("{bcrypt}" + hashedPassword);
+
+                List<Authority> userAuthorities = new ArrayList<>();
+                for (String authority : authoritiesAsString)
+                    userAuthorities.add(new Authority(authority, user));
+                user.setAuthorities(userAuthorities);
+
+                Wishlist wishlist = new Wishlist(user);
+                wishlist.setItems(new ArrayList<>());
+                user.setWishlist(wishlist);
+
+                Cart cart = new Cart(user);
+                cart.setItems(new ArrayList<>());
+                user.setCart(cart);
+
+                userService.save(user);
+            }
+        } else {
+            List<Authority> userAuthorities = new ArrayList<>();
+
+            for (String authority : authoritiesAsString)
+                userAuthorities.add(new Authority(authority, user));
+            user.setAuthorities(userAuthorities);
+
+            userService.update(user);
+        }
+
+        return "redirect:/users-management";
+    }
+
     @GetMapping("/users-management/find-users")
     public String displayFindUsersForm(Model model) {
         model.addAttribute("findUsersForm", new FindUsersForm());
@@ -106,5 +163,27 @@ public class AdminController {
         }
 
         return redirectUrlBuilder.toString();
+    }
+
+    @GetMapping("/users-management/update-user")
+    public String displayUpdateUserForm(@RequestParam("userId") Integer id, Model model) {
+        User user = userService.findById(id);
+        List<String> userAuthorities = new ArrayList<>();
+
+        for (Authority authority : user.getAuthorities()) {
+            userAuthorities.add(authority.getAuthority());
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("userAuthorities", userAuthorities);
+
+        return "/admin/save-user";
+    }
+
+    @GetMapping("/users-management/delete-user")
+    public String deleteUser(@RequestParam("userId") Integer id) {
+        User user = userService.findById(id);
+        userService.delete(user);
+        return "redirect:/users-management";
     }
 }
