@@ -41,13 +41,68 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findByReleaseYear(String publicationYear) {
-        return bookDAO.findByReleaseYear(publicationYear);
+    public List<Book> findByMinReleaseYear(String minReleaseYear) {
+        return bookDAO.findByMinReleaseYear(minReleaseYear);
+    }
+
+    @Override
+    public List<Book> findByMaxReleaseYear(String maxReleaseYear) {
+        return bookDAO.findByMaxReleaseYear(maxReleaseYear);
+    }
+
+    @Override
+    public List<Book> findByMinAndMaxReleaseYear(String minReleaseYear, String maxReleaseYear) {
+        return bookDAO.findByMinAndMaxReleaseYear(minReleaseYear, maxReleaseYear);
     }
 
     @Override
     public List<Book> findByCategory(String category) {
         return bookDAO.findByCategory(category);
+    }
+
+    @Override
+    public List<Book> findByMinPrice(Double minPrice) {
+        return bookDAO.findByMinPrice(minPrice);
+    }
+
+    @Override
+    public List<Book> findByMaxPrice(Double maxPrice) {
+        return bookDAO.findByMaxPrice(maxPrice);
+    }
+
+    @Override
+    public List<Book> findByMinAndMaxPrice(Double minPrice, Double maxPrice) {
+        return bookDAO.findByMinAndMaxPrice(minPrice, maxPrice);
+    }
+
+    @Override
+    public List<Book> findByMinPages(Integer minPages) {
+        return bookDAO.findByMinPages(minPages);
+    }
+
+    @Override
+    public List<Book> findByMaxPages(Integer maxPages) {
+        return bookDAO.findByMaxPages(maxPages);
+    }
+
+    @Override
+    public List<Book> findByMinAndMaxPages(Integer minPages, Integer maxPages) {
+        return bookDAO.findByMinAndMaxPages(minPages, maxPages);
+    }
+
+    @Override
+    public List<Book> findUnavailable() {
+        return bookDAO.findUnavailable();
+    }
+
+    @Override
+    public List<Book> findLastItems() {
+        return bookDAO.findLastItems();
+    }
+
+    @Override
+    public List<Book> findAvailable() {
+        return bookDAO.findAvailable();
     }
 
     @Override
