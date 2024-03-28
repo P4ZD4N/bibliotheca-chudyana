@@ -38,7 +38,7 @@
       <section sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
         <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
         <a href="#" sec:authorize="hasRole('MANAGER')">Panel managera</a>
-        <a href="#" sec:authorize="hasRole('ADMIN')">Panel pracownika</a>
+        <a href="#" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
       </section>
 
       <section th:if="${authorities != null}">
