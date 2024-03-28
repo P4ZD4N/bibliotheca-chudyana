@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/ordersmanagement/main-orders-management.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <script src="/js/confirm-delete-order.js"></script>
+    <title>Zarządzanie zamówieniami</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <div>
+        <a href="/login">Zaloguj</a>
+        <a href="/register">Zarejestruj</a>
+        <span sec:authorize="isAuthenticated()">
+            <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+                <span sec:authentication="principal.username"></span>
+            </a>
+        </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <section id="actions">
+        <a href="/orders-management/find-orders">Znajdź zamówienie</a>
+        <br>
+        <a href="/">Strona główna</a>
+    </section>
+
+    <section id="show-orders">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Użytkownik</th>
+                <th>Data zamówienia</th>
+                <th>Wartość</th>
+                <th>Adres dostawy</th>
+                <th>Status</th>
+                <th>Książki</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.user.username}"></td>
+                <td th:text="${order.orderDate}"></td>
+                <td th:text="${order.totalAmount}"></td>
+                <td th:text="${order.shippingAddress}"></td>
+                <td th:text="${order.status}"></td>
+                <td>
+                    <ul th:each="items : ${order.items}">
+                        <li th:text="${items.book.title}"></li>
+                    </ul>
+                </td>
+                <td class="show-orders_actions">
+                    <a class="button-update" th:href="@{/orders-management/update-order(orderId=${order.id})}">Aktualizuj</a>
+                    <a class="button-delete"
+                       th:href="@{/orders-management/delete-order(orderId=${order.id})}"
+                       onclick="return confirmDeleteOrder()">
+                        Usuń
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>

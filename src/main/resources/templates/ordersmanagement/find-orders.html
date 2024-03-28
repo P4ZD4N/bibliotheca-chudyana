@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/ordersmanagement/main-find-orders.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title>Znajdź zamówienia</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <a href="/orders-management">
+        <h1>
+            <span>Wszystkie</span>
+            <span>zamówienia</span>
+        </h1>
+    </a>
+
+    <div>
+        <a href="/login">Zaloguj</a>
+        <a href="/register">Zarejestruj</a>
+        <span sec:authorize="isAuthenticated()">
+          <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+              <span sec:authentication="principal.username"></span>
+          </a>
+      </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <form th:action="@{/orders-management/find-orders}" th:object="${findOrdersForm}" method="POST">
+        <div>
+            <label>ID</label><input type="text" th:field="*{id}" />
+
+            <br>
+
+            <label>Nazwa użytkownika</label><input type="text" th:field="*{username}" />
+
+            <br>
+
+            <label>Minimalna data<input type="date" th:field="*{minDate}" /></label>
+
+            <br>
+
+            <label>Maksymalna data<input type="date" th:field="*{maxDate}" /></label>
+
+            <br>
+
+            <label>Minimalna wartość<input type="text" th:field="*{minTotalAmount}" /></label>
+
+            <br>
+
+            <label>Maksymalna wartość<input type="text" th:field="*{maxTotalAmount}" /></label>
+
+            <br>
+
+            <label>Status:
+                <select th:field="*{status}">
+                    <option value="">Wybierz</option>
+                    <option th:value="IN_PROGRESS">W realizacji</option>
+                    <option th:value="SENT">Wysłane</option>
+                    <option th:value="RECEIVED">Odebrane</option>
+                </select>
+            </label>
+
+            <br><br>
+
+            <input type="submit" value="Wyszukaj" />
+        </div>
+    </form>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>
