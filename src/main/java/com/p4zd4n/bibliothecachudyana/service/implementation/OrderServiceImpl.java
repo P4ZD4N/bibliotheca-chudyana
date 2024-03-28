@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,8 +28,116 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order findById(Integer id) {
+        return orderDAO.findById(id);
+    }
+
+    @Override
+    public List<Order> findByUsername(String username) {
+        return orderDAO.findByUsername(username);
+    }
+
+    @Override
+    public List<Order> findByMinDate(LocalDate minDate) {
+        List<Order> orders = orderDAO.findAll();
+        List<Order> ordersAfterMinDate = new ArrayList<>();
+
+        for (Order order : orders)
+            if (order.getOrderDate().isAfter(minDate) || order.getOrderDate().isEqual(minDate))
+                ordersAfterMinDate.add(order);
+
+        return ordersAfterMinDate;
+    }
+
+    @Override
+    public List<Order> findByMaxDate(LocalDate maxDate) {
+        List<Order> orders = orderDAO.findAll();
+        List<Order> ordersBeforeMaxDate = new ArrayList<>();
+
+        for (Order order : orders)
+            if(order.getOrderDate().isBefore(maxDate) || order.getOrderDate().isEqual(maxDate))
+                ordersBeforeMaxDate.add(order);
+
+        return ordersBeforeMaxDate;
+    }
+
+    @Override
+    public List<Order> findByMinAndMaxDate(LocalDate minDate, LocalDate maxDate) {
+        List<Order> ordersAfterMinDate = findByMinDate(minDate);
+        List<Order> ordersBeforeMaxDate = findByMaxDate(maxDate);
+
+        List<Order> ordersAfterMinDateAndBeforeMaxDate = ordersAfterMinDate;
+        ordersAfterMinDateAndBeforeMaxDate.retainAll(ordersBeforeMaxDate);
+
+        return ordersAfterMinDateAndBeforeMaxDate;
+    }
+
+    @Override
+    public List<Order> findByMinTotalAmount(Double minTotalAmount) {
+        List<Order> orders = orderDAO.findAll();
+        List<Order> ordersWithAppropriateAmount = new ArrayList<>();
+
+        for (Order order : orders)
+            if (order.getTotalAmount() >= minTotalAmount)
+                ordersWithAppropriateAmount.add(order);
+
+        return ordersWithAppropriateAmount;
+    }
+
+    @Override
+    public List<Order> findByMaxTotalAmount(Double maxTotalAmount) {
+        List<Order> orders = orderDAO.findAll();
+        List<Order> ordersWithAppropriateAmount = new ArrayList<>();
+
+        for (Order order : orders)
+            if (order.getTotalAmount() <= maxTotalAmount)
+                ordersWithAppropriateAmount.add(order);
+
+        return ordersWithAppropriateAmount;
+    }
+
+    @Override
+    public List<Order> findByMinAndMaxTotalAmount(Double minTotalAmount, Double maxTotalAmount) {
+        List<Order> orders = orderDAO.findAll();
+        List<Order> ordersWithAppropriateAmount = new ArrayList<>();
+
+        for (Order order : orders)
+            if (order.getTotalAmount() >= minTotalAmount && order.getTotalAmount() <= maxTotalAmount)
+                ordersWithAppropriateAmount.add(order);
+
+        return ordersWithAppropriateAmount;
+    }
+
+    @Override
+    public List<Order> findByStatus(String status) {
+        List<Order> orders = orderDAO.findAll();
+        List<Order> ordersWithAppropriateStatus = new ArrayList<>();
+
+        for (Order order : orders)
+            if (order.getStatus().equalsIgnoreCase(status))
+                ordersWithAppropriateStatus.add(order);
+
+        return ordersWithAppropriateStatus;
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderDAO.findAll();
+    }
+
+    @Override
     public void saveOrder(Order order) {
         orderDAO.save(order);
+    }
+
+    @Override
+    public void update(Order order) {
+        orderDAO.update(order);
+    }
+
+    @Override
+    public void delete(Order order) {
+        orderDAO.delete(order);
     }
 
     @Override
