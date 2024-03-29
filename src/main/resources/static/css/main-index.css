@@ -49,14 +49,14 @@ main a {
     font-size: 32px;
 }
 
-#statistics {
+#discounts {
     background-color: #B2B449;
     transition: background-color 200ms ease-out, 
                 width 200ms ease-out, 
                 font-size 200ms ease-out;
 }
 
-#statistics:hover {
+#discounts:hover {
     background-color: #805e03;
     width: 19%;
     font-size: 32px;
