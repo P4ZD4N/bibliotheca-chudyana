@@ -120,6 +120,17 @@ public class Book {
         this.quantityInStock = quantityInStock;
     }
 
+    @OneToOne(mappedBy = "book")
+    private Discount discount;
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
     public Book() {}
 
     public Book(String title, String authorName, String authorLastName, String releaseDate, LocalDate addToLibraryDate) {
