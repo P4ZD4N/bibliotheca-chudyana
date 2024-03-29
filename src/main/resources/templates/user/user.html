@@ -17,6 +17,12 @@
         </h1>
       </a>
 
+      <a th:if="${user}" th:href="@{'/user/' + ${user.username}}">
+        <h1>
+          <span th:text="${user.username}"></span>
+        </h1>
+      </a>
+
       <div>
         <a href="/login">Zaloguj</a>
         <a href="/register">Zarejestruj</a>
@@ -33,7 +39,6 @@
 
     <main>
       <h1 th:if="${user == null}">Nie ma takiego użytkownika!</h1>
-      <h1 th:if="${user}" th:text="${user.username}"></h1>
 
       <section sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
         <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
@@ -41,27 +46,47 @@
         <a href="#" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
       </section>
 
-      <section th:if="${authorities != null}">
+      <section sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:if="${authorities != null}">
         <p>Role:</p>
         <ul th:each="authority : ${authorities}">
           <li th:text="${authority.authority}"></li>
         </ul>
+      </section>
+
+      <section>
         <a th:href="'/user/' + ${user.username} + '/wishlist'">Lista życzeń</a>
         <a th:href="'/user/' + ${user.username} + '/cart'">Koszyk</a>
       </section>
 
       <section th:if="${orders != null}">
-        <p>Zamówienia:</p>
-        <ul th:each="order : ${orders}">
-          <li th:text="${order.id}"></li>
-          <li th:text="${order.orderDate}"></li>
-          <li th:text="${order.totalAmount}"></li>
-          <li th:text="${order.shippingAddress}"></li>
-          <li th:text="${order.status}"></li>
-          <ul th:each="orderItem : ${order.items}">
-            <li th:text="${orderItem.book.title}"></li>
-          </ul>
-        </ul>
+        <table>
+          <thead>
+          <tr>
+            <th colspan="5">Zamówienia</th>
+          </tr>
+            <tr>
+              <th>Data zamówienia</th>
+              <th>Wartość</th>
+              <th>Adres dostawy</th>
+              <th>Status</th>
+              <th>Książki</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="order : ${orders}">
+              <td th:text="${order.orderDate}"></td>
+              <td th:text="${order.totalAmount}"></td>
+              <td th:text="${order.shippingAddress}"></td>
+              <td th:text="${order.status}"></td>
+              <td>
+                <ul th:each="items : ${order.items}">
+                  <li th:text="${items.book.title}"></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
 
