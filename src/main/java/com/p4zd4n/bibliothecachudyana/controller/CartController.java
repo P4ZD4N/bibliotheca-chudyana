@@ -1,7 +1,5 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
-import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
-import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.entity.CartItem;
 import com.p4zd4n.bibliothecachudyana.entity.User;
