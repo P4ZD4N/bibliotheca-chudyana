@@ -38,7 +38,8 @@
 </header>
 
 <main>
-    <table>
+    <p th:if="${userCart.size == 0}">Pusty koszyk!</p>
+    <table th:if="${userCart.size != 0}">
         <thead>
         <tr>
             <th></th>
@@ -66,7 +67,7 @@
 
     </table>
 
-    <a href="/order-form">Zamów</a>
+    <a th:if="${userCart.size != 0}" href="/order-form">Zamów</a>
 </main>
 
 <footer>
