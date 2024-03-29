@@ -56,7 +56,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findByUsername(String username) {
         try {
-            return entityManager.createQuery("SELECT user FROM User user WHERE user.username LIKE CONCAT('%', :username, '%')", User.class)
+            return entityManager.createQuery("SELECT user FROM User user WHERE user.username LIKE :username", User.class)
                     .setParameter("username", username)
                     .getSingleResult();
         } catch (NoResultException e) {
