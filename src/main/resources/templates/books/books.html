@@ -58,7 +58,7 @@
               <th>Nazwisko<br>autora</th>
               <th>Kategoria</th>
               <th>Liczba<br>stron</th>
-              <th>Cena<br>(PLN)</th>
+              <th>Cena</th>
               <th sec:authorize="hasAnyRole('EMPLOYEE')">Ilość<br>w magazynie</th>
               <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Akcje</th>
             </tr>
@@ -74,7 +74,11 @@
               <td th:text="${book.authorLastName}"></td>
               <td th:text="${book.category}"></td>
               <td th:text="${book.numberOfPages}"></td>
-              <td th:text="${book.price}"></td>
+              <td th:if="${book.discount == null}" th:text="${book.price + ' zł'}"></td>
+              <td th:if="${book.discount != null}">
+                  <del th:text="${book.price}"></del>
+                  <span th:text="${book.price - (book.price * book.discount.discountPercentage / 100) + ' zł'}"></span>
+              </td>
               <td th:text="${book.quantityInStock}" sec:authorize="hasRole('EMPLOYEE')"></td>
               <td class="show-books_actions" sec:authorize="hasRole('EMPLOYEE')">
                 <a class="button-update" th:href="@{/update-book(bookId=${book.id})}">Aktualizuj</a>
