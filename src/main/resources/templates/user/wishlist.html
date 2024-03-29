@@ -38,7 +38,8 @@
 </header>
 
 <main>
-  <table>
+  <p th:if="${userWishlist.size == 0}">Pusta lista życzeń!</p>
+  <table th:if="${userWishlist.size != 0}">
     <thead>
       <tr>
         <th></th>
