@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/header.css}" />
+  <link rel="stylesheet" th:href="@{/css/body.css}" />
+  <link rel="stylesheet" th:href="@{/css/discounts/main-discounts.css}" />
+  <link rel="stylesheet" th:href="@{/css/footer.css}" />
+  <title>Promocje</title>
+</head>
+<body>
+<header>
+  <a href="/">
+    <h1>
+      <span>Bibliotheca</span>
+      <span>Chudyana</span>
+    </h1>
+  </a>
+
+  <a href="/books">
+    <h1>
+      <span>Wszystkie</span>
+      <span>książki</span>
+    </h1>
+  </a>
+
+  <div>
+    <a href="/login">Zaloguj</a>
+    <a href="/register">Zarejestruj</a>
+    <span sec:authorize="isAuthenticated()">
+                <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+                    <span sec:authentication="principal.username"></span>
+                </a>
+            </span>
+    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+      <input type="submit" value="Wyloguj">
+    </form>
+  </div>
+</header>
+
+<main>
+  <section id="actions">
+    <a href="/find-discount">Znajdź promocję</a>
+    <br>
+    <a href="/add-discount" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Dodaj promocję</a>
+    <br sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
+    <a href="/">Strona główna</a>
+  </section>
+
+  <section id="show-discounts">
+    <table>
+      <thead>
+      <tr>
+        <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">ID</th>
+        <th>Książka</th>
+        <th>Zniżka</th>
+        <th>Cena przed</th>
+        <th>Cena po</th>
+        <th>Start</th>
+        <th>Koniec</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="discount : ${discounts}">
+        <td sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:text="${discount.id}"></td>
+        <td th:text="${discount.book.title}"></td>
+        <td th:text="${discount.discountPercentage + '%'}"></td>
+        <td th:text="${discount.book.price + ' zł'}"></td>
+        <td th:text="${discount.book.price - (discount.book.price * discount.discountPercentage / 100) + ' zł'}"></td>
+        <td th:text="${discount.startDate}"></td>
+        <td th:text="${discount.endDate}"></td>
+      </tr>
+      </tbody>
+
+    </table>
+  </section>
+</main>
+
+<footer>
+  <section>
+    <p>Coded and designed by Wiktor C.</p>
+  </section>
+  <section>
+    <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+  </section>
+</footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/discounts/main-save-discount.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title>Zapisz promocję</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <a href="/discounts">
+        <h1>
+            <span>Wszystkie</span>
+            <span>promocje</span>
+        </h1>
+    </a>
+
+    <div>
+        <a href="/login">Zaloguj</a>
+        <a href="/register">Zarejestruj</a>
+        <span sec:authorize="isAuthenticated()">
+            <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+                <span sec:authentication="principal.username"></span>
+            </a>
+        </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <form th:action="@{/save-discount}" th:object="${discount}" method="POST" >
+        <div>
+            <input type="hidden" th:field="*{id}" />
+            <label>Książka:
+                <select name="bookId">
+                    <option th:each="book : ${books}" th:text="${book.title}" th:value="${book.id}"></option>
+                </select>
+            </label>
+
+            <br>
+
+            <label>Zniżka</label><input type="text" th:field="*{discountPercentage}" required>
+
+            <br>
+
+            <label>Start</label><input type="date" th:field="*{startDate}" required>
+
+            <br>
+
+            <label>Koniec</label><input type="date" th:field="*{endDate}" required>
+
+            <input type="submit" value="Zapisz">
+        </div>
+    </form>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>
