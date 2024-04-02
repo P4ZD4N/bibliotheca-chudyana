@@ -49,8 +49,8 @@
 
       <section class="panels" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
         <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
-        <a href="#" sec:authorize="hasRole('MANAGER')">Panel managera</a>
-        <a href="#" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
+        <a href="/manager" sec:authorize="hasRole('MANAGER')">Panel managera</a>
+        <a href="/employee" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
       </section>
 
       <section class="wishlist-cart">
