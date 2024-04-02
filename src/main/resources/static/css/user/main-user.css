@@ -3,7 +3,7 @@ main {
     padding: 30px 20px 30px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    list-style: none;
 }
 
 main h1 {
@@ -30,6 +30,29 @@ main a:hover {
     cursor: pointer;
     color: #1A1A1A;
     background-color: white;
+}
+
+.roles {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.panels, .wishlist-cart {
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.orders {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 table {
