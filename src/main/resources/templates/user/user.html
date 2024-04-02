@@ -40,25 +40,25 @@
     <main>
       <h1 th:if="${user == null}">Nie ma takiego użytkownika!</h1>
 
-      <section sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
-        <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
-        <a href="#" sec:authorize="hasRole('MANAGER')">Panel managera</a>
-        <a href="#" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
-      </section>
-
-      <section sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:if="${authorities != null}">
+      <section class="roles" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:if="${authorities != null}">
         <p>Role:</p>
         <ul th:each="authority : ${authorities}">
           <li th:text="${authority.authority}"></li>
         </ul>
       </section>
 
-      <section>
+      <section class="panels" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
+        <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
+        <a href="#" sec:authorize="hasRole('MANAGER')">Panel managera</a>
+        <a href="#" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
+      </section>
+
+      <section class="wishlist-cart">
         <a th:href="'/user/' + ${user.username} + '/wishlist'">Lista życzeń</a>
         <a th:href="'/user/' + ${user.username} + '/cart'">Koszyk</a>
       </section>
 
-      <section th:if="${orders != null}">
+      <section class="orders" th:if="${orders != null}">
         <table>
           <thead>
           <tr>
