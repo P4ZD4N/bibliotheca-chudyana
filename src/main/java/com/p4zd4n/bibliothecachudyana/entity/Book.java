@@ -1,6 +1,9 @@
 package com.p4zd4n.bibliothecachudyana.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
@@ -14,30 +17,41 @@ public class Book {
     private Integer id;
 
     @Column(name = "title")
+    @NotBlank(message = "Pole 'Tytuł' jest wymagane!")
     private String title;
 
     @Column(name = "author_name")
+    @NotBlank(message = "Pole 'Imię autora' jest wymagane!")
     private String authorName;
 
     @Column(name = "author_last_name")
+    @NotBlank(message = "Pole 'Nazwisko autora' jest wymagane!")
     private String authorLastName;
 
     @Column(name = "release_date")
+    @NotBlank(message = "Pole 'Data publikacji' jest wymagane!")
     private String releaseDate;
 
     @Column(name = "category")
+    @NotBlank(message = "Pole 'Kategoria' jest wymagane!")
     private String category;
 
     @Column(name = "add_to_library_date")
     private LocalDate addToLibraryDate;
 
     @Column(name = "number_of_pages")
+    @NotNull(message = "Pole 'Liczba stron' jest wymagane!")
+    @Positive(message = "Liczba stron musi być dodatnia!")
     private Integer numberOfPages;
 
     @Column(name = "price")
+    @NotNull(message = "Pole 'Cena' jest wymagane!")
+    @Positive(message = "Cena musi być dodatnia!")
     private Double price;
 
     @Column(name = "quantity_in_stock")
+    @NotNull(message = "Pole 'Ilość w magazynie' jest wymagane!")
+    @Positive(message = "Ilość w magazynie musi być dodatnia!")
     private Integer quantityInStock;
 
     @OneToOne(mappedBy = "book")
