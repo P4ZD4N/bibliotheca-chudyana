@@ -150,7 +150,14 @@ public class OrderServiceImpl implements OrderService {
 
         Double orderTotalAmount = 0D;
         for (CartItem cartItem : userCartItems) {
-            orderTotalAmount += cartItem.getBook().getPrice();
+            Double itemPrice = cartItem.getBook().getPrice();
+
+            if (cartItem.getBook().getDiscount() == null) {
+                orderTotalAmount += itemPrice;
+            } else {
+                Double discountPercentage = cartItem.getBook().getDiscount().getDiscountPercentage();
+                orderTotalAmount += itemPrice - itemPrice * discountPercentage / 100;
+            }
         }
 
         order.setUser(user);
