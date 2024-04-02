@@ -3,9 +3,11 @@ package com.p4zd4n.bibliothecachudyana.controller;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.util.FindBooksForm;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -131,11 +133,20 @@ public class BooksController {
     }
 
     @PostMapping("/save-book")
-    public String saveBook(@RequestParam(required = false) Integer id, @ModelAttribute("book") Book book) {
+    public String saveBook(
+            @RequestParam(required = false) Integer id,
+            @Valid @ModelAttribute("book") Book book,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/books/save-book";
+        }
+
         if (id == null)
             bookService.save(book);
         else
             bookService.update(book);
+
         return "redirect:/books";
     }
 
