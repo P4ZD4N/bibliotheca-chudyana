@@ -25,8 +25,12 @@
     </a>
 
     <div>
-        <a href="/login">Zaloguj</a>
-        <a href="/register">Zarejestruj</a>
+        <a sec:authorize="!isAuthenticated()" href="/login">Zaloguj</a>
+        <a sec:authorize="!isAuthenticated()" href="/register">Zarejestruj</a>
+        <a sec:authorize="isAuthenticated()"
+           th:href="@{'/user/' + ${#authentication.principal.username} + '/wishlist'}">Lista życzeń</a>
+        <a sec:authorize="isAuthenticated()"
+           th:href="@{'/user/' + ${#authentication.principal.username} + '/cart'} ">Koszyk</a>
         <span sec:authorize="isAuthenticated()">
           <a th:href="@{'/user/' + ${#authentication.principal.username}}">
               <span sec:authentication="principal.username"></span>
