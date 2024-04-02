@@ -8,6 +8,16 @@ public class PanelsController {
 
     @GetMapping("/admin")
     public String displayAdminPanel() {
-        return "/admin/admin";
+        return "/panels/admin";
+    }
+
+    @GetMapping("/manager")
+    public String displayManagerPanel() {
+        return "/panels/manager";
+    }
+
+    @GetMapping("/employee")
+    public String displayEmployeePanel() {
+        return "/panels/employee";
     }
 }
