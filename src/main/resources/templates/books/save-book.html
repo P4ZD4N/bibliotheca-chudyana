@@ -46,35 +46,43 @@
       <form th:action="@{/save-book}" th:object="${book}" method="POST" >
         <div>
           <input type="hidden" th:field="*{id}" />
-          <label>Tytuł</label><input type="text" th:field="*{title}" required>
+          <label>Tytuł</label><input type="text" th:field="*{title}" />
+          <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></span>
 
           <br>
 
-          <label>Imię autora</label><input type="text" th:field="*{authorName}" required>
+          <label>Imię autora</label><input type="text" th:field="*{authorName}" />
+          <span th:if="${#fields.hasErrors('authorName')}" th:errors="*{authorName}" class="error"></span>
 
           <br>
 
-          <label>Nazwisko autora</label><input type="text" th:field="*{authorLastName}" required>
+          <label>Nazwisko autora</label><input type="text" th:field="*{authorLastName}" />
+          <span th:if="${#fields.hasErrors('authorLastName')}" th:errors="*{authorLastName}" class="error"></span>
 
           <br>
 
-          <label>Data publikacji</label><input type="text" th:field="*{releaseDate}" placeholder="YYYY-MM-DD" required>
+          <label>Data publikacji</label><input type="text" th:field="*{releaseDate}" placeholder="YYYY-MM-DD" />
+          <span th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}" class="error"></span>
 
           <br>
 
-          <label>Kategoria</label><input type="text" th:field="*{category}" required>
+          <label>Kategoria</label><input type="text" th:field="*{category}" />
+          <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error"></span>
 
           <br>
 
-          <label>Liczba stron</label><input type="text" th:field="*{numberOfPages}" required>
+          <label>Liczba stron</label><input type="text" th:field="*{numberOfPages}" />
+          <span th:if="${#fields.hasErrors('numberOfPages')}" th:errors="*{numberOfPages}" class="error"></span>
 
           <br>
 
-          <label>Cena</label><input type="text" th:field="*{price}" required>
+          <label>Cena</label><input type="text" th:field="*{price}" />
+          <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></span>
 
           <br>
 
-          <label>Ilość w magazynie</label><input type="text" th:field="*{quantityInStock}" required>
+          <label>Ilość w magazynie</label><input type="text" th:field="*{quantityInStock}" />
+          <span th:if="${#fields.hasErrors('quantityInStock')}" th:errors="*{quantityInStock}" class="error"></span>
 
           <br>
 
