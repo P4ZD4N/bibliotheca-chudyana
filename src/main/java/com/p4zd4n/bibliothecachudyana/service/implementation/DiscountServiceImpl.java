@@ -20,7 +20,22 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
     @Override
+    public Discount findById(Integer id) {
+        return discountDAO.findById(id);
+    }
+
+    @Override
     public void save(Discount discount) {
         discountDAO.save(discount);
+    }
+
+    @Override
+    public void update(Discount discount) {
+        discountDAO.update(discount);
+    }
+
+    @Override
+    public void delete(Discount discount) {
+        discountDAO.delete(discount);
     }
 }
