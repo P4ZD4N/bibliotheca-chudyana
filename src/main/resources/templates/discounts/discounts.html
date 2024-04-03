@@ -56,6 +56,7 @@
     <table>
       <thead>
       <tr>
+        <th></th>
         <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">ID</th>
         <th>Książka</th>
         <th>Zniżka</th>
@@ -69,6 +70,9 @@
 
       <tbody>
       <tr th:each="discount : ${discounts}">
+        <td class="show-discounts_actions">
+          <a class="button-more-info" th:href="@{'/books/' + ${discount.book.id}}">Więcej</a>
+        </td>
         <td sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:text="${discount.id}"></td>
         <td th:text="${discount.book.title}"></td>
         <td th:text="${discount.discountPercentage + '%'}"></td>
