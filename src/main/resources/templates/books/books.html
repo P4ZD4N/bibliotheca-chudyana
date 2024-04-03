@@ -81,7 +81,7 @@
               <td th:if="${book.discount == null}" th:text="${book.price + ' zł'}"></td>
               <td th:if="${book.discount != null}">
                   <del th:text="${book.price}"></del>
-                  <span th:text="${book.price - (book.price * book.discount.discountPercentage / 100) + ' zł'}"></span>
+                  <span th:text="${#numbers.formatDecimal(book.price - (book.price * book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT')}"></span>
               </td>
               <td th:text="${book.quantityInStock}" sec:authorize="hasRole('EMPLOYEE')"></td>
               <td class="show-books_actions" sec:authorize="hasRole('EMPLOYEE')">
