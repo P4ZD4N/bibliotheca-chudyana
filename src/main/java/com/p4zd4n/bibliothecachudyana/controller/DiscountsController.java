@@ -36,6 +36,7 @@ public class DiscountsController {
     public String displayAddDiscountForm(Model model) {
         List<Book> books = bookService.findAll();
         Discount discount = new Discount();
+        discount.setBook(new Book());
 
         model.addAttribute("books", books);
         model.addAttribute("discount", discount);
@@ -44,10 +45,37 @@ public class DiscountsController {
     }
 
     @PostMapping("/save-discount")
-    public String saveDiscount(@ModelAttribute("discount") Discount discount, @RequestParam("bookId") Integer bookId) {
+    public String saveDiscount(
+            @ModelAttribute("discount") Discount discount,
+            @RequestParam(required = false) Integer id,
+            @RequestParam("bookId") Integer bookId
+    ) {
         Book book = bookService.findById(bookId);
         discount.setBook(book);
-        discountService.save(discount);
+
+        if (id == null) {
+            discountService.save(discount);
+        } else {
+            discountService.update(discount);
+        }
+
+
+        return "redirect:/discounts";
+    }
+
+    @GetMapping("/update-discount")
+    public String showUpdateDiscountForm(@RequestParam("discountId") Integer id, Model model) {
+        Discount discount = discountService.findById(id);
+
+        model.addAttribute("discount", discount);
+
+        return "/discounts/save-discount";
+    }
+
+    @GetMapping("/delete-discount")
+    public String deleteDiscount(@RequestParam("discountId") Integer id) {
+        Discount discountToDelete = discountService.findById(id);
+        discountService.delete(discountToDelete);
         return "redirect:/discounts";
     }
 }
