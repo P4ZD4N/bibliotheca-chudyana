@@ -32,11 +32,11 @@ public class UserDAOImpl implements UserDAO {
         for (int i = 0; i < authorities.size(); i++) {
             String authority = authorities.get(i);
             if (i == 0) {
-                users.addAll(entityManager.createQuery("SELECT a.user FROM Authority a WHERE a.authority LIKE :authority")
+                users.addAll(entityManager.createQuery("SELECT a.user FROM Authority a WHERE a.authority LIKE :authority", User.class)
                         .setParameter("authority", authority)
                         .getResultList());
             } else {
-                users.retainAll(entityManager.createQuery("SELECT a.user FROM Authority a WHERE a.authority LIKE :authority")
+                users.retainAll(entityManager.createQuery("SELECT a.user FROM Authority a WHERE a.authority LIKE :authority", User.class)
                         .setParameter("authority", authority)
                         .getResultList());
             }
@@ -48,7 +48,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> findByStatus(Integer status) {
-        return entityManager.createQuery("SELECT u FROM User u WHERE u.enabled = :status")
+        return entityManager.createQuery("SELECT u FROM User u WHERE u.enabled = :status", User.class)
                 .setParameter("status", status)
                 .getResultList();
     }

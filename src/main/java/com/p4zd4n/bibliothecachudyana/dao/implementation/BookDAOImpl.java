@@ -26,7 +26,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public List<Book> findByTitle(String title) {
         return entityManager
-                .createQuery("SELECT book FROM Book book WHERE book.title LIKE CONCAT('%', :title, '%')")
+                .createQuery("SELECT book FROM Book book WHERE book.title LIKE CONCAT('%', :title, '%')", Book.class)
                 .setParameter("title", title)
                 .getResultList();
     }
