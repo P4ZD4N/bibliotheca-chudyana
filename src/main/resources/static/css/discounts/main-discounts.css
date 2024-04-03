@@ -42,8 +42,34 @@ main a:hover {
     align-items: center;
 }
 
-.show-orders_actions {
+.show-discounts_actions {
     min-width: 200px;
+}
+
+.show-discounts_actions .button-update {
+    background-color: #2e7ec9;
+    transition: color 200ms ease-out,
+    background-color 200ms ease-out;
+    width: 55%;
+}
+
+.show-discounts_actions .button-update:hover {
+    cursor: pointer;
+    color: #1A1A1A;
+    background-color: white;
+}
+
+.show-discounts_actions .button-delete {
+    background-color: #c92e2e;
+    transition: color 200ms ease-out,
+    background-color 200ms ease-out;
+    width: 35%;
+}
+
+.show-discounts_actions .button-delete:hover {
+    cursor: pointer;
+    color: #1A1A1A;
+    background-color: white;
 }
 
 table {
