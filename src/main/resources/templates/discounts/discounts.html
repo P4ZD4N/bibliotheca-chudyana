@@ -6,6 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/body.css}" />
   <link rel="stylesheet" th:href="@{/css/discounts/main-discounts.css}" />
   <link rel="stylesheet" th:href="@{/css/footer.css}" />
+  <script src="/js/confirm-delete-discount.js"></script>
   <title>Promocje</title>
 </head>
 <body>
@@ -62,6 +63,7 @@
         <th>Cena po</th>
         <th>Start</th>
         <th>Koniec</th>
+        <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')"></th>
       </tr>
       </thead>
 
@@ -74,6 +76,14 @@
         <td th:text="${discount.book.price - (discount.book.price * discount.discountPercentage / 100) + ' zł'}"></td>
         <td th:text="${discount.startDate}"></td>
         <td th:text="${discount.endDate}"></td>
+        <td class="show-discounts_actions" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
+          <a class="button-update" th:href="@{/update-discount(discountId=${discount.id})}">Aktualizuj</a>
+          <a class="button-delete"
+             th:href="@{/delete-discount(discountId=${discount.id})}"
+             onclick="return confirmDeleteDiscount()">
+            Usuń
+          </a>
+        </td>
       </tr>
       </tbody>
 
