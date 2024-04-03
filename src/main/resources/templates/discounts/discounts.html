@@ -45,11 +45,7 @@
 
 <main>
   <section id="actions">
-    <a href="/find-discount">Znajdź promocję</a>
-    <br>
     <a href="/add-discount" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Dodaj promocję</a>
-    <br sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
-    <a href="/">Strona główna</a>
   </section>
 
   <section id="show-discounts">
