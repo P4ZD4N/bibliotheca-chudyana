@@ -42,10 +42,6 @@
     </header>
 
     <main>
-      <section id="actions">
-        <a href="/">Strona główna</a>
-      </section>
-
       <section id="show-books">
         <h1 th:if="${newBooks.isEmpty()}">Brak nowości!</h1>
         <table th:if="${!newBooks.isEmpty()}">
