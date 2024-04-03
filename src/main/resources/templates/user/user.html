@@ -80,7 +80,7 @@
           <tbody>
             <tr th:each="order : ${orders}">
               <td th:text="${order.orderDate}"></td>
-              <td th:text="${order.totalAmount}"></td>
+              <td th:text="${order.totalAmount + ' zł'}"></td>
               <td th:text="${order.shippingAddress}"></td>
               <td th:text="${order.status}"></td>
               <td>
