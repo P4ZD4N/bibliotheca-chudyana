@@ -72,6 +72,10 @@ main a:hover {
     background-color: white;
 }
 
+.button-more-info {
+    width: 55%;
+}
+
 table {
     border-collapse: collapse;
     font-size: 1.1em;
