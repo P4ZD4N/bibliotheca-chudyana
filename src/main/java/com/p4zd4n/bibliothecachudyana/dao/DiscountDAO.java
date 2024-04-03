@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface DiscountDAO {
     List<Discount> findAll();
+    Discount findById(Integer id);
     void save(Discount discount);
+    void update(Discount discount);
+    void delete(Discount discount);
 }

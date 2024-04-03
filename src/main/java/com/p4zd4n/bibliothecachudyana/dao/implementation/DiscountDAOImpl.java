@@ -24,9 +24,26 @@ public class DiscountDAOImpl implements DiscountDAO {
         return entityManager.createQuery("SELECT d FROM Discount d", Discount.class).getResultList();
     }
 
+    @Override
+    public Discount findById(Integer id) {
+        return entityManager.find(Discount.class, id);
+    }
+
     @Transactional
     @Override
     public void save(Discount discount) {
         entityManager.persist(discount);
+    }
+
+    @Transactional
+    @Override
+    public void update(Discount discount) {
+        entityManager.merge(discount);
+    }
+
+    @Transactional
+    @Override
+    public void delete(Discount discount) {
+        entityManager.remove(discount);
     }
 }
