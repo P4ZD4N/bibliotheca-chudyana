@@ -48,7 +48,12 @@
             <input type="hidden" th:field="*{id}" />
             <label>Książka:
                 <select name="bookId">
-                    <option th:each="book : ${books}" th:text="${book.title}" th:value="${book.id}"></option>
+                    <option th:if="${book.discount == null}"
+                            th:each="book : ${books}"
+                            th:text="${book.title}"
+                            th:value="${book.id}">
+
+                    </option>
                 </select>
             </label>
 
