@@ -63,7 +63,11 @@
 
           <br>
 
-          <li th:text="'Cena: ' + ${book.price} + ' zł'"></li>
+          <li th:if="${book.discount == null}" th:text="'Cena: ' + ${book.price} + ' zł'"></li>
+          <li th:if="${book.discount != null}">
+            <del th:text="${book.price}"></del>
+            <span th:text="${book.price - (book.price * book.discount.discountPercentage / 100) + ' zł'}"></span>
+          </li>
 
           <br>
 
