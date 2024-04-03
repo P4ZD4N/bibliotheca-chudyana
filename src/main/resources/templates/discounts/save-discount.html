@@ -46,13 +46,13 @@
     <form th:action="@{/save-discount}" th:object="${discount}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" />
-            <label>Książka:
+            <input type="hidden" th:if="${discount.book.id != null}" name="bookId" th:value="${discount.book.id}" />
+            <label th:if="${discount.book.id == null}">Książka:
                 <select name="bookId">
                     <option th:if="${book.discount == null}"
                             th:each="book : ${books}"
                             th:text="${book.title}"
                             th:value="${book.id}">
-
                     </option>
                 </select>
             </label>
@@ -68,6 +68,8 @@
             <br>
 
             <label>Koniec</label><input type="date" th:field="*{endDate}" required>
+
+            <br>
 
             <input type="submit" value="Zapisz">
         </div>
