@@ -63,7 +63,7 @@
                             <td th:text="${category.value}"></td>
                             <td>
                                 <a class="button-check"
-                                   th:href="@{/books(searchBy='category', keyword=${category.key})}"
+                                   th:href="@{/books(category=${category.key})}"
                                 >
                                     Sprawdź
                                 </a>
