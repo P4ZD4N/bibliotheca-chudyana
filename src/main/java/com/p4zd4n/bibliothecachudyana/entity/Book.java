@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -56,6 +57,9 @@ public class Book {
 
     @OneToOne(mappedBy = "book")
     private Discount discount;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
     public Book() {}
 
@@ -153,5 +157,13 @@ public class Book {
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
