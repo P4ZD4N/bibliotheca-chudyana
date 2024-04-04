@@ -4,6 +4,7 @@ import com.p4zd4n.bibliothecachudyana.entity.Authority;
 import com.p4zd4n.bibliothecachudyana.entity.Cart;
 import com.p4zd4n.bibliothecachudyana.entity.User;
 import com.p4zd4n.bibliothecachudyana.entity.Wishlist;
+import com.p4zd4n.bibliothecachudyana.service.AuthorityService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import com.p4zd4n.bibliothecachudyana.util.FindUsersForm;
 import com.p4zd4n.bibliothecachudyana.util.PasswordEncoder;
@@ -23,6 +24,9 @@ public class UsersManagementController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthorityService authorityService;
 
     @GetMapping("/users-management")
     public String displayUsersManagementPanel(
@@ -117,6 +121,8 @@ public class UsersManagementController {
 
             userService.update(user);
         }
+
+        authorityService.cleanUpAuthorities();
 
         return "redirect:/users-management";
     }
