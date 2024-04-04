@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/reviewsmanagement/main-find-review.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title>Znajdź recenzję</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <a href="/reviews-management">
+        <h1>
+            <span>Wszystkie</span>
+            <span>recenzje</span>
+        </h1>
+    </a>
+
+    <div>
+        <a sec:authorize="!isAuthenticated()" href="/login">Zaloguj</a>
+        <a sec:authorize="!isAuthenticated()" href="/register">Zarejestruj</a>
+        <a sec:authorize="isAuthenticated()"
+           th:href="@{'/user/' + ${#authentication.principal.username} + '/wishlist'}">Lista życzeń</a>
+        <a sec:authorize="isAuthenticated()"
+           th:href="@{'/user/' + ${#authentication.principal.username} + '/cart'} ">Koszyk</a>
+        <span sec:authorize="isAuthenticated()">
+          <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+              <span sec:authentication="principal.username"></span>
+          </a>
+      </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <form th:action="@{/reviews-management/find-review}" th:object="${findReviewsForm}" method="POST">
+        <div>
+            <label>ID</label><input type="text" th:field="*{id}" />
+
+            <br>
+
+            <label>Nazwa użytkownika</label><input type="text" th:field="*{username}" />
+
+            <br>
+
+            <label>Książka:
+                <select th:field="*{bookId}">
+                    <option th:each="book : ${books}" th:text="${book.title}" th:value="${book.id}">
+                    </option>
+                </select>
+            </label>
+
+            <br>
+
+            <label>Ocena (1-5):<input type="text" th:field="*{rating}" /></label>
+
+            <br>
+
+            <label>Minimalna data dodania<input type="date" th:field="*{minAddedDate}" /></label>
+
+            <br>
+
+            <label>Maksymalna data dodania<input type="date" th:field="*{maxAddedDate}" /></label>
+
+            <br>
+
+            <input type="submit" value="Wyszukaj" />
+        </div>
+    </form>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>
