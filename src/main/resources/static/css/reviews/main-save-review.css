@@ -1,0 +1,70 @@
+main {
+    min-height: 80vh;
+    padding: 30px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main form {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+}
+
+main form div {
+    width: 50%;
+}
+
+main label {
+    font-weight: 700;
+}
+
+main input {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    text-align: center;
+    width: 5%;
+    height: 30px;
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+}
+
+main input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    height: 35px;
+    width: 25%;
+    border: none;
+    background-color: #1A1A1A;
+    border-radius: 50px;
+    transition: color 200ms ease-out,
+    background-color 200ms ease-out;
+}
+
+main input[type="submit"]:hover {
+    cursor: pointer;
+    color: #1A1A1A;
+    background-color: white;
+}
+
+main textarea {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    border: 2px solid white;
+    font-size: 24px;
+    background-color: transparent;
+    outline: none;
+}
+
+main .error {
+    color: #c73c3c;
+}
