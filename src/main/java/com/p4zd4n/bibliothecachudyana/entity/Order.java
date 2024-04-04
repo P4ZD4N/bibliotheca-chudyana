@@ -24,8 +24,17 @@ public class Order {
     @Column(name = "total_amount")
     private Double totalAmount;
 
-    @Column(name = "shipping_address")
-    private String shippingAddress;
+    @Column(name = "house_number")
+    private Integer houseNumber;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "postal_code")
+    private String postalCode;
 
     @Column(name = "status")
     private String status;
@@ -35,12 +44,15 @@ public class Order {
 
     public Order() {}
 
-    public Order(User user, LocalDate orderDate, Double totalAmount, String shippingAddress, String status) {
-        this.user = user;
-        this.orderDate = orderDate;
-        this.totalAmount = totalAmount;
-        this.shippingAddress = shippingAddress;
+    public Order(String status, String postalCode, String city, String street, Double totalAmount, Integer houseNumber, LocalDate orderDate, User user) {
         this.status = status;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.street = street;
+        this.totalAmount = totalAmount;
+        this.houseNumber = houseNumber;
+        this.orderDate = orderDate;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -75,12 +87,36 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public String getShippingAddress() {
-        return shippingAddress;
+    public Integer getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    public void setHouseNumber(Integer houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getStatus() {
