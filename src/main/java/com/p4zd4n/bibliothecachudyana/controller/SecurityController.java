@@ -30,7 +30,7 @@ public class SecurityController {
     @PostMapping("/register")
     public String register(@ModelAttribute("user") User user, Model model) {
         if (userService.isUserAlreadyRegistered(user)) {
-            model.addAttribute("error", "Użytkownik o podanej nazwie już istnieje!");
+            model.addAttribute("error", "Użytkownik o podanej nazwie / z podanym adresem email już istnieje!");
             return "security/register";
         }
 
