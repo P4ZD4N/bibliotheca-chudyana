@@ -74,8 +74,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserAlreadyRegistered(User user) {
-        User existingUser = userDAO.findByUsername(user.getUsername());
-        return existingUser != null;
+        User userFoundByUsername = userDAO.findByUsername(user.getUsername());
+        User userFoundByEmail = userDAO.findByEmail(user.getEmail());
+
+        return userFoundByUsername != null || userFoundByEmail != null;
     }
 
     @Override
