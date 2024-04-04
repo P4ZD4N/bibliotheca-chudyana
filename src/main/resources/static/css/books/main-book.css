@@ -33,3 +33,17 @@ main .details ul .last_items {
 main .details ul .unavailable {
     color: rgb(194, 50, 50);
 }
+
+main .reviews {
+    flex-direction: column;
+    align-items: center;
+}
+
+main .reviews ul {
+    width: 400px;
+    max-width: 500px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
