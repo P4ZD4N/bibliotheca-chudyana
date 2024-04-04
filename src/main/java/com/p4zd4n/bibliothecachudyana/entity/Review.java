@@ -1,6 +1,10 @@
 package com.p4zd4n.bibliothecachudyana.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -22,9 +26,13 @@ public class Review {
     private Book book;
 
     @Column(name = "rating")
+    @NotNull(message = "Pole 'Ocena' jest wymagane!")
+    @Min(value = 1, message = "Ocena musi być większa lub równa 1!")
+    @Max(value = 5, message = "Ocena musi być mniejsza lub równa 5!")
     private Integer rating;
 
     @Column(name = "content")
+    @Size(max = 250, message = "Opinia może mieć maksymalnie 250 znaków!")
     private String content;
 
     @Column(name = "date_added")
