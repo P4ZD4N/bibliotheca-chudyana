@@ -6,9 +6,11 @@ import com.p4zd4n.bibliothecachudyana.entity.User;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
 import com.p4zd4n.bibliothecachudyana.service.ReviewService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
@@ -27,7 +29,7 @@ public class ReviewController {
     private BookService bookService;
 
     @GetMapping("/add-review-for-{bookId}")
-    private String displayAddReviewForm(
+    public String displayAddReviewForm(
             @PathVariable Integer bookId,
             Authentication authentication,
             Model model
@@ -42,11 +44,19 @@ public class ReviewController {
     }
 
     @PostMapping("/save-review")
-    private String saveReview(
-            @ModelAttribute("review") Review review,
+    public String saveReview(
             @RequestParam("bookId") Integer bookId,
-            @RequestParam("username") String username
+            @RequestParam("username") String username,
+            @Valid @ModelAttribute("review") Review review,
+            BindingResult bindingResult,
+            Model model
     ) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("bookId", bookId);
+            model.addAttribute("username", username);
+            return "/reviews/save-review";
+        }
+
         User user = userService.findByUsername(username);
         Book book = bookService.findById(bookId);
 
