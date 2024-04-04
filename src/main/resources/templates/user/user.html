@@ -81,7 +81,7 @@
             <tr th:each="order : ${orders}">
               <td th:text="${order.orderDate}"></td>
               <td th:text="${order.totalAmount + ' zł'}"></td>
-              <td th:text="${order.shippingAddress}"></td>
+              <td th:text="'ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></td>
               <td th:text="${order.status}"></td>
               <td>
                 <ul th:each="items : ${order.items}">
