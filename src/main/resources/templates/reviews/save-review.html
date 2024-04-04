@@ -42,11 +42,13 @@
             <input type="hidden" name="bookId" th:value="${bookId}">
             <input type="hidden" name="username" th:value="${username}">
 
-            <label>Ocena (1-5)</label><input type="text" th:field="*{rating}" />
+            <label>Ocena: </label><input type="text" th:field="*{rating}" /><label>/5</label>
+            <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="error"></span>
 
-            <br>
+            <br><br>
 
-            <textarea th:field="*{content}"></textarea>
+            <label>Opinia (maks. 250 znaków)</label><textarea th:field="*{content}"></textarea>
+            <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></span>
 
             <br><br>
 
