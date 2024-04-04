@@ -51,6 +51,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nazwa użytkownika</th>
+                    <th>Email</th>
                     <th>Role</th>
                     <th>Aktywny</th>
                     <th></th>
@@ -61,6 +62,7 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"></td>
                     <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
                     <td>
                         <ul th:each="authority : ${user.authorities}">
                             <li th:text="${authority.authority}"></li>
