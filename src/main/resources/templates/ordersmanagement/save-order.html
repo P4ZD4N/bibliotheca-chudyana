@@ -46,7 +46,19 @@
     <form th:action="@{/orders-management/save-order}" th:object="${order}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" />
-            <label>Adres dostawy</label><input type="text" th:field="*{shippingAddress}" required />
+            <label>Numer domu</label><input type="text" th:field="*{houseNumber}" />
+
+            <br>
+
+            <label>Ulica</label><input type="text" th:field="*{street}" />
+
+            <br>
+
+            <label>Miasto</label><input type="text" th:field="*{city}" />
+
+            <br>
+
+            <label>Kod pocztowy</label><input type="text" pattern="[0-9]{2}-[0-9]{3}" th:field="*{postalCode}" />
 
             <br>
 
