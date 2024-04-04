@@ -65,6 +65,17 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User findByEmail(String email) {
+        try {
+            return entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<User> findAll() {
         return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
     }
