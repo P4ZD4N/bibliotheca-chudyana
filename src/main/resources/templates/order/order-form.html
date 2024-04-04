@@ -42,6 +42,7 @@
 </header>
 
 <main>
+    <h1>Adres dostawy</h1>
     <form th:action="@{/order-confirmation}" th:object="${order}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" th:value="${order.id}" />
@@ -50,7 +51,21 @@
             <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
             <input type="hidden" th:field="*{status}" th:value="${order.status}" />
 
-            <label>Adres</label><input type="text" th:field="*{shippingAddress}" required>
+            <label>Numer domu</label><input type="text" th:field="*{houseNumber}" />
+
+            <br>
+
+            <label>Ulica</label><input type="text" th:field="*{street}" />
+
+            <br>
+
+            <label>Miasto</label><input type="text" th:field="*{city}" />
+
+            <br>
+
+            <label>Kod pocztowy</label><input type="text" pattern="[0-9]{2}-[0-9]{3}" th:field="*{postalCode}" />
+
+            <br>
 
             <input type="submit" value="Zamów">
         </div>
