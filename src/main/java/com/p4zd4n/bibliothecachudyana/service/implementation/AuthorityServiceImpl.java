@@ -17,6 +17,11 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
+    public void cleanUpAuthorities() {
+        authorityDAO.cleanUpAuthorities();
+    }
+
+    @Override
     public void save(Authority authority) {
         authorityDAO.save(authority);
     }
