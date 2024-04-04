@@ -1,6 +1,8 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
 import com.p4zd4n.bibliothecachudyana.entity.Book;
+import com.p4zd4n.bibliothecachudyana.entity.Review;
+import com.p4zd4n.bibliothecachudyana.service.ReviewService;
 import com.p4zd4n.bibliothecachudyana.util.FindBooksForm;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
 import jakarta.validation.Valid;
@@ -19,6 +21,9 @@ public class BooksController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/books")
     public String showBooks(
@@ -116,10 +121,12 @@ public class BooksController {
     @GetMapping("/books/{id}")
     public String showBookDetails(@PathVariable Integer id, Model model) {
         Book book = bookService.findById(id);
+        List<Review> reviews = reviewService.findByBook(book);
         String status = bookService.getStatusOfBookById(id);
 
         model.addAttribute("book", book);
         model.addAttribute("status", status);
+        model.addAttribute("reviews", reviews);
 
         return "/books/book";
     }
