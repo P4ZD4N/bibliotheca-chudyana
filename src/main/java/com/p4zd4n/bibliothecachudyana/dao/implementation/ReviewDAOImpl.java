@@ -21,6 +21,11 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
+    public Review findById(Integer id) {
+        return entityManager.find(Review.class, id);
+    }
+
+    @Override
     public List<Review> findAll() {
         return entityManager.createQuery("SELECT r FROM Review r", Review.class).getResultList();
     }
@@ -33,9 +38,42 @@ public class ReviewDAOImpl implements ReviewDAO {
                 .getResultList();
     }
 
+    @Override
+    public List<Review> findByUsername(String username) {
+        return entityManager.createQuery("SELECT r FROM Review r WHERE r.user.username LIKE :username", Review.class)
+                .setParameter("username", username)
+                .getResultList();
+    }
+
+    @Override
+    public List<Review> findByBookId(Integer bookId) {
+        return entityManager.createQuery("SELECT r FROM Review r WHERE r.book.id = :bookId", Review.class)
+                .setParameter("bookId", bookId)
+                .getResultList();
+    }
+
+    @Override
+    public List<Review> findByRating(Integer rating) {
+        return entityManager.createQuery("SELECT r FROM Review r WHERE r.rating = :rating", Review.class)
+                .setParameter("rating", rating)
+                .getResultList();
+    }
+
     @Transactional
     @Override
     public void save(Review review) {
         entityManager.persist(review);
+    }
+
+    @Transactional
+    @Override
+    public void update(Review review) {
+        entityManager.merge(review);
+    }
+
+    @Transactional
+    @Override
+    public void delete(Review review) {
+        entityManager.remove(review);
     }
 }
