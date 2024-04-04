@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/body.css}" />
     <link rel="stylesheet" th:href="@{/css/books/main-book.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <script src="/js/confirm-delete-review.js"></script>
     <title th:text="${book.title}"></title>
   </head>
   <body>
@@ -100,6 +101,12 @@
               <li><p th:text="${review.dateAdded}"></p></li>
               <li th:text="${review.rating + '/5'}"></li>
               <li th:text="${review.content}"></li>
+              <li sec:authorize="isAuthenticated()" th:if="${#authentication.principal.username == review.user.username}">
+                <a th:href="@{/reviews-management/update-review(reviewId=${review.id})}">Edytuj</a>
+              </li>
+              <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/reviews-management/delete-review(reviewId=${review.id})}" onclick="return confirmDeleteReview()">Usuń</a>
+              </li>
             </ul>
           </li>
         </ul>
