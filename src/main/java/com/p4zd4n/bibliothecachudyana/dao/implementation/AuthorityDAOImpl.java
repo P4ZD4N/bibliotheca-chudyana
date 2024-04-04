@@ -19,6 +19,12 @@ public class AuthorityDAOImpl implements AuthorityDAO {
 
     @Transactional
     @Override
+    public void cleanUpAuthorities() {
+        entityManager.createNativeQuery("DELETE FROM authorities WHERE user_id IS NULL").executeUpdate();
+    }
+
+    @Transactional
+    @Override
     public void save(Authority authority) {
         entityManager.persist(authority);
     }
