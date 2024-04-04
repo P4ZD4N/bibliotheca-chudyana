@@ -43,6 +43,11 @@
 
 <main>
     <p th:if="${userCart.size == 0}">Pusty koszyk!</p>
+
+    <a th:href="@{'/user/' + ${user.username} + '/wishlist'} ">Lista życzeń</a>
+
+    <br>
+
     <table th:if="${userCart.size != 0}">
         <thead>
         <tr>
@@ -74,6 +79,8 @@
         </tbody>
 
     </table>
+
+    <br>
 
     <a th:if="${userCart.size != 0}" href="/order-form">Zamów</a>
 </main>
