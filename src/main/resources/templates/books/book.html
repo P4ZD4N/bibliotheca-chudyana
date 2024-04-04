@@ -87,6 +87,23 @@
           <button type="submit">Dodaj do koszyka</button>
         </form>
       </section>
+
+      <section class="reviews">
+        <h1>Opinie</h1>
+        <a sec:authorize="isAuthenticated()" th:href="@{'/add-review-for-' + ${book.id}}">Dodaj opinię</a>
+
+        <ul th:each="review : ${reviews}">
+          <li>
+            <hr>
+            <ul>
+              <li><h3 th:text="${review.user.username}"></h3></li>
+              <li><p th:text="${review.dateAdded}"></p></li>
+              <li th:text="${review.rating + '/5'}"></li>
+              <li th:text="${review.content}"></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer>
