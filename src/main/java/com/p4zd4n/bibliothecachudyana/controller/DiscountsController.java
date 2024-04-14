@@ -4,9 +4,12 @@ import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.entity.Discount;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
 import com.p4zd4n.bibliothecachudyana.service.DiscountService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,10 +49,28 @@ public class DiscountsController {
 
     @PostMapping("/save-discount")
     public String saveDiscount(
-            @ModelAttribute("discount") Discount discount,
             @RequestParam(required = false) Integer id,
-            @RequestParam("bookId") Integer bookId
+            @RequestParam("bookId") Integer bookId,
+            @Valid @ModelAttribute("discount") Discount discount,
+            BindingResult bindingResult,
+            Model model
     ) {
+        if (bindingResult.hasErrors()) {
+
+            for (ObjectError error : bindingResult.getAllErrors())
+                System.out.println(error);
+
+            List<Book> books =
+                    (id == null) ?
+                    List.of(bookService.findById(bookId)) :
+                    List.of(discountService.findById(id).getBook());
+
+            model.addAttribute("books", books);
+            model.addAttribute("bookId", bookId);
+
+            return "/discounts/save-discount";
+        }
+
         Book book = bookService.findById(bookId);
         discount.setBook(book);
 
@@ -58,7 +79,6 @@ public class DiscountsController {
         } else {
             discountService.update(discount);
         }
-
 
         return "redirect:/discounts";
     }
