@@ -1,6 +1,8 @@
 package com.p4zd4n.bibliothecachudyana.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -18,12 +20,15 @@ public class Discount {
     private Book book;
 
     @Column(name = "discount_percentage")
+    @NotNull(message = "Pole 'Zniżka' jest wymagane!")
     private Double discountPercentage;
 
     @Column(name = "start_date")
+    @NotNull(message = "Pole 'Start' jest wymagane!")
     private LocalDate startDate;
 
     @Column(name = "end_date")
+    @NotNull(message = "Pole 'Koniec' jest wymagane!")
     private LocalDate endDate;
 
     public Discount() {}
@@ -73,5 +78,10 @@ public class Discount {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    @AssertTrue(message = "Data zakończenia musi być po dacie rozpoczęcia!")
+    private boolean isEndDateValid() {
+        return endDate == null || startDate == null || endDate.isAfter(startDate) || endDate.isEqual(startDate);
     }
 }
