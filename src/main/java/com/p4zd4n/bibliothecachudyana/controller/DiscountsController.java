@@ -56,10 +56,6 @@ public class DiscountsController {
             Model model
     ) {
         if (bindingResult.hasErrors()) {
-
-            for (ObjectError error : bindingResult.getAllErrors())
-                System.out.println(error);
-
             List<Book> books =
                     (id == null) ?
                     List.of(bookService.findById(bookId)) :
