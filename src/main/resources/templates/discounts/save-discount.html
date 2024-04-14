@@ -46,10 +46,10 @@
     <form th:action="@{/save-discount}" th:object="${discount}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" />
-            <input type="hidden" th:if="${discount.book.id != null}" name="bookId" th:value="${discount.book.id}" />
-            <label th:if="${discount.book.id == null}">Książka:
+            <input type="hidden" th:if="${discount.book != null and discount.book.id != null}" name="bookId" th:value="${discount.book.id}" />
+            <label th:if="${discount.book == null or discount.book.id == null}">Książka:
                 <select name="bookId">
-                    <option th:if="${book.discount == null}"
+                    <option th:if="${bookId != null or book.discount == null}"
                             th:each="book : ${books}"
                             th:text="${book.title}"
                             th:value="${book.id}">
@@ -59,15 +59,18 @@
 
             <br>
 
-            <label>Zniżka</label><input type="text" th:field="*{discountPercentage}" required>
+            <label>Zniżka</label><input type="text" th:field="*{discountPercentage}">
+            <span th:if="${#fields.hasErrors('discountPercentage')}" th:errors="*{discountPercentage}" class="error"></span>
 
             <br>
 
-            <label>Start</label><input type="date" th:field="*{startDate}" required>
+            <label>Start</label><input type="date" th:field="*{startDate}">
+            <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></span>
 
             <br>
 
-            <label>Koniec</label><input type="date" th:field="*{endDate}" required>
+            <label>Koniec</label><input type="date" th:field="*{endDate}">
+            <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="error"></span>
 
             <br>
 
