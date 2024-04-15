@@ -32,6 +32,16 @@ public class OrderController {
     @GetMapping("/order-form")
     public String displayOrderForm(Model model, Authentication authentication) {
         String username = authentication.getName();
+        Cart userCart = userService.findByUsername(username).getCart();
+        List<CartItem> cartItems = userCart.getItems();
+
+        for (CartItem cartItem : cartItems)
+            if (cartItem.getBook().getQuantityInStock() == 0) {
+                model.addAttribute("user", userService.findByUsername(username));
+                model.addAttribute("userCart", cartItems);
+                model.addAttribute("unavailableBookError", "Posiadasz w koszyku niedostępne książki!");
+                return "/user/cart";
+            }
 
         Order order = orderService.createOrder(username);
 
