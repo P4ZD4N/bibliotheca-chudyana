@@ -2,6 +2,7 @@ package com.p4zd4n.bibliothecachudyana.controller;
 
 import com.p4zd4n.bibliothecachudyana.entity.Book;
 import com.p4zd4n.bibliothecachudyana.entity.Review;
+import com.p4zd4n.bibliothecachudyana.enums.BookStatus;
 import com.p4zd4n.bibliothecachudyana.service.ReviewService;
 import com.p4zd4n.bibliothecachudyana.util.FindBooksForm;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
@@ -37,7 +38,7 @@ public class BooksController {
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) Integer minPages,
             @RequestParam(required = false) Integer maxPages,
-            @RequestParam(required = false) String status,
+            @RequestParam(required = false) BookStatus status,
             Model model
     ) {
         List<List<Book>> searchedBooks = new ArrayList<>();
@@ -96,9 +97,9 @@ public class BooksController {
 
         if (status != null) {
             switch (status) {
-                case "unavailable" -> searchedBooks.add(bookService.findUnavailable());
-                case "last_items" -> searchedBooks.add(bookService.findLastItems());
-                case "available" -> searchedBooks.add(bookService.findAvailable());
+                case BookStatus.UNAVAILABLE -> searchedBooks.add(bookService.findUnavailable());
+                case BookStatus.LAST_ITEMS -> searchedBooks.add(bookService.findLastItems());
+                case BookStatus.AVAILABLE -> searchedBooks.add(bookService.findAvailable());
             }
         }
 
@@ -122,7 +123,7 @@ public class BooksController {
     public String showBookDetails(@PathVariable Integer id, Model model) {
         Book book = bookService.findById(id);
         List<Review> reviews = reviewService.findByBook(book);
-        String status = bookService.getStatusOfBookById(id);
+        BookStatus status = bookService.getStatusOfBookById(id);
 
         model.addAttribute("book", book);
         model.addAttribute("status", status);
@@ -175,7 +176,7 @@ public class BooksController {
         Double maxPrice = findBooksForm.getMaxPrice();
         Integer minPages = findBooksForm.getMinPages();
         Integer maxPages = findBooksForm.getMaxPages();
-        String status = findBooksForm.getStatus();
+        BookStatus status = findBooksForm.getStatus();
 
         StringBuilder redirectUrlBuilder = new StringBuilder("redirect:/books?");
 
