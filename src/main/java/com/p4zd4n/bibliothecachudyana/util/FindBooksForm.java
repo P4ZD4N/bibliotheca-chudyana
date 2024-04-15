@@ -1,5 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.util;
 
+import com.p4zd4n.bibliothecachudyana.enums.BookStatus;
+
 public class FindBooksForm {
 
     private String title;
@@ -22,7 +24,7 @@ public class FindBooksForm {
 
     private Integer maxPages;
 
-    private String status;
+    private BookStatus status;
 
     public String getTitle() {
         return title;
@@ -104,11 +106,11 @@ public class FindBooksForm {
         this.maxPages = maxPages;
     }
 
-    public String getStatus() {
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 }
