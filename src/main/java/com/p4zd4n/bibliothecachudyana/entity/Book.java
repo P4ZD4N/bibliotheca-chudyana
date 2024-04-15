@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -47,12 +48,12 @@ public class Book {
 
     @Column(name = "price")
     @NotNull(message = "Pole 'Cena' jest wymagane!")
-    @Positive(message = "Cena musi być dodatnia!")
+    @PositiveOrZero(message = "Cena musi być nieujemna!")
     private Double price;
 
     @Column(name = "quantity_in_stock")
     @NotNull(message = "Pole 'Ilość w magazynie' jest wymagane!")
-    @Positive(message = "Ilość w magazynie musi być dodatnia!")
+    @PositiveOrZero(message = "Ilość w magazynie musi być nieujemna!")
     private Integer quantityInStock;
 
     @OneToOne(mappedBy = "book")
