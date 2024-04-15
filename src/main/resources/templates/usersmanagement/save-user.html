@@ -59,31 +59,33 @@
 
             <br>
 
-            <label>User<input type="checkbox"
-                              name="authoritiesAsString"
-                              th:value="ROLE_USER"
-                              th:checked="${user.id != null and userAuthorities.contains('ROLE_USER')}"
-                              checked
-                              required />
-            </label>
-
-            <label>Employee<input type="checkbox"
+            <section class="checkboxes">
+                <label>User<input type="checkbox"
                                   name="authoritiesAsString"
-                                  th:value="ROLE_EMPLOYEE"
-                                  th:checked="${user.id != null and userAuthorities.contains('ROLE_EMPLOYEE')}" />
-            </label>
+                                  th:value="ROLE_USER"
+                                  th:checked="${user.id != null and userAuthorities.contains('ROLE_USER')}"
+                                  checked
+                                  required />
+                </label>
 
-            <label>Manager<input type="checkbox"
-                                 name="authoritiesAsString"
-                                 th:value="ROLE_MANAGER"
-                                 th:checked="${user.id != null and userAuthorities.contains('ROLE_MANAGER')}" />
-            </label>
+                <label>Employee<input type="checkbox"
+                                      name="authoritiesAsString"
+                                      th:value="ROLE_EMPLOYEE"
+                                      th:checked="${user.id != null and userAuthorities.contains('ROLE_EMPLOYEE')}" />
+                </label>
 
-            <label>Admin<input type="checkbox"
-                               name="authoritiesAsString"
-                               th:value="ROLE_ADMIN"
-                               th:checked="${user.id != null and userAuthorities.contains('ROLE_ADMIN')}" />
-            </label>
+                <label>Manager<input type="checkbox"
+                                     name="authoritiesAsString"
+                                     th:value="ROLE_MANAGER"
+                                     th:checked="${user.id != null and userAuthorities.contains('ROLE_MANAGER')}" />
+                </label>
+
+                <label>Admin<input type="checkbox"
+                                   name="authoritiesAsString"
+                                   th:value="ROLE_ADMIN"
+                                   th:checked="${user.id != null and userAuthorities.contains('ROLE_ADMIN')}" />
+                </label>
+            </section>
 
             <br>
 
