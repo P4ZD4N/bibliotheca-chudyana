@@ -1,6 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.service;
 
 import com.p4zd4n.bibliothecachudyana.entity.Book;
+import com.p4zd4n.bibliothecachudyana.enums.BookStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -29,5 +30,5 @@ public interface BookService {
     void delete(Book book);
     Map<String, Integer> getTopCategories();
     List<Book> getNewReleases();
-    String getStatusOfBookById(int id);
+    BookStatus getStatusOfBookById(int id);
 }

@@ -2,6 +2,7 @@ package com.p4zd4n.bibliothecachudyana.service.implementation;
 
 import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
 import com.p4zd4n.bibliothecachudyana.entity.Book;
+import com.p4zd4n.bibliothecachudyana.enums.BookStatus;
 import com.p4zd4n.bibliothecachudyana.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -181,19 +182,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String getStatusOfBookById(int id) {
-        String status;
+    public BookStatus getStatusOfBookById(int id) {
+        BookStatus status;
         Book book = bookDAO.findById(id);
         int quantityInStock = book.getQuantityInStock();
 
-        if (quantityInStock < 0)
-            status = "error";
-        else if (quantityInStock == 0)
-            status = "unavailable";
+        if (quantityInStock <= 0)
+            status = BookStatus.UNAVAILABLE;
         else if (quantityInStock <= 10)
-            status = "last_items";
+            status = BookStatus.LAST_ITEMS;
         else
-            status = "available";
+            status = BookStatus.AVAILABLE;
 
         return status;
     }
