@@ -43,6 +43,7 @@
 
 <main>
     <p th:if="${userCart.size == 0}">Pusty koszyk!</p>
+    <p th:if="${unavailableBookError}" th:text="${unavailableBookError}" class="error"></p>
 
     <a th:href="@{'/user/' + ${user.username} + '/wishlist'} ">Lista życzeń</a>
 
@@ -63,7 +64,8 @@
             <td>
                 <a th:href="@{'/books/' + ${item.book.id}}">Więcej</a>
             </td>
-            <td th:text="${item.book.title}"></td>
+            <td th:if="${item.book.quantityInStock > 0}" th:text="${item.book.title}"></td>
+            <td th:if="${item.book.quantityInStock eq 0}" th:text="${item.book.title + ' (niedostępne!)'}" class="error"></td>
             <td th:if="${item.book.discount == null}" th:text="${item.book.price + ' zł'}"></td>
             <td th:if="${item.book.discount != null}">
                 <del th:text="${item.book.price}"></del>
