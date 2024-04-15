@@ -72,9 +72,9 @@
 
           <br>
 
-          <li th:if="${status eq 'available'}" class="available">Dostępne w magazynie!</li>
-          <li th:if="${status eq 'last_items'}" class="last_items">Ostatnie sztuki!</li>
-          <li th:if="${status eq 'unavailable'}" class="unavailable">Brak w magazynie!</li>
+          <li th:if="${status eq T(com.p4zd4n.bibliothecachudyana.enums.BookStatus).AVAILABLE}" class="available">Dostępne w magazynie!</li>
+          <li th:if="${status eq T(com.p4zd4n.bibliothecachudyana.enums.BookStatus).LAST_ITEMS}" class="last_items">Ostatnie sztuki!</li>
+          <li th:if="${status eq T(com.p4zd4n.bibliothecachudyana.enums.BookStatus).UNAVAILABLE}" class="unavailable">Brak w magazynie!</li>
         </ul>
       </section>
 
@@ -83,7 +83,10 @@
           <input type="hidden" th:name="bookId" th:value="${book.id}" />
           <button type="submit">Dodaj do listy życzeń</button>
         </form>
-        <form th:if="${status eq 'available' or status eq 'last_items'}" th:action="@{/add-to-cart}" method="POST">
+        <form th:if="${status eq T(com.p4zd4n.bibliothecachudyana.enums.BookStatus).AVAILABLE or status eq T(com.p4zd4n.bibliothecachudyana.enums.BookStatus).LAST_ITEMS}"
+              th:action="@{/add-to-cart}"
+              method="POST"
+        >
           <input type="hidden" th:name="bookId" th:value="${book.id}" />
           <button type="submit">Dodaj do koszyka</button>
         </form>
