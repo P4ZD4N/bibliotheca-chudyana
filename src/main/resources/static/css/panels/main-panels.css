@@ -2,3 +2,33 @@ main {
     min-height: 80vh;
     padding: 30px 20px 30px 20px;
 }
+
+main a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 35px;
+    width: 20%;
+    border: none;
+    background-color: #1A1A1A;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    transition: color 200ms ease-out,
+    background-color 200ms ease-out;
+}
+
+main a:hover {
+    cursor: pointer;
+    color: #1A1A1A;
+    background-color: white;
+}
+
+main .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
