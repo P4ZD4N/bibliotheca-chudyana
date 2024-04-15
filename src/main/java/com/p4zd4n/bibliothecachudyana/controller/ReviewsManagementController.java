@@ -101,6 +101,7 @@ public class ReviewsManagementController {
         Integer id = findReviewsForm.getId();
         String username = findReviewsForm.getUsername();
         Integer bookId = findReviewsForm.getBookId();
+        Integer rating = findReviewsForm.getRating();
         LocalDate minAddedDate = findReviewsForm.getMinAddedDate();
         LocalDate maxAddedDate = findReviewsForm.getMaxAddedDate();
 
@@ -117,6 +118,10 @@ public class ReviewsManagementController {
 
         if (bookId != null) {
             redirectUrlBuilder.append("bookId=").append(bookId).append("&");
+        }
+
+        if (rating != null) {
+            redirectUrlBuilder.append("rating=").append(rating).append("&");
         }
 
         if (minAddedDate != null) {
