@@ -83,7 +83,7 @@
           <input type="hidden" th:name="bookId" th:value="${book.id}" />
           <button type="submit">Dodaj do listy życzeń</button>
         </form>
-        <form th:action="@{/add-to-cart}" method="POST">
+        <form th:if="${status eq 'available' or status eq 'last_items'}" th:action="@{/add-to-cart}" method="POST">
           <input type="hidden" th:name="bookId" th:value="${book.id}" />
           <button type="submit">Dodaj do koszyka</button>
         </form>
