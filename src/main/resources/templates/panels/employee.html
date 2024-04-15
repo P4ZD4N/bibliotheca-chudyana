@@ -17,6 +17,13 @@
         </h1>
     </a>
 
+    <a href="/employee">
+        <h1>
+            <span>Panel</span>
+            <span>pracownika</span>
+        </h1>
+    </a>
+
     <div>
         <a sec:authorize="!isAuthenticated()" href="/login">Zaloguj</a>
         <a sec:authorize="!isAuthenticated()" href="/register">Zarejestruj</a>
@@ -36,11 +43,10 @@
 </header>
 
 <main>
-    <section>
+    <section class="actions">
         <a href="/books">Zarządzaj książkami</a>
         <a href="/users-management">Zarządzaj użytkownikami</a>
         <a href="/orders-management">Zarządzaj zamówieniami</a>
-        <a href="#">Ogłoszenia</a>
     </section>
 </main>
 
