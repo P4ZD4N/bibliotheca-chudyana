@@ -55,6 +55,7 @@
 
             <label>Książka:
                 <select th:field="*{bookId}">
+                    <option value="">Wybierz książkę</option>
                     <option th:each="book : ${books}" th:text="${book.title}" th:value="${book.id}">
                     </option>
                 </select>
