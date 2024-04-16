@@ -21,7 +21,20 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/", "/books", "/books/{id}", "/find-books", "/top-categories", "/discounts", "/new-releases", "/register", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/add-book", "/save-book", "/update-book", "/delete-book").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/user/{username}/cart", "/add-to-cart", "/remove-from-cart").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/add-discount", "/save-discount", "/update-discount", "/delete-discount").hasAnyRole("MANAGER", "ADMIN")
+                .requestMatchers("/order-form", "/order-confirmation", "/order").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/orders-management", "/orders-management/find-orders", "/orders-management/update-order", "/orders-management/save-order", "/orders-management/delete-order").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/admin").hasRole("ADMIN")
+                .requestMatchers("/manager").hasRole("MANAGER")
+                .requestMatchers("/employee").hasRole("EMPLOYEE")
+                .requestMatchers("/reviews-management", "/reviews-management/find-review", "/reviews-management/update-review", "/reviews-management/save-review", "/reviews-management/delete-review").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/add-review-for-{bookId}").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/user/{username}").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/users-management", "/users-management/add-user", "/users-management/save-user", "/users-management/find-users", "/users-management/update-user", "/users-management/delete-user").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/user/{username}/wishlist", "/add-to-wishlist", "/remove-from-wishlist").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
                 .anyRequest().authenticated()
         )
         .formLogin(login -> login
