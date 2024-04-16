@@ -26,7 +26,14 @@ public class CartController {
     private BookService bookService;
 
     @GetMapping("/user/{username}/cart")
-    public String displayUserCart(@PathVariable String username, Model model) {
+    public String displayUserCart(@PathVariable String username, Model model, Authentication authentication) {
+        String authenticatedUsername = authentication.getName();
+        boolean isAuthenticatedUserUnauthorizedToEnter = userService.isUnauthorizedToEnter(username, authenticatedUsername);
+
+        if (isAuthenticatedUserUnauthorizedToEnter) {
+            return "redirect:/user/" + authenticatedUsername;
+        }
+
         User user = userService.findByUsername(username);
         List<CartItem> userCart = user.getCart().getItems();
 

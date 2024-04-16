@@ -26,7 +26,14 @@ public class WishlistController {
     private UserService userService;
 
     @GetMapping("/user/{username}/wishlist")
-    public String displayUserWishlist(@PathVariable String username, Model model) {
+    public String displayUserWishlist(@PathVariable String username, Model model, Authentication authentication) {
+        String authenticatedUsername = authentication.getName();
+        boolean isAuthenticatedUserUnauthorizedToEnter = userService.isUnauthorizedToEnter(username, authenticatedUsername);
+
+        if (isAuthenticatedUserUnauthorizedToEnter) {
+            return "redirect:/user/" + authenticatedUsername;
+        }
+
         User user = userService.findByUsername(username);
         List<WishlistItem> userWishlist = user.getWishlist().getItems();
 

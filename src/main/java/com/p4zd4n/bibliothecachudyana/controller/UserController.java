@@ -3,6 +3,7 @@ package com.p4zd4n.bibliothecachudyana.controller;
 import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/{username}")
-    public String displayUserDetails(@PathVariable String username, Model model) {
+    public String displayUserDetails(@PathVariable String username, Model model, Authentication authentication) {
+        String authenticatedUsername = authentication.getName();
+        boolean isAuthenticatedUserUnauthorizedToEnter = userService.isUnauthorizedToEnter(username, authenticatedUsername);
+
+        if (isAuthenticatedUserUnauthorizedToEnter) {
+            return "redirect:/user/" + authenticatedUsername;
+        }
+
         User user = userService.findByUsername(username);
 
         List<Authority> authorities = null;
