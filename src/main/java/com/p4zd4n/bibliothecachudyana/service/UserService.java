@@ -16,6 +16,10 @@ public interface UserService {
     void update(User user);
     void delete(User user);
     boolean isUserAlreadyRegistered(User user);
+    boolean isUnauthorizedToEnter(String username, String authenticatedUsername);
+    boolean hasUserEmployeeAuthority(User user);
+    boolean hasUserManagerAuthority(User user);
+    boolean hasUserAdminAuthority(User user);
     void registerUser(User user);
     void addBookToWishlist(User user, Book book);
     void removeBookFromWishlist(User user, Book book);

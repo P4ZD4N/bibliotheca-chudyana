@@ -81,6 +81,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isUnauthorizedToEnter(String username, String authenticatedUsername) {
+        return !authenticatedUsername.equals(username) &&
+                (!hasUserEmployeeAuthority(findByUsername(authenticatedUsername)) &&
+                !hasUserManagerAuthority(findByUsername(authenticatedUsername)) &&
+                !hasUserAdminAuthority(findByUsername(authenticatedUsername)));
+    }
+
+    @Override
+    public boolean hasUserEmployeeAuthority(User user) {
+        boolean hasEmployeeAuthority = false;
+
+        for (Authority authority : user.getAuthorities())
+            if (authority.getAuthority().equals("ROLE_EMPLOYEE"))
+                hasEmployeeAuthority = true;
+
+        return hasEmployeeAuthority;
+    }
+
+    @Override
+    public boolean hasUserManagerAuthority(User user) {
+        boolean hasManagerAuthority = false;
+
+        for (Authority authority : user.getAuthorities())
+            if (authority.getAuthority().equals("ROLE_MANAGER"))
+                hasManagerAuthority = true;
+
+        return hasManagerAuthority;
+    }
+
+    @Override
+    public boolean hasUserAdminAuthority(User user) {
+        boolean hasAdminAuthority = false;
+
+        for (Authority authority : user.getAuthorities())
+            if (authority.getAuthority().equals("ROLE_ADMIN"))
+                hasAdminAuthority = true;
+
+        return hasAdminAuthority;
+    }
+
+    @Override
     public void registerUser(User user) {
         encryptPasswordWithBCrypt(user);
         enableUser(user);
