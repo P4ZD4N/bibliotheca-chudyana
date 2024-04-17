@@ -21,7 +21,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/", "/books", "/books/{id}", "/find-books", "/top-categories", "/discounts", "/new-releases", "/register", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/", "/books", "/books/{id}", "/find-books", "/top-categories", "/discounts", "/new-releases", "/register", "/error", "/css/**", "/js/**").permitAll()
                 .requestMatchers("/add-book", "/save-book", "/update-book", "/delete-book").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/user/{username}/cart", "/add-to-cart", "/remove-from-cart").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/add-discount", "/save-discount", "/update-discount", "/delete-discount").hasAnyRole("MANAGER", "ADMIN")
@@ -30,8 +30,8 @@ public class SecurityConfig {
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .requestMatchers("/manager").hasRole("MANAGER")
                 .requestMatchers("/employee").hasRole("EMPLOYEE")
-                .requestMatchers("/reviews-management", "/reviews-management/find-review", "/reviews-management/update-review", "/reviews-management/save-review", "/reviews-management/delete-review").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
-                .requestMatchers("/add-review-for-{bookId}").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/reviews-management", "/reviews-management/find-review", "/reviews-management/update-review", "/reviews-management/delete-review").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/add-review-for-{bookId}", "/reviews-management/save-review").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/user/{username}", "/user/{username}/change-email", "/user/{username}/change-password").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/users-management", "/users-management/add-user", "/users-management/save-user", "/users-management/find-users", "/users-management/update-user", "/users-management/delete-user").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/user/{username}/wishlist", "/add-to-wishlist", "/remove-from-wishlist").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
