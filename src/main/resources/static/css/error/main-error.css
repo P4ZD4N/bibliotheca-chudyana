@@ -1,0 +1,27 @@
+main {
+    min-height: 80vh;
+    padding: 30px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+main section {
+    max-width: 60%;
+}
+
+main .error-code {
+    font-size: 96px;
+}
+
+main .error-description {
+    font-size: 48px;
+}
+
+main .error {
+    color: #c73c3c;
+    margin: 0;
+    padding: 0;
+}
