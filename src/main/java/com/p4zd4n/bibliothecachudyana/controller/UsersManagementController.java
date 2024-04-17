@@ -185,6 +185,6 @@ public class UsersManagementController {
     public String deleteUser(@RequestParam("userId") Integer id) {
         User user = userService.findById(id);
         userService.delete(user);
-        return "usersmanagement:/users-management";
+        return "redirect:/users-management";
     }
 }
