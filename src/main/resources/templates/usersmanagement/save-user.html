@@ -47,15 +47,15 @@
         <div>
             <p th:if="${error}" th:text="${error}"></p>
             <input type="hidden" th:field="*{id}" />
-            <label>Nazwa użytkownika</label><input type="text" th:field="*{username}" required />
+            <label>Nazwa użytkownika<input type="text" th:field="*{username}" required /></label>
 
             <br>
 
-            <label>Email</label><input type="text" th:field="*{email}" required />
+            <label th:if="!*{id}">Email<input type="text" th:field="*{email}" required /></label>
 
             <br>
 
-            <label>Hasło</label><input type="text" th:field="*{password}" required />
+            <label th:if="!*{id}">Hasło<input type="text" th:field="*{password}" required /></label>
 
             <br>
 
@@ -98,6 +98,8 @@
 
             <br><br>
 
+            <a th:href="'/user/' + ${user.username} + '/change-email'">Zmień email</a>
+            <a th:href="'/user/' + ${user.username} + '/change-password'">Zmień hasło</a>
             <input type="submit" value="Zapisz">
         </div>
     </form>
