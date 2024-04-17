@@ -51,19 +51,23 @@
             <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
             <input type="hidden" th:field="*{status}" th:value="${order.status}" />
 
-            <label>Numer domu</label><input type="text" th:field="*{houseNumber}" />
+            <label>Numer domu<input type="text" th:field="*{houseNumber}" /></label>
+            <p th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}" class="error"></p>
 
             <br>
 
-            <label>Ulica</label><input type="text" th:field="*{street}" />
+            <label>Ulica<input type="text" th:field="*{street}" /></label>
+            <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="error"></p>
 
             <br>
 
-            <label>Miasto</label><input type="text" th:field="*{city}" />
+            <label>Miasto<input type="text" th:field="*{city}" /></label>
+            <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error"></p>
 
             <br>
 
-            <label>Kod pocztowy</label><input type="text" pattern="[0-9]{2}-[0-9]{3}" th:field="*{postalCode}" />
+            <label>Kod pocztowy<input type="text" th:field="*{postalCode}" /></label>
+            <p th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="error"></p>
 
             <br>
 
