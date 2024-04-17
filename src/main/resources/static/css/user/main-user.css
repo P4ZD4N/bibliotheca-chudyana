@@ -39,7 +39,7 @@ main a:hover {
     align-items: center;
 }
 
-.panels, .wishlist-cart {
+.info, .account-management, .panels, .wishlist-cart {
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;
