@@ -1,76 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 main {
-    display: flex;
-    justify-content: space-around;
-    padding: 50px;
-    height: 70vh;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+  height: 70vh;
 }
-
 main section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
-
 main a {
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    font-size: 36px;
-    width: 20%;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-size: 36px;
+  width: 20%;
 }
-
-#check-all-books {
-    background-color: #49B4B4;
-    transition: background-color 200ms ease-out, 
-                width 200ms ease-out, 
-                font-size 200ms ease-out;
+main .books {
+  background-color: #49B4B4;
+  transition: background-color 200ms ease-out, width 200ms ease-out, font-size 200ms ease-out;
 }
-
-#check-all-books:hover {
-    background-color: #064d69;
-    width: 19%;
-    font-size: 32px;
+main .books:hover {
+  background-color: #064d69;
+  width: 19%;
+  font-size: 32px;
 }
-
-#top-categories {
-    background-color: #B449A9;
-    transition: background-color 200ms ease-out, 
-                width 200ms ease-out, 
-                font-size 200ms ease-out;
+main .top-categories {
+  background-color: #B449A9;
+  transition: background-color 200ms ease-out, width 200ms ease-out, font-size 200ms ease-out;
 }
-
-#top-categories:hover {
-    background-color: #630045;
-    width: 19%;
-    font-size: 32px;
+main .top-categories:hover {
+  background-color: #630045;
+  width: 19%;
+  font-size: 32px;
 }
-
-#discounts {
-    background-color: #B2B449;
-    transition: background-color 200ms ease-out, 
-                width 200ms ease-out, 
-                font-size 200ms ease-out;
+main .discounts {
+  background-color: #B2B449;
+  transition: background-color 200ms ease-out, width 200ms ease-out, font-size 200ms ease-out;
 }
-
-#discounts:hover {
-    background-color: #805e03;
-    width: 19%;
-    font-size: 32px;
+main .discounts:hover {
+  background-color: #805e03;
+  width: 19%;
+  font-size: 32px;
 }
-
-#new-releases {
-    background-color: #49B454;
-    transition: background-color 200ms ease-out, 
-                width 200ms ease-out, 
-                font-size 200ms ease-out;
+main .new-releases {
+  background-color: #49B454;
+  transition: background-color 200ms ease-out, width 200ms ease-out, font-size 200ms ease-out;
 }
-
-#new-releases:hover {
-    background-color: #03520b;
-    width: 19%;
-    font-size: 32px;
-}
+main .new-releases:hover {
+  background-color: #03520b;
+  width: 19%;
+  font-size: 32px;
+}/*# sourceMappingURL=main-index.css.map */

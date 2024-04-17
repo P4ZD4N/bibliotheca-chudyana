@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    height: 70vh;
+
+
+    section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        font-size: 36px;
+        width: 20%;
+    }
+
+    .books {
+        background-color: #49B4B4;
+        transition: background-color 200ms ease-out, 
+                    width 200ms ease-out, 
+                    font-size 200ms ease-out;
+    }
+
+    .books:hover {
+        background-color: #064d69;
+        width: 19%;
+        font-size: 32px;
+    }
+
+    .top-categories {
+        background-color: #B449A9;
+        transition: background-color 200ms ease-out, 
+                    width 200ms ease-out, 
+                    font-size 200ms ease-out;
+    }
+
+    .top-categories:hover {
+        background-color: #630045;
+        width: 19%;
+        font-size: 32px;
+    }
+
+    .discounts {
+        background-color: #B2B449;
+        transition: background-color 200ms ease-out, 
+                    width 200ms ease-out, 
+                    font-size 200ms ease-out;
+    }
+
+    .discounts:hover {
+        background-color: #805e03;
+        width: 19%;
+        font-size: 32px;
+    }
+
+    .new-releases {
+        background-color: #49B454;
+        transition: background-color 200ms ease-out, 
+                    width 200ms ease-out, 
+                    font-size 200ms ease-out;
+    }
+
+    .new-releases:hover {
+        background-color: #03520b;
+        width: 19%;
+        font-size: 32px;
+    }
+}
