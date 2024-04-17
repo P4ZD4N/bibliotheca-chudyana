@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A1A1A;
+    font-size: 20px;
+    padding: 20px;
+    height: 5vh;
+
+    a {
+        text-decoration: none;
+        color: white;
+        transition: font-size 200ms ease-out,
+                    color 200ms ease-out;
+    }
+    
+    a:hover {
+        font-size: 0.95em;
+        color: rgb(129, 129, 129);
+    }
+
+    .social {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
