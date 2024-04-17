@@ -43,6 +43,7 @@
 
     <main>
       <h1 th:if="${user == null}">Nie ma takiego użytkownika!</h1>
+      <p th:if="${error}" th:text="${error}" class="error"></p>
 
       <section class="roles" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:if="${authorities != null}">
         <p>Role:</p>
@@ -51,10 +52,19 @@
         </ul>
       </section>
 
+      <section class="info">
+        <p th:text="${'Email: ' + user.email}"></p>
+      </section>
+
       <section class="panels" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
         <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
         <a href="/manager" sec:authorize="hasRole('MANAGER')">Panel managera</a>
         <a href="/employee" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
+      </section>
+
+      <section class="account-management">
+        <a th:href="'/user/' + ${user.username} + '/change-email'">Zmień email</a>
+        <a th:href="'/user/' + ${user.username} + '/change-password'">Zmień hasło</a>
       </section>
 
       <section class="wishlist-cart">
