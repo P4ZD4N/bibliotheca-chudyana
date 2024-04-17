@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .requestMatchers("/employee").hasRole("EMPLOYEE")
                 .requestMatchers("/reviews-management", "/reviews-management/find-review", "/reviews-management/update-review", "/reviews-management/save-review", "/reviews-management/delete-review").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/add-review-for-{bookId}").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
-                .requestMatchers("/user/{username}").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
+                .requestMatchers("/user/{username}", "/user/{username}/change-email", "/user/{username}/change-password").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/users-management", "/users-management/add-user", "/users-management/save-user", "/users-management/find-users", "/users-management/update-user", "/users-management/delete-user").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
                 .requestMatchers("/user/{username}/wishlist", "/add-to-wishlist", "/remove-from-wishlist").hasAnyRole("USER", "EMPLOYEE", "MANAGER", "ADMIN")
                 .anyRequest().authenticated()
