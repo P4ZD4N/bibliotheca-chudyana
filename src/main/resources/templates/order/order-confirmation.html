@@ -43,15 +43,17 @@
 </header>
 
 <main>
-    <p>Czy zamówienie się zgadza?</p>
+    <h1>Czy zamówienie się zgadza?</h1>
 
+    <p>Informacje ogólne</p>
     <ul>
         <li th:text="'Adres wysyłki: ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></li>
-        <li th:text="'Cena: ' + ${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT')}"></li>
+        <li th:text="'Całkowita wartość zamówienia: ' + ${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
     </ul>
 
+    <p>Zamówione książki</p>
     <ul th:each="item : ${order.items}">
-        <li th:text="${item.book.title}"></li>
+        <li th:text="${item.book.title + ', cena: ' + #numbers.formatDecimal(item.book.price, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
     </ul>
 
     <form th:action="@{/order}" th:object="${order}" method="POST">
@@ -64,10 +66,10 @@
         <input type="hidden" th:field="*{city}" th:value="${order.city}">
         <input type="hidden" th:field="*{postalCode}" th:value="${order.postalCode}">
         <input type="hidden" th:field="*{status}" th:value="${order.status}" />
-        <button type="submit">Tak</button>
+        <input type="submit" value="Tak" />
     </form>
     <form th:action="@{'/user/' + ${username} + '/cart'}" method="GET">
-        <button type="submit">Nie</button>
+        <input type="submit" value="Nie" />
     </form>
 </main>
 
