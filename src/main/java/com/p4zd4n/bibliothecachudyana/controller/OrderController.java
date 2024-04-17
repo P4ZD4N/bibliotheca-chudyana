@@ -5,11 +5,13 @@ import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.OrderService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,9 +55,17 @@ public class OrderController {
 
     @PostMapping("/order-confirmation")
     public String displayOrderConfirmation(
-            @ModelAttribute("order") Order order,
-            @RequestParam("username") String username, Model model
+            @RequestParam("username") String username,
+            Model model,
+            @Valid @ModelAttribute("order") Order order,
+            BindingResult bindingResult
     ) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("order", order);
+            model.addAttribute("username", username);
+            return "/order/order-form";
+        }
+
         User user = userService.findByUsername(username);
         List<CartItem> userCartItems = user.getCart().getItems();
 
