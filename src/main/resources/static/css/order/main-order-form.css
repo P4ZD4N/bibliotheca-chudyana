@@ -55,3 +55,9 @@ main input[type="submit"]:hover {
     background-color: white;
     border-radius: 50px;
 }
+
+main .error {
+    color: #c73c3c;
+    margin: 0;
+    padding: 0;
+}
