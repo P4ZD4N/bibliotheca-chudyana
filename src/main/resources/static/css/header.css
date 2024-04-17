@@ -1,35 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1A1A1A;
-    padding: 20px;
-    height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1A1A1A;
+  padding: 20px;
+  height: 10vh;
 }
-
 header span {
-    display: block;
+  display: block;
 }
-
 header a {
-    width: 200px;
-    text-decoration: none;
-    color: white;
-    transition: font-size 200ms ease-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  transition: font-size 200ms ease-out, color 200ms ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 header div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 header a:hover {
-    font-size: 0.95em;
-}
+  font-size: 0.95em;
+  color: rgb(129, 129, 129);
+}/*# sourceMappingURL=header.css.map */
