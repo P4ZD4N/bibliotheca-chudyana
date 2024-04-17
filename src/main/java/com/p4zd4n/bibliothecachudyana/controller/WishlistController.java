@@ -31,7 +31,9 @@ public class WishlistController {
         boolean isAuthenticatedUserUnauthorizedToEnter = userService.isUnauthorizedToEnter(username, authenticatedUsername);
 
         if (isAuthenticatedUserUnauthorizedToEnter) {
-            return "redirect:/user/" + authenticatedUsername;
+            model.addAttribute("user", userService.findByUsername(authenticatedUsername));
+            model.addAttribute("error", "Brak dostępu!");
+            return "/user/user";
         }
 
         User user = userService.findByUsername(username);
