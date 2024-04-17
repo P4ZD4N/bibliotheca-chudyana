@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/body.css}" />
+    <link rel="stylesheet" th:href="@{/css/error/main-error.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title>404</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>
+            <span>Bibliotheca</span>
+            <span>Chudyana</span>
+        </h1>
+    </a>
+
+    <div>
+        <a sec:authorize="!isAuthenticated()" href="/login">Zaloguj</a>
+        <a sec:authorize="!isAuthenticated()" href="/register">Zarejestruj</a>
+        <a sec:authorize="isAuthenticated()"
+           th:href="@{'/user/' + ${#authentication.principal.username} + '/wishlist'}">Lista życzeń</a>
+        <a sec:authorize="isAuthenticated()"
+           th:href="@{'/user/' + ${#authentication.principal.username} + '/cart'} ">Koszyk</a>
+        <span sec:authorize="isAuthenticated()">
+            <a th:href="@{'/user/' + ${#authentication.principal.username}}">
+                <span sec:authentication="principal.username"></span>
+            </a>
+        </span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Wyloguj">
+        </form>
+    </div>
+</header>
+
+<main>
+    <section>
+        <h1 class="error error-code">404</h1>
+        <h1 class="error error-description">Ta strona wygląda na zaginioną. Może warto spróbować odnaleźć ją używając Google Maps?</h1>
+    </section>
+</main>
+
+<footer>
+    <section>
+        <p>Coded and designed by Wiktor C.</p>
+    </section>
+    <section>
+        <a href="https://linkedin.com/in/wiktor-chudy/" target="_blank">LinkedIn</a>
+    </section>
+</footer>
+</body>
+</html>
