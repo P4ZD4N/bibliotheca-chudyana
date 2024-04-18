@@ -64,16 +64,6 @@
 
             <br>
 
-            <label>Start</label><input type="date" th:field="*{startDate}">
-            <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></span>
-
-            <br>
-
-            <label>Koniec</label><input type="date" th:field="*{endDate}">
-            <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="error"></span>
-
-            <br>
-
             <input type="submit" value="Zapisz">
         </div>
     </form>
