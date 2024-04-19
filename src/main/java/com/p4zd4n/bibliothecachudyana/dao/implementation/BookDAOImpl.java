@@ -51,7 +51,7 @@ public class BookDAOImpl implements BookDAO {
     public List<Book> findByMinReleaseYear(String minReleaseYear) {
         return entityManager
                 .createQuery("SELECT book FROM Book book WHERE " +
-                               "SUBSTRING(book.releaseDate, 1, 4) >= :minReleaseYear", Book.class)
+                               "YEAR(book.releaseDate) >= :minReleaseYear", Book.class)
                 .setParameter("minReleaseYear", minReleaseYear)
                 .getResultList();
     }
@@ -60,7 +60,7 @@ public class BookDAOImpl implements BookDAO {
     public List<Book> findByMaxReleaseYear(String maxReleaseYear) {
         return entityManager
                 .createQuery("SELECT book FROM Book book WHERE " +
-                               "SUBSTRING(book.releaseDate, 1, 4) <= :maxReleaseYear", Book.class)
+                               "YEAR(book.releaseDate) <= :maxReleaseYear", Book.class)
                 .setParameter("maxReleaseYear", maxReleaseYear)
                 .getResultList();
     }
@@ -70,8 +70,8 @@ public class BookDAOImpl implements BookDAO {
         return entityManager
                 .createQuery(
                         "SELECT book FROM Book book WHERE " +
-                          "SUBSTRING(book.releaseDate, 1, 4) >= :minReleaseYear AND " +
-                          "SUBSTRING(book.releaseDate, 1, 4) <= :maxReleaseYear", Book.class
+                          "YEAR(book.releaseDate) >= :minReleaseYear AND " +
+                          "YEAR(book.releaseDate) <= :maxReleaseYear", Book.class
                 )
                 .setParameter("minReleaseYear", minReleaseYear)
                 .setParameter("maxReleaseYear", maxReleaseYear)
