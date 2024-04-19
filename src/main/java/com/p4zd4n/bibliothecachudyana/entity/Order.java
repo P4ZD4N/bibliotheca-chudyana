@@ -19,6 +19,22 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "first_name")
+    @NotBlank(message = "Pole 'Imię' jest wymagane!")
+    @Size(max = 20, message = "Pole 'Imię' może składać się z maksymalnie 20 znaków!")
+    private String firstName;
+
+    @Column(name = "last_name")
+    @NotBlank(message = "Pole 'Naziwsko' jest wymagane!")
+    @Size(max = 25, message = "Pole 'Nazwisko' może składać się z maksymalnie 25 znaków!")
+    private String lastName;
+
+    @Column(name = "phone_number")
+    @NotNull(message = "Pole 'Numer telefonu' jest wymagane!")
+    @Size(min = 9, max = 9, message = "Pole 'Numer telefonu' musi składać się z 9 cyfr!")
+    @Positive(message = "Pole 'Numer telefonu' musi być liczbą dodatnią!")
+    private String phoneNumber;
+
     @Column(name = "order_date")
     private LocalDate orderDate;
 
@@ -52,7 +68,22 @@ public class Order {
 
     public Order() {}
 
-    public Order(String status, String postalCode, String city, String street, Double totalAmount, Integer houseNumber, LocalDate orderDate, User user) {
+    public Order(
+        String firstName,
+        String lastName,
+        String phoneNumber,
+        String status,
+        String postalCode,
+        String city,
+        String street,
+        Double totalAmount,
+        Integer houseNumber,
+        LocalDate orderDate,
+        User user
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.status = status;
         this.postalCode = postalCode;
         this.city = city;
@@ -77,6 +108,30 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDate getOrderDate() {
