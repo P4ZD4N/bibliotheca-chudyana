@@ -45,6 +45,13 @@
 <main>
     <h1>Czy zamówienie się zgadza?</h1>
 
+    <p>Dane kontaktowe</p>
+    <ul>
+        <li th:text="'Imię: ' + ${order.firstName}"></li>
+        <li th:text="'Nazwisko: ' + ${order.lastName}"></li>
+        <li th:text="'Numer telefonu: +48 ' + ${order.phoneNumber}"></li>
+    </ul>
+
     <p>Informacje ogólne</p>
     <ul>
         <li th:text="'Adres wysyłki: ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></li>
