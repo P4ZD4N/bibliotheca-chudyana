@@ -31,8 +31,8 @@ public class Book {
     private String authorLastName;
 
     @Column(name = "release_date")
-    @NotBlank(message = "Pole 'Data publikacji' jest wymagane!")
-    private String releaseDate;
+    @NotNull(message = "Pole 'Data publikacji' jest wymagane!")
+    private LocalDate releaseDate;
 
     @Column(name = "category")
     @NotBlank(message = "Pole 'Kategoria' jest wymagane!")
@@ -64,7 +64,7 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String authorName, String authorLastName, String releaseDate, LocalDate addToLibraryDate) {
+    public Book(String title, String authorName, String authorLastName, LocalDate releaseDate, LocalDate addToLibraryDate) {
         this.title = title;
         this.authorName = authorName;
         this.authorLastName = authorLastName;
@@ -104,11 +104,11 @@ public class Book {
         this.authorLastName = authorLastName;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
