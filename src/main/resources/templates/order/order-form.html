@@ -42,7 +42,6 @@
 </header>
 
 <main>
-
     <form th:action="@{/order-confirmation}" th:object="${order}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" th:value="${order.id}" />
