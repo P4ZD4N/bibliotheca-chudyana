@@ -56,7 +56,7 @@ public class WishlistController {
 
         userService.save(user);
 
-        return "redirect:/user/" + username;
+        return "redirect:/user/" + username + "/wishlist";
     }
 
     @PostMapping("/remove-from-wishlist")
@@ -68,6 +68,6 @@ public class WishlistController {
 
         userService.removeBookFromWishlist(user, book);
 
-        return "redirect:/user/" + username;
+        return "redirect:/user/" + username + "/wishlist";
     }
 }
