@@ -42,7 +42,7 @@
 </header>
 
 <main>
-    <h1>Adres dostawy</h1>
+
     <form th:action="@{/order-confirmation}" th:object="${order}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" th:value="${order.id}" />
@@ -50,6 +50,23 @@
             <input type="hidden" th:field="*{orderDate}" th:value="${order.orderDate}" />
             <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
             <input type="hidden" th:field="*{status}" th:value="${order.status}" />
+
+            <h1>Dane kontaktowe</h1>
+
+            <label>Imię<input type="text" th:field="*{firstName}" /></label>
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></p>
+
+            <br>
+
+            <label>Nazwisko<input type="text" th:field="*{lastName}" /></label>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></p>
+
+            <br>
+
+            <label>Numer telefonu<input type="text" th:field="*{phoneNumber}" /></label>
+            <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></p>
+
+            <h1>Adres dostawy</h1>
 
             <label>Numer domu<input type="text" th:field="*{houseNumber}" /></label>
             <p th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}" class="error"></p>
