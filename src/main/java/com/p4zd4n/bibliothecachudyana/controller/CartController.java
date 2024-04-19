@@ -56,7 +56,7 @@ public class CartController {
 
         userService.save(user);
 
-        return "redirect:/user/" + username;
+        return "redirect:/user/" + username + "/cart";
     }
 
     @PostMapping("/remove-from-cart")
@@ -68,6 +68,6 @@ public class CartController {
 
         userService.removeBookFromCart(user, book);
 
-        return "redirect:/user/" + username;
+        return "redirect:/user/" + username + "/cart";
     }
 }
