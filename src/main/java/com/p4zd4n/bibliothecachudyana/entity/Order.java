@@ -1,5 +1,6 @@
 package com.p4zd4n.bibliothecachudyana.entity;
 
+import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -61,7 +62,8 @@ public class Order {
     private String postalCode;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
@@ -72,7 +74,7 @@ public class Order {
         String firstName,
         String lastName,
         String phoneNumber,
-        String status,
+        OrderStatus status,
         String postalCode,
         String city,
         String street,
@@ -182,11 +184,11 @@ public class Order {
         this.street = street;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
