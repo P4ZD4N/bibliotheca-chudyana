@@ -46,6 +46,19 @@
     <form th:action="@{/orders-management/save-order}" th:object="${order}" method="POST" >
         <div>
             <input type="hidden" th:field="*{id}" />
+
+            <label>Imię</label><input type="text" th:field="*{firstName}" />
+
+            <br>
+
+            <label>Nazwisko</label><input type="text" th:field="*{lastName}" />
+
+            <br>
+
+            <label>Numer telefonu</label><input type="text" th:field="*{phoneNumber}" />
+
+            <br>
+
             <label>Numer domu</label><input type="text" th:field="*{houseNumber}" />
 
             <br>
