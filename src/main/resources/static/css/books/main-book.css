@@ -47,3 +47,8 @@ main .reviews ul {
     padding: 0;
     text-align: center;
 }
+
+main .error {
+    text-align: center;
+    color: #c73c3c;
+}
