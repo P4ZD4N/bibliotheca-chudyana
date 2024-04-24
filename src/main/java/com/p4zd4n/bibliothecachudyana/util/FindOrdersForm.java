@@ -1,5 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.util;
 
+import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
+
 import java.time.LocalDate;
 
 public class FindOrdersForm {
@@ -16,7 +18,7 @@ public class FindOrdersForm {
 
     private Double maxTotalAmount;
 
-    private String status;
+    private OrderStatus status;
 
     public Integer getId() {
         return id;
@@ -66,11 +68,11 @@ public class FindOrdersForm {
         this.maxTotalAmount = maxTotalAmount;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 }
