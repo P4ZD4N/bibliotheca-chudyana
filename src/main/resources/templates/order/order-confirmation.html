@@ -66,6 +66,9 @@
     <form th:action="@{/order}" th:object="${order}" method="POST">
         <input type="hidden" th:field="*{id}" th:value="${order.id}" />
         <input type="hidden" name="username" th:value="${username}" />
+        <input type="hidden" th:field="*{firstName}" th:value="${order.firstName}" />
+        <input type="hidden" th:field="*{lastName}" th:value="${order.lastName}" />
+        <input type="hidden" th:field="*{phoneNumber}" th:value="${order.phoneNumber}">
         <input type="hidden" th:field="*{orderDate}" th:value="${order.orderDate}" />
         <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
         <input type="hidden" th:field="*{houseNumber}" th:value="${order.houseNumber}">
