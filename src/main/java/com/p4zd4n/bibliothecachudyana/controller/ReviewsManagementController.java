@@ -156,6 +156,15 @@ public class ReviewsManagementController {
             Authentication authentication,
             Model model
     ) {
+        for (Review review : reviewService.findByUsername(authentication.getName())) {
+            if (review.getBook().getId().equals(bookId)) {
+                model.addAttribute("book", bookService.findById(bookId));
+                model.addAttribute("reviews", reviewService.findByBook(bookService.findById(bookId)));
+                model.addAttribute("error", "Dodałeś już opinię dla tej książki!");
+                return "/books/book";
+            }
+        }
+
         Review review = new Review();
 
         model.addAttribute("review", review);
