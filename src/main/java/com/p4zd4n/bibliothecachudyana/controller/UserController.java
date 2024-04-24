@@ -1,7 +1,6 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
 import com.p4zd4n.bibliothecachudyana.entity.*;
-import com.p4zd4n.bibliothecachudyana.service.AuthorityService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import com.p4zd4n.bibliothecachudyana.util.PasswordEncoder;
 import jakarta.validation.Valid;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,9 +18,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private AuthorityService authorityService;
 
     @GetMapping("/user/{username}")
     public String displayUserDetails(@PathVariable String username, Model model, Authentication authentication) {
