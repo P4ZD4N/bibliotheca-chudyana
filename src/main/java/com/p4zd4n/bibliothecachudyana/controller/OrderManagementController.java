@@ -1,6 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
 import com.p4zd4n.bibliothecachudyana.entity.Order;
+import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
 import com.p4zd4n.bibliothecachudyana.service.OrderService;
 import com.p4zd4n.bibliothecachudyana.util.FindOrdersForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class OrderManagementController {
             @RequestParam(required = false) LocalDate maxDate,
             @RequestParam(required = false) Double minTotalAmount,
             @RequestParam(required = false) Double maxTotalAmount,
-            @RequestParam(required = false) String status,
+            @RequestParam(required = false) OrderStatus status,
             Model model
     ) {
         if (id != null) {
@@ -100,7 +101,7 @@ public class OrderManagementController {
         LocalDate maxDate = findOrdersForm.getMaxDate();
         Double minTotalAmount = findOrdersForm.getMinTotalAmount();
         Double maxTotalAmount = findOrdersForm.getMaxTotalAmount();
-        String status = findOrdersForm.getStatus();
+        OrderStatus status = findOrdersForm.getStatus();
 
         StringBuilder redirectUrlBuilder = new StringBuilder("redirect:/orders-management?");
 
@@ -129,7 +130,7 @@ public class OrderManagementController {
             redirectUrlBuilder.append("maxTotalAmount=").append(maxTotalAmount).append("&");
         }
 
-        if (status != null && !status.isEmpty()) {
+        if (status != null) {
             redirectUrlBuilder.append("status=").append(status).append("&");
         }
 
