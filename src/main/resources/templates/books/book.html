@@ -44,6 +44,7 @@
     </header>
 
     <main>
+      <p th:if="${error}" th:text="${error}" class="error"></p>
       <h1 th:text="${book.title}"></h1>
 
       <section class="details">
