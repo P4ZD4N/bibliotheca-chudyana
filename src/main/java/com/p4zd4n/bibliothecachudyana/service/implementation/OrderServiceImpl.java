@@ -6,6 +6,7 @@ import com.p4zd4n.bibliothecachudyana.entity.Cart;
 import com.p4zd4n.bibliothecachudyana.entity.CartItem;
 import com.p4zd4n.bibliothecachudyana.entity.Order;
 import com.p4zd4n.bibliothecachudyana.entity.User;
+import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
 import com.p4zd4n.bibliothecachudyana.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,12 +110,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findByStatus(String status) {
+    public List<Order> findByStatus(OrderStatus status) {
         List<Order> orders = orderDAO.findAll();
         List<Order> ordersWithAppropriateStatus = new ArrayList<>();
 
         for (Order order : orders)
-            if (order.getStatus().equalsIgnoreCase(status))
+            if (order.getStatus().equals(status))
                 ordersWithAppropriateStatus.add(order);
 
         return ordersWithAppropriateStatus;
@@ -163,7 +164,7 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         order.setOrderDate(LocalDate.now());
         order.setTotalAmount(orderTotalAmount);
-        order.setStatus("IN_PROGRESS");
+        order.setStatus(OrderStatus.IN_PROGRESS);
 
         return order;
     }

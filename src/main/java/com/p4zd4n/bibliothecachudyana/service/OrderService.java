@@ -1,6 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.service;
 
 import com.p4zd4n.bibliothecachudyana.entity.Order;
+import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +15,7 @@ public interface OrderService {
     List<Order> findByMinTotalAmount(Double minTotalAmount);
     List<Order> findByMaxTotalAmount(Double maxTotalAmount);
     List<Order> findByMinAndMaxTotalAmount(Double minTotalAmount, Double maxTotalAmount);
-    List<Order> findByStatus(String status);
+    List<Order> findByStatus(OrderStatus status);
     List<Order> findAll();
     void saveOrder(Order order);
     void update(Order order);
