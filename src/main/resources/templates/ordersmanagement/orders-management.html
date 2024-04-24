@@ -48,6 +48,9 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Telefon</th>
                 <th>Użytkownik</th>
                 <th>Data zamówienia</th>
                 <th>Wartość</th>
@@ -61,11 +64,14 @@
             <tbody>
             <tr th:each="order : ${orders}">
                 <td th:text="${order.id}"></td>
+                <td th:text="${order.firstName}"></td>
+                <td th:text="${order.lastName}"></td>
+                <td th:text="${order.phoneNumber}"></td>
                 <td th:text="${order.user.username}"></td>
                 <td th:text="${order.orderDate}"></td>
-                <td th:text="${order.totalAmount}"></td>
+                <td th:text="${order.totalAmount + ' zł'}"></td>
                 <td th:text="'ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></td>
-                <td th:text="${order.status}"></td>
+                <td th:text="${order.status.descriptionInPolish}"></td>
                 <td>
                     <ul th:each="items : ${order.items}">
                         <li th:text="${items.book.title}"></li>
