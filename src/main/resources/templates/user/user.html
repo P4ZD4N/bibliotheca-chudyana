@@ -6,7 +6,8 @@
     <link rel="stylesheet" th:href="@{/css/body.css}" />
     <link rel="stylesheet" th:href="@{/css/user/main-user.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
-    <title th:text="${user.username}"></title>
+    <title th:if="${user == null}">Nie ma takiego użytkownika!</title>
+    <title th:if="${user != null}" th:text="${user.username}"></title>
   </head>
   <body>
     <header>
@@ -42,66 +43,68 @@
     </header>
 
     <main>
-      <h1 th:if="${user == null}">Nie ma takiego użytkownika!</h1>
+      <h1 th:if="${user == null}" class="error">Nie ma takiego użytkownika!</h1>
       <p th:if="${error}" th:text="${error}" class="error"></p>
 
-      <section class="roles" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:if="${authorities != null}">
-        <p>Role:</p>
-        <ul th:each="authority : ${authorities}">
-          <li th:text="${authority.authority}"></li>
-        </ul>
-      </section>
+      <div th:if="${user != null}">
+        <section class="roles" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')" th:if="${authorities != null}">
+          <p>Role:</p>
+          <ul th:each="authority : ${authorities}">
+            <li th:text="${authority.authority}"></li>
+          </ul>
+        </section>
 
-      <section class="info">
-        <p th:text="${'Email: ' + user.email}"></p>
-      </section>
+        <section class="info">
+          <p th:text="${'Email: ' + user.email}"></p>
+        </section>
 
-      <section class="panels" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
-        <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
-        <a href="/manager" sec:authorize="hasRole('MANAGER')">Panel managera</a>
-        <a href="/employee" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
-      </section>
+        <section class="panels" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
+          <a href="/admin" sec:authorize="hasRole('ADMIN')">Panel administratora</a>
+          <a href="/manager" sec:authorize="hasRole('MANAGER')">Panel managera</a>
+          <a href="/employee" sec:authorize="hasRole('EMPLOYEE')">Panel pracownika</a>
+        </section>
 
-      <section class="account-management">
-        <a th:href="'/user/' + ${user.username} + '/change-email'">Zmień email</a>
-        <a th:href="'/user/' + ${user.username} + '/change-password'">Zmień hasło</a>
-      </section>
+        <section class="account-management">
+          <a th:href="'/user/' + ${user.username} + '/change-email'">Zmień email</a>
+          <a th:href="'/user/' + ${user.username} + '/change-password'">Zmień hasło</a>
+        </section>
 
-      <section class="wishlist-cart">
-        <a th:href="'/user/' + ${user.username} + '/wishlist'">Lista życzeń</a>
-        <a th:href="'/user/' + ${user.username} + '/cart'">Koszyk</a>
-      </section>
+        <section class="wishlist-cart">
+          <a th:href="'/user/' + ${user.username} + '/wishlist'">Lista życzeń</a>
+          <a th:href="'/user/' + ${user.username} + '/cart'">Koszyk</a>
+        </section>
 
-      <section class="orders" th:if="${orders != null}">
-        <table>
-          <thead>
-          <tr>
-            <th colspan="5">Zamówienia</th>
-          </tr>
+        <section class="orders" th:if="${orders != null}">
+          <table>
+            <thead>
             <tr>
-              <th>Data zamówienia</th>
-              <th>Wartość</th>
-              <th>Adres dostawy</th>
-              <th>Status</th>
-              <th>Książki</th>
+              <th colspan="5">Zamówienia</th>
             </tr>
-          </thead>
+              <tr>
+                <th>Data zamówienia</th>
+                <th>Wartość</th>
+                <th>Adres dostawy</th>
+                <th>Status</th>
+                <th>Książki</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr th:each="order : ${orders}">
-              <td th:text="${order.orderDate}"></td>
-              <td th:text="${order.totalAmount + ' zł'}"></td>
-              <td th:text="'ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></td>
-              <td th:text="${order.status}"></td>
-              <td>
-                <ul th:each="items : ${order.items}">
-                  <li th:text="${items.book.title}"></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+            <tbody>
+              <tr th:each="order : ${orders}">
+                <td th:text="${order.orderDate}"></td>
+                <td th:text="${order.totalAmount + ' zł'}"></td>
+                <td th:text="'ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></td>
+                <td th:text="${order.status}"></td>
+                <td>
+                  <ul th:each="items : ${order.items}">
+                    <li th:text="${items.book.title}"></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
     </main>
 
     <footer>
