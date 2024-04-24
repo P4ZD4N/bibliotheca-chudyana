@@ -83,3 +83,10 @@ main .error {
     color: #c73c3c;
 }
 
+main h1.error {
+    color: #c73c3c;
+    font-size: 96px;
+    margin: 0;
+    padding: 0;
+}
+
