@@ -7,7 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ReviewService {
+
     Review findById(Integer id);
+
     List<Review> findAll();
     List<Review> findByBook(Book book);
     List<Review> findByUsername(String username);
@@ -16,6 +18,7 @@ public interface ReviewService {
     List<Review> findByMinAddedDate(LocalDate minAddedDate);
     List<Review> findByMaxAddedDate(LocalDate maxAddedDate);
     List<Review> findByMinAndMaxAddedDate(LocalDate minAddedDate, LocalDate maxAddedDate);
+
     void save(Review review);
     void update(Review review);
     void delete(Review review);
