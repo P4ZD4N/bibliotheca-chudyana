@@ -15,7 +15,7 @@ public class TopCategoriesController {
     private BookService bookService;
 
     @GetMapping("/top-categories")
-    public String showTopCategories(Model model) {
+    public String displayTopCategories(Model model) {
         Map<String, Integer> topCategories = bookService.getTopCategories();
 
         model.addAttribute("topCategories", topCategories);
