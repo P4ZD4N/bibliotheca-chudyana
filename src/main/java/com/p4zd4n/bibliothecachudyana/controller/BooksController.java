@@ -27,7 +27,7 @@ public class BooksController {
     private ReviewService reviewService;
 
     @GetMapping("/books")
-    public String showBooks(
+    public String displayBooks(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String authorName,
             @RequestParam(required = false) String authorLastName,
@@ -120,7 +120,7 @@ public class BooksController {
     }
 
     @GetMapping("/books/{id}")
-    public String showBookDetails(@PathVariable Integer id, Model model) {
+    public String displayBookDetails(@PathVariable Integer id, Model model) {
         Book book = bookService.findById(id);
         List<Review> reviews = reviewService.findByBook(book);
         BookStatus status = bookService.getStatusOfBookById(id);
@@ -133,11 +133,11 @@ public class BooksController {
     }
 
     @GetMapping("/add-book")
-    public String showAddBookForm(Model model) {
+    public String displayAddBookForm(Model model) {
         Book book = new Book();
         book.setAddToLibraryDate(LocalDate.now());
         model.addAttribute("book", book);
-        return "books/save-book";
+        return "/books/save-book";
     }
 
     @PostMapping("/save-book")
@@ -159,9 +159,9 @@ public class BooksController {
     }
 
     @GetMapping("/find-books")
-    public String showFindBooksForm(Model model) {
+    public String displayFindBooksForm(Model model) {
         model.addAttribute("findBooksForm", new FindBooksForm());
-        return "books/find-books";
+        return "/books/find-books";
     }
 
     @PostMapping("/find-books")
@@ -237,7 +237,7 @@ public class BooksController {
 
         model.addAttribute("book", book);
 
-        return "books/save-book";
+        return "/books/save-book";
     }
 
     @GetMapping("/delete-book")
