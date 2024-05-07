@@ -55,12 +55,20 @@
     <p>Informacje ogólne</p>
     <ul>
         <li th:text="'Adres wysyłki: ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></li>
-        <li th:text="'Całkowita wartość zamówienia: ' + ${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
+        <li th:if="${order.totalAmount >= 1}"
+            th:text="'Całkowita wartość zamówienia: ' + ${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
+        <li th:if="${order.totalAmount < 1}"
+            th:text="'Całkowita wartość zamówienia: 0' + ${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
     </ul>
 
     <p>Zamówione książki</p>
     <ul th:each="item : ${order.items}">
-        <li th:text="${item.book.title + ', cena: ' + #numbers.formatDecimal(item.book.price, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
+        <li th:if="${item.book.discount != null && item.book.price - (item.book.price * item.book.discount.discountPercentage / 100) >= 1}"
+            th:text="${item.book.title + ', cena: ' + #numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
+        <li th:if="${item.book.discount != null && item.book.price - (item.book.price * item.book.discount.discountPercentage / 100) < 1}"
+            th:text="${item.book.title + ', cena: 0' + #numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
+        <li th:if="${item.book.discount == null}"
+            th:text="${item.book.title + ', cena: ' + #numbers.formatDecimal(item.book.price, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
     </ul>
 
     <form th:action="@{/order}" th:object="${order}" method="POST">
