@@ -112,18 +112,22 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void save(Book book) {
-        bookDAO.save(book);
+    public List<Book> getNewReleases() {
+        List<Book> allBooks = bookDAO.findAll();
+        return getListOfNewReleases(allBooks);
     }
 
-    @Override
-    public void update(Book book) {
-        bookDAO.update(book);
-    }
+    private List<Book> getListOfNewReleases(List<Book> allBooks) {
+        List<Book> newReleases = new ArrayList<>();
 
-    @Override
-    public void delete(Book book) {
-        bookDAO.delete(book);
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dateOneWeekAgo = currentDate.minusWeeks(1);
+
+        for (Book book : allBooks)
+            if (book.getAddToLibraryDate().isAfter(dateOneWeekAgo) || book.getAddToLibraryDate().isEqual(dateOneWeekAgo))
+                newReleases.add(book);
+
+        return newReleases;
     }
 
     @Override
@@ -163,25 +167,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getNewReleases() {
-        List<Book> allBooks = bookDAO.findAll();
-        return getListOfNewReleases(allBooks);
-    }
-
-    private List<Book> getListOfNewReleases(List<Book> allBooks) {
-        List<Book> newReleases = new ArrayList<>();
-
-        LocalDate currentDate = LocalDate.now();
-        LocalDate dateOneWeekAgo = currentDate.minusWeeks(1);
-
-        for (Book book : allBooks)
-            if (book.getAddToLibraryDate().isAfter(dateOneWeekAgo) || book.getAddToLibraryDate().isEqual(dateOneWeekAgo))
-                newReleases.add(book);
-
-        return newReleases;
-    }
-
-    @Override
     public BookStatus getStatusOfBookById(int id) {
         BookStatus status;
         Book book = bookDAO.findById(id);
@@ -195,5 +180,20 @@ public class BookServiceImpl implements BookService {
             status = BookStatus.AVAILABLE;
 
         return status;
+    }
+
+    @Override
+    public void save(Book book) {
+        bookDAO.save(book);
+    }
+
+    @Override
+    public void update(Book book) {
+        bookDAO.update(book);
+    }
+
+    @Override
+    public void delete(Book book) {
+        bookDAO.delete(book);
     }
 }

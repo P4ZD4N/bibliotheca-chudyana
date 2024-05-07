@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface BookService {
+
     Book findById(int id);
+
     List<Book> findByTitle(String title);
     List<Book> findByAuthorName(String authorFirstName);
     List<Book> findByAuthorLastName(String authorLastName);
@@ -25,10 +27,13 @@ public interface BookService {
     List<Book> findLastItems();
     List<Book> findAvailable();
     List<Book> findAll();
+    List<Book> getNewReleases();
+
+    Map<String, Integer> getTopCategories();
+
+    BookStatus getStatusOfBookById(int id);
+
     void save(Book book);
     void update(Book book);
     void delete(Book book);
-    Map<String, Integer> getTopCategories();
-    List<Book> getNewReleases();
-    BookStatus getStatusOfBookById(int id);
 }
