@@ -59,7 +59,7 @@ public class CartController {
         return "redirect:/user/" + username + "/cart";
     }
 
-    @PostMapping("/remove-from-cart")
+    @GetMapping("/remove-from-cart")
     public String removeFromCart(@RequestParam("bookId") Integer id, Authentication authentication) {
         String username = authentication.getName();
 
