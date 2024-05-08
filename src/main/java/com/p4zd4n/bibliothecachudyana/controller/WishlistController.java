@@ -59,7 +59,7 @@ public class WishlistController {
         return "redirect:/user/" + username + "/wishlist";
     }
 
-    @PostMapping("/remove-from-wishlist")
+    @GetMapping("/remove-from-wishlist")
     public String removeFromWishlist(@RequestParam("bookId") Integer id, Authentication authentication) {
         String username = authentication.getName();
 
