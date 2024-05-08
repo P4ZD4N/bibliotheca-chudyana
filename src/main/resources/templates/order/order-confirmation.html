@@ -62,33 +62,52 @@
     </ul>
 
     <p>Zamówione książki</p>
-    <ul th:each="item : ${order.items}">
-        <li th:if="${item.book.discount != null && item.book.price - (item.book.price * item.book.discount.discountPercentage / 100) >= 1}"
-            th:text="${item.book.title + ', cena: ' + #numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
-        <li th:if="${item.book.discount != null && item.book.price - (item.book.price * item.book.discount.discountPercentage / 100) < 1}"
-            th:text="${item.book.title + ', cena: 0' + #numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
-        <li th:if="${item.book.discount == null}"
-            th:text="${item.book.title + ', cena: ' + #numbers.formatDecimal(item.book.price, 0, 'COMMA', 2, 'POINT') + ' zł'}"></li>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Tytuł</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
 
-    <form th:action="@{/order}" th:object="${order}" method="POST">
-        <input type="hidden" th:field="*{id}" th:value="${order.id}" />
-        <input type="hidden" name="username" th:value="${username}" />
-        <input type="hidden" th:field="*{firstName}" th:value="${order.firstName}" />
-        <input type="hidden" th:field="*{lastName}" th:value="${order.lastName}" />
-        <input type="hidden" th:field="*{phoneNumber}" th:value="${order.phoneNumber}">
-        <input type="hidden" th:field="*{orderDate}" th:value="${order.orderDate}" />
-        <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
-        <input type="hidden" th:field="*{houseNumber}" th:value="${order.houseNumber}">
-        <input type="hidden" th:field="*{street}" th:value="${order.street}">
-        <input type="hidden" th:field="*{city}" th:value="${order.city}">
-        <input type="hidden" th:field="*{postalCode}" th:value="${order.postalCode}">
-        <input type="hidden" th:field="*{status}" th:value="${order.status}" />
-        <input type="submit" value="Tak" />
-    </form>
-    <form th:action="@{'/user/' + ${username} + '/cart'}" method="GET">
-        <input type="submit" value="Nie" />
-    </form>
+        <tbody>
+            <tr th:each="item : ${order.items}">
+                <td th:text="${item.book.title}"></td>
+                <td th:if="${item.book.discount != null && item.book.price - (item.book.price * item.book.discount.discountPercentage / 100) >= 1}"
+                    th:text="${#numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}">
+                </td>
+                <td th:if="${item.book.discount != null && item.book.price - (item.book.price * item.book.discount.discountPercentage / 100) < 1}"
+                    th:text="${#numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}">
+                </td>
+                <td th:if="${item.book.discount == null}"
+                th:text="${#numbers.formatDecimal(item.book.price, 0, 'COMMA', 2, 'POINT') + ' zł'}">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <section class="buttons">
+        <form th:action="@{/order}" th:object="${order}" method="POST">
+            <input type="hidden" th:field="*{id}" th:value="${order.id}" />
+            <input type="hidden" name="username" th:value="${username}" />
+            <input type="hidden" th:field="*{firstName}" th:value="${order.firstName}" />
+            <input type="hidden" th:field="*{lastName}" th:value="${order.lastName}" />
+            <input type="hidden" th:field="*{phoneNumber}" th:value="${order.phoneNumber}">
+            <input type="hidden" th:field="*{orderDate}" th:value="${order.orderDate}" />
+            <input type="hidden" th:field="*{totalAmount}" th:value="${order.totalAmount}" />
+            <input type="hidden" th:field="*{houseNumber}" th:value="${order.houseNumber}">
+            <input type="hidden" th:field="*{street}" th:value="${order.street}">
+            <input type="hidden" th:field="*{city}" th:value="${order.city}">
+            <input type="hidden" th:field="*{postalCode}" th:value="${order.postalCode}">
+            <input type="hidden" th:field="*{status}" th:value="${order.status}" />
+            <input type="submit" value="Tak" />
+        </form>
+        <form th:action="@{'/user/' + ${username} + '/cart'}" method="GET">
+            <input type="submit" value="Nie" />
+        </form>
+    </section>
 </main>
 
 <footer>
