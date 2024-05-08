@@ -232,7 +232,7 @@ public class BooksController {
     }
 
     @GetMapping("/update-book")
-    public String showUpdateBookForm(@RequestParam("bookId") Integer id, Model model) {
+    public String displayUpdateBookForm(@RequestParam("bookId") Integer id, Model model) {
         Book book = bookService.findById(id);
 
         model.addAttribute("book", book);
