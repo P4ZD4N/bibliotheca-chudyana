@@ -34,6 +34,34 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order createOrder(String username) {
+        Order order = new Order();
+
+        User user = userDAO.findByUsername(username);
+        Cart userCart = user.getCart();
+        List<CartItem> userCartItems = userCart.getItems();
+
+        Double orderTotalAmount = 0D;
+        for (CartItem cartItem : userCartItems) {
+            Double itemPrice = cartItem.getBook().getPrice();
+
+            if (cartItem.getBook().getDiscount() == null) {
+                orderTotalAmount += itemPrice;
+            } else {
+                Double discountPercentage = cartItem.getBook().getDiscount().getDiscountPercentage();
+                orderTotalAmount += itemPrice - itemPrice * discountPercentage / 100;
+            }
+        }
+
+        order.setUser(user);
+        order.setOrderDate(LocalDate.now());
+        order.setTotalAmount(orderTotalAmount);
+        order.setStatus(OrderStatus.IN_PROGRESS);
+
+        return order;
+    }
+
+    @Override
     public List<Order> findByUsername(String username) {
         return orderDAO.findByUsername(username);
     }
@@ -139,33 +167,5 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(Order order) {
         orderDAO.delete(order);
-    }
-
-    @Override
-    public Order createOrder(String username) {
-        Order order = new Order();
-
-        User user = userDAO.findByUsername(username);
-        Cart userCart = user.getCart();
-        List<CartItem> userCartItems = userCart.getItems();
-
-        Double orderTotalAmount = 0D;
-        for (CartItem cartItem : userCartItems) {
-            Double itemPrice = cartItem.getBook().getPrice();
-
-            if (cartItem.getBook().getDiscount() == null) {
-                orderTotalAmount += itemPrice;
-            } else {
-                Double discountPercentage = cartItem.getBook().getDiscount().getDiscountPercentage();
-                orderTotalAmount += itemPrice - itemPrice * discountPercentage / 100;
-            }
-        }
-
-        order.setUser(user);
-        order.setOrderDate(LocalDate.now());
-        order.setTotalAmount(orderTotalAmount);
-        order.setStatus(OrderStatus.IN_PROGRESS);
-
-        return order;
     }
 }

@@ -7,7 +7,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderService {
+
     Order findById(Integer id);
+    Order createOrder(String username);
+
     List<Order> findByUsername(String username);
     List<Order> findByMinDate(LocalDate minDate);
     List<Order> findByMaxDate(LocalDate maxDate);
@@ -17,8 +20,8 @@ public interface OrderService {
     List<Order> findByMinAndMaxTotalAmount(Double minTotalAmount, Double maxTotalAmount);
     List<Order> findByStatus(OrderStatus status);
     List<Order> findAll();
+
     void saveOrder(Order order);
     void update(Order order);
     void delete(Order order);
-    Order createOrder(String username);
 }
