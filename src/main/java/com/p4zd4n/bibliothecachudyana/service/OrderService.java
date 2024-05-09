@@ -21,7 +21,7 @@ public interface OrderService {
     List<Order> findByStatus(OrderStatus status);
     List<Order> findAll();
 
-    void saveOrder(Order order);
+    void save(Order order);
     void update(Order order);
     void delete(Order order);
 }

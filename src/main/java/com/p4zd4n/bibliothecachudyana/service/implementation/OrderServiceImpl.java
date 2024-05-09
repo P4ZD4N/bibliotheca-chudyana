@@ -155,7 +155,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrder(Order order) {
+    public void save(Order order) {
         orderDAO.save(order);
     }
 
