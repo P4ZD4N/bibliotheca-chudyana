@@ -10,9 +10,9 @@ public class FindBooksForm {
 
     private String authorLastName;
 
-    private String minReleaseYear;
+    private Integer minReleaseYear;
 
-    private String maxReleaseYear;
+    private Integer maxReleaseYear;
 
     private String category;
 
@@ -50,19 +50,19 @@ public class FindBooksForm {
         this.authorLastName = authorLastName;
     }
 
-    public String getMinReleaseYear() {
+    public Integer getMinReleaseYear() {
         return minReleaseYear;
     }
 
-    public void setMinReleaseYear(String minReleaseYear) {
+    public void setMinReleaseYear(Integer minReleaseYear) {
         this.minReleaseYear = minReleaseYear;
     }
 
-    public String getMaxReleaseYear() {
+    public Integer getMaxReleaseYear() {
         return maxReleaseYear;
     }
 
-    public void setMaxReleaseYear(String maxReleaseYear) {
+    public void setMaxReleaseYear(Integer maxReleaseYear) {
         this.maxReleaseYear = maxReleaseYear;
     }
 
