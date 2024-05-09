@@ -81,11 +81,10 @@
                                     th:text="${'0' + #numbers.formatDecimal(item.book.price - (item.book.price * item.book.discount.discountPercentage / 100), 0, 'COMMA', 2, 'POINT') + ' zł'}"></span>
                             </td>
                             <td>
-                                <a class="button-delete"
-                                    th:href="@{/remove-from-cart(bookId=${item.book.id})}"
-                                    onclick="return confirmDeleteBook()">
-                                    Usuń z koszyka
-                                </a>
+                                <form th:action="@{/remove-from-cart}" method="POST">
+                                    <input type="hidden" th:name="bookId" th:value="${item.book.id}" />
+                                    <button type="submit" onclick="return confirmDeleteBook()">Usuń z koszyka</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
