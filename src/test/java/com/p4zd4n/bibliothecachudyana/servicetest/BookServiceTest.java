@@ -129,12 +129,12 @@ public class BookServiceTest {
         book.setReleaseDate(LocalDate.of(2023, 8, 1));
         books.add(book);
 
-        when(bookDAO.findByMinReleaseYear("2023")).thenReturn(books);
-        when(bookDAO.findByMinReleaseYear("2000")).thenReturn(books);
+        when(bookDAO.findByMinReleaseYear(2023)).thenReturn(books);
+        when(bookDAO.findByMinReleaseYear(2000)).thenReturn(books);
 
-        List<Book> result1 = bookService.findByMinReleaseYear("2023");
-        List<Book> result2 = bookService.findByMinReleaseYear("2000");
-        List<Book> result3 = bookService.findByMinReleaseYear("2024");
+        List<Book> result1 = bookService.findByMinReleaseYear(2023);
+        List<Book> result2 = bookService.findByMinReleaseYear(2000);
+        List<Book> result3 = bookService.findByMinReleaseYear(2024);
 
         assertIterableEquals(books, result1);
         assertIterableEquals(books, result2);
@@ -151,12 +151,12 @@ public class BookServiceTest {
         book.setReleaseDate(LocalDate.of(2000, 8, 1));
         books.add(book);
 
-        when(bookDAO.findByMaxReleaseYear("2023")).thenReturn(books);
-        when(bookDAO.findByMaxReleaseYear("2000")).thenReturn(books);
+        when(bookDAO.findByMaxReleaseYear(2023)).thenReturn(books);
+        when(bookDAO.findByMaxReleaseYear(2000)).thenReturn(books);
 
-        List<Book> result1 = bookService.findByMaxReleaseYear("2023");
-        List<Book> result2 = bookService.findByMaxReleaseYear("2000");
-        List<Book> result3 = bookService.findByMaxReleaseYear("1999");
+        List<Book> result1 = bookService.findByMaxReleaseYear(2023);
+        List<Book> result2 = bookService.findByMaxReleaseYear(2000);
+        List<Book> result3 = bookService.findByMaxReleaseYear(1999);
 
         assertIterableEquals(books, result1);
         assertIterableEquals(books, result2);
@@ -173,12 +173,12 @@ public class BookServiceTest {
         book.setReleaseDate(LocalDate.of(2021, 8, 1));
         books.add(book);
 
-        when(bookDAO.findByMinAndMaxReleaseYear("2020", "2024")).thenReturn(books);
-        when(bookDAO.findByMinAndMaxReleaseYear("2000", "2022")).thenReturn(books);
+        when(bookDAO.findByMinAndMaxReleaseYear(2020, 2024)).thenReturn(books);
+        when(bookDAO.findByMinAndMaxReleaseYear(2000, 2022)).thenReturn(books);
 
-        List<Book> result1 = bookService.findByMinAndMaxReleaseYear("2020", "2024");
-        List<Book> result2 = bookService.findByMinAndMaxReleaseYear("2000", "2022");
-        List<Book> result3 = bookService.findByMinAndMaxReleaseYear("2005", "2020");
+        List<Book> result1 = bookService.findByMinAndMaxReleaseYear(2020, 2024);
+        List<Book> result2 = bookService.findByMinAndMaxReleaseYear(2000, 2022);
+        List<Book> result3 = bookService.findByMinAndMaxReleaseYear(2005, 2020);
 
         assertIterableEquals(books, result1);
         assertIterableEquals(books, result2);

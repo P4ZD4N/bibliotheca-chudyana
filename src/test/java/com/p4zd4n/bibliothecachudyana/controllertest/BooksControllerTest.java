@@ -60,8 +60,8 @@ public class BooksControllerTest {
         when(bookService.findByTitle("Black Lies")).thenReturn(List.of(books.get(2)));
         when(bookService.findByAuthorName("Carl")).thenReturn(List.of(books.get(1)));
         when(bookService.findByAuthorLastName("Yandell")).thenReturn(List.of(books.get(3)));
-        when(bookService.findByMinReleaseYear("2023")).thenReturn(List.of(books.get(1), books.get(2), books.get(3)));
-        when(bookService.findByMaxReleaseYear("2023")).thenReturn(List.of(books.get(0)));
+        when(bookService.findByMinReleaseYear(2023)).thenReturn(List.of(books.get(1), books.get(2), books.get(3)));
+        when(bookService.findByMaxReleaseYear(2023)).thenReturn(List.of(books.get(0)));
 
         Model model = mock(Model.class);
         String viewName = booksController.displayBooks("Black Lies", null, null, null, null, null, null, null, null, null, null, model);
@@ -169,7 +169,7 @@ public class BooksControllerTest {
         findBooksForm3.setCategory("Historia");
         findBooksForm3.setMinPrice(10.0);
         findBooksForm3.setMaxPrice(25.0);
-        findBooksForm3.setMinReleaseYear("2000");
+        findBooksForm3.setMinReleaseYear(2000);
 
         String redirectUrl3 = booksController.findBooks(findBooksForm3);
 

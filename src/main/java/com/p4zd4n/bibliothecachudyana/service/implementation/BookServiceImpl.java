@@ -42,17 +42,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findByMinReleaseYear(String minReleaseYear) {
+    public List<Book> findByMinReleaseYear(Integer minReleaseYear) {
         return bookDAO.findByMinReleaseYear(minReleaseYear);
     }
 
     @Override
-    public List<Book> findByMaxReleaseYear(String maxReleaseYear) {
+    public List<Book> findByMaxReleaseYear(Integer maxReleaseYear) {
         return bookDAO.findByMaxReleaseYear(maxReleaseYear);
     }
 
     @Override
-    public List<Book> findByMinAndMaxReleaseYear(String minReleaseYear, String maxReleaseYear) {
+    public List<Book> findByMinAndMaxReleaseYear(Integer minReleaseYear, Integer maxReleaseYear) {
         return bookDAO.findByMinAndMaxReleaseYear(minReleaseYear, maxReleaseYear);
     }
 

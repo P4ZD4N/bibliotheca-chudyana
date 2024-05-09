@@ -13,9 +13,9 @@ public interface BookService {
     List<Book> findByTitle(String title);
     List<Book> findByAuthorName(String authorFirstName);
     List<Book> findByAuthorLastName(String authorLastName);
-    List<Book> findByMinReleaseYear(String minReleaseYear);
-    List<Book> findByMaxReleaseYear(String maxReleaseYear);
-    List<Book> findByMinAndMaxReleaseYear(String minReleaseYear, String maxReleaseYear);
+    List<Book> findByMinReleaseYear(Integer minReleaseYear);
+    List<Book> findByMaxReleaseYear(Integer maxReleaseYear);
+    List<Book> findByMinAndMaxReleaseYear(Integer minReleaseYear, Integer maxReleaseYear);
     List<Book> findByCategory(String category);
     List<Book> findByMinPrice(Double minPrice);
     List<Book> findByMaxPrice(Double maxPrice);

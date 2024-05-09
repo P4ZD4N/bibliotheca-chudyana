@@ -31,8 +31,8 @@ public class BooksController {
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String authorName,
             @RequestParam(required = false) String authorLastName,
-            @RequestParam(required = false) String minReleaseYear,
-            @RequestParam(required = false) String maxReleaseYear,
+            @RequestParam(required = false) Integer minReleaseYear,
+            @RequestParam(required = false) Integer maxReleaseYear,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
@@ -169,8 +169,8 @@ public class BooksController {
         String title = findBooksForm.getTitle();
         String authorName = findBooksForm.getAuthorName();
         String authorLastName = findBooksForm.getAuthorLastName();
-        String minReleaseYear = findBooksForm.getMinReleaseYear();
-        String maxReleaseYear = findBooksForm.getMaxReleaseYear();
+        Integer minReleaseYear = findBooksForm.getMinReleaseYear();
+        Integer maxReleaseYear = findBooksForm.getMaxReleaseYear();
         String category = findBooksForm.getCategory();
         Double minPrice = findBooksForm.getMinPrice();
         Double maxPrice = findBooksForm.getMaxPrice();
@@ -192,11 +192,11 @@ public class BooksController {
             redirectUrlBuilder.append("authorLastName=").append(authorLastName).append("&");
         }
 
-        if (minReleaseYear != null && !minReleaseYear.isEmpty()) {
+        if (minReleaseYear != null) {
             redirectUrlBuilder.append("minReleaseYear=").append(minReleaseYear).append("&");
         }
 
-        if (maxReleaseYear != null && !maxReleaseYear.isEmpty()) {
+        if (maxReleaseYear != null) {
             redirectUrlBuilder.append("maxReleaseYear=").append(maxReleaseYear).append("&");
         }
 

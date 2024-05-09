@@ -48,7 +48,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> findByMinReleaseYear(String minReleaseYear) {
+    public List<Book> findByMinReleaseYear(Integer minReleaseYear) {
         return entityManager
                 .createQuery("SELECT book FROM Book book WHERE " +
                                "YEAR(book.releaseDate) >= :minReleaseYear", Book.class)
@@ -57,7 +57,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> findByMaxReleaseYear(String maxReleaseYear) {
+    public List<Book> findByMaxReleaseYear(Integer maxReleaseYear) {
         return entityManager
                 .createQuery("SELECT book FROM Book book WHERE " +
                                "YEAR(book.releaseDate) <= :maxReleaseYear", Book.class)
@@ -66,7 +66,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> findByMinAndMaxReleaseYear(String minReleaseYear, String maxReleaseYear) {
+    public List<Book> findByMinAndMaxReleaseYear(Integer minReleaseYear, Integer maxReleaseYear) {
         return entityManager
                 .createQuery(
                         "SELECT book FROM Book book WHERE " +
