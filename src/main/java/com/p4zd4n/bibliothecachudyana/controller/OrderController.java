@@ -95,7 +95,7 @@ public class OrderController {
                 cartItem.getBook().setQuantityInStock(cartItem.getBook().getQuantityInStock() - 1);
         }
 
-        orderService.saveOrder(order);
+        orderService.save(order);
         userService.removeAllBooksFromCart(user);
 
         return "redirect:/user/" + username;
