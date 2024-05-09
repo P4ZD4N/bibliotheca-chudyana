@@ -26,6 +26,28 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User findByUsername(String username) {
+        try {
+            return entityManager.createQuery("SELECT user FROM User user WHERE user.username LIKE :username", User.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        try {
+            return entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<User> findByAuthorities(List<String> authorities) {
         List<User> users = new ArrayList<>();
 
@@ -51,28 +73,6 @@ public class UserDAOImpl implements UserDAO {
         return entityManager.createQuery("SELECT u FROM User u WHERE u.enabled = :status", User.class)
                 .setParameter("status", status)
                 .getResultList();
-    }
-
-    @Override
-    public User findByUsername(String username) {
-        try {
-            return entityManager.createQuery("SELECT user FROM User user WHERE user.username LIKE :username", User.class)
-                    .setParameter("username", username)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        try {
-            return entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class)
-                    .setParameter("email", email)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
     }
 
     @Override
