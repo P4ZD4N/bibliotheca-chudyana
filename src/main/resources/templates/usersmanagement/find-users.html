@@ -53,10 +53,12 @@
 
             <br>
 
-            <label>User<input type="checkbox" th:field="*{authorities}" th:value="ROLE_USER" /></label>
-            <label>Employee<input type="checkbox" th:field="*{authorities}" th:value="ROLE_EMPLOYEE" /></label>
-            <label>Manager<input type="checkbox" th:field="*{authorities}" th:value="ROLE_MANAGER" /></label>
-            <label>Admin<input type="checkbox" th:field="*{authorities}" th:value="ROLE_ADMIN" /></label>
+            <section class="checkboxes">
+                <label>User<input type="checkbox" th:field="*{authorities}" th:value="ROLE_USER" /></label>
+                <label>Employee<input type="checkbox" th:field="*{authorities}" th:value="ROLE_EMPLOYEE" /></label>
+                <label>Manager<input type="checkbox" th:field="*{authorities}" th:value="ROLE_MANAGER" /></label>
+                <label>Admin<input type="checkbox" th:field="*{authorities}" th:value="ROLE_ADMIN" /></label>
+            </section>
 
             <br>
 
