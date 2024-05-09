@@ -34,7 +34,7 @@ main input[type="submit"] {
     display: block;
     margin: 0 auto;
     height: 35px;
-    width: 50%;
+    width: 110%;
     border: none;
     background-color: #1A1A1A;
     border-radius: 50px;
@@ -46,4 +46,32 @@ main input[type="submit"]:hover {
     cursor: pointer;
     color: #1A1A1A;
     background-color: white;
+}
+
+main table {
+    border-collapse: collapse;
+    font-size: 1.1em;
+}
+
+main th {
+    background-color: #1A1A1A;
+}
+
+main tr:nth-child(odd){
+    background-color: #313131; 
+}
+
+main td, th {
+    padding: 5px;
+    border: 1px solid black;
+    text-align: center;
+    max-width: 350px;
+}
+
+main .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 30%;
 }
