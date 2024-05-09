@@ -16,7 +16,7 @@ public class NewReleasesController {
     private BookService bookService;
 
     @GetMapping("/new-releases")
-    public String showNewReleases(Model model) {
+    public String displayNewReleases(Model model) {
         List<Book> newBooks = bookService.getNewReleases();
         model.addAttribute("newBooks", newBooks);
         return "/newreleases/new-releases";
