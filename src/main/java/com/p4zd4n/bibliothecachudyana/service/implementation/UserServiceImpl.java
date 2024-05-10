@@ -1,6 +1,5 @@
 package com.p4zd4n.bibliothecachudyana.service.implementation;
 
-import com.p4zd4n.bibliothecachudyana.dao.BookDAO;
 import com.p4zd4n.bibliothecachudyana.dao.CartItemDAO;
 import com.p4zd4n.bibliothecachudyana.dao.UserDAO;
 import com.p4zd4n.bibliothecachudyana.dao.WishlistItemDAO;
