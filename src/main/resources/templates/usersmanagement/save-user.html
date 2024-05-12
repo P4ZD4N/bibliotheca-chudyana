@@ -46,7 +46,11 @@
     <form th:action="@{/users-management/save-user}" th:object="${user}" method="POST" >
         <div>
             <p th:if="${error}" th:text="${error}"></p>
+
             <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:if="*{id}" th:field="*{email}" />
+            <input type="hidden" th:if="*{id}" th:field="*{password}" />
+
             <label>Nazwa użytkownika<input type="text" th:field="*{username}" required /></label>
 
             <br>
