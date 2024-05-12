@@ -40,6 +40,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Double getCartValue(List<CartItem> cartItems) {
+        Double sum = 0.0;
+
+        for (CartItem item : cartItems) {
+            if (item.getBook().getDiscount() == null) {
+                sum += item.getBook().getPrice();
+            } else {
+                sum += item.getBook().getPrice() - (item.getBook().getPrice() * item.getBook().getDiscount().getDiscountPercentage() / 100);
+            }
+        }
+
+        return sum;
+    }
+
+    @Override
     public List<User> findByAuthorities(List<String> authorities) {
         return userDAO.findByAuthorities(authorities);
     }
