@@ -41,15 +41,24 @@ main a:hover {
 main .button-more {
   width: 50%;
 }
-main .button-add-to-cart {
-  width: 80% !important;
-}
-main .button-delete {
-  background-color: #c92e2e;
-  transition: color 200ms ease-out, background-color 200ms ease-out;
+main .button-remove, main .button-add {
+  display: block;
+  margin: 0 auto;
+  height: 35px;
   width: 80%;
+  border: none;
+  color: white;
+  border-radius: 50px;
+  font-size: 1.025em;
+  transition: color 200ms ease-out, background-color 200ms ease-out;
 }
-main .button-delete:hover {
+main .button-remove {
+  background-color: #c73c3c;
+}
+main .button-add {
+  background-color: #3c8fc7;
+}
+main .button-remove:hover, main .button-add:hover {
   cursor: pointer;
   color: #1A1A1A;
   background-color: white;

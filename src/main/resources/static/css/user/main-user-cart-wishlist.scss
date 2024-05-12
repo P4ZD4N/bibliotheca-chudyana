@@ -48,23 +48,32 @@ main {
         width: 50%;
     }
 
-    .button-add-to-cart {
-        width: 80% !important;
+    .button-remove, .button-add {
+    display: block;
+    margin: 0 auto;
+    height: 35px;
+    width: 80%;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    font-size: 1.025em;
+    transition: color 200ms ease-out, background-color 200ms ease-out;
     }
 
-    .button-delete {
-        background-color: #c92e2e;
-        transition: color 200ms ease-out,
-                    background-color 200ms ease-out;
-        width: 80%;
+    .button-remove {
+        background-color: #c73c3c;
     }
-    
-    .button-delete:hover {
+
+    .button-add {
+        background-color: #3c8fc7;
+    }
+
+    .button-remove:hover, .button-add:hover {
         cursor: pointer;
         color: #1A1A1A;
         background-color: white;
     }
-    
+
     table {
         border-collapse: collapse;
         font-size: 1.1em;
