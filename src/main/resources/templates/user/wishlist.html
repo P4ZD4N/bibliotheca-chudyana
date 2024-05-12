@@ -85,13 +85,13 @@
               <td>
                 <form th:action="@{/remove-from-wishlist}" method="POST">
                   <input type="hidden" th:name="bookId" th:value="${item.book.id}" />
-                  <button type="submit" onclick="return confirmDeleteBook()">Usuń z listy życzeń</button>
+                  <input type="submit" value="Usuń z listy życzeń" class="button-remove" onclick="return confirmDeleteBook()" />
                 </form>
               </td>
               <td>
                 <form th:if="${item.book.quantityInStock > 0}" th:action="@{/add-to-cart}" method="POST">
                   <input type="hidden" th:name="bookId" th:value="${item.book.id}" />
-                  <button type="submit">Dodaj do koszyka</button>
+                  <input type="submit" value="Dodaj do koszyka" class="button-add" />
                 </form>
               </td>
             </tr>

@@ -83,7 +83,7 @@
                             <td>
                                 <form th:action="@{/remove-from-cart}" method="POST">
                                     <input type="hidden" th:name="bookId" th:value="${item.book.id}" />
-                                    <button type="submit" onclick="return confirmDeleteBook()">Usuń z koszyka</button>
+                                    <input type="submit" value="Usuń z koszyka" class="button-remove" onclick="return confirmDeleteBook()" />
                                 </form>
                             </td>
                         </tr>
