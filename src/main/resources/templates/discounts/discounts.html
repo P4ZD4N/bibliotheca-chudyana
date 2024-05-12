@@ -58,6 +58,8 @@
         <th>Cena przed</th>
         <th>Cena po</th>
         <th>Oszczędzasz</th>
+        <th sec:authorize="isAuthenticated()"></th>
+        <th sec:authorize="isAuthenticated()"></th>
         <th sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')"></th>
       </tr>
       </thead>
@@ -82,6 +84,20 @@
         </td>
         <td th:if="${discount.book.price - (discount.book.price - (discount.book.price * discount.book.discount.discountPercentage / 100)) < 1}"
             th:text="${'0' + #numbers.formatDecimal(discount.book.price - (discount.book.price - (discount.book.price * discount.book.discount.discountPercentage / 100)), 0, 'COMMA', 2, 'POINT') + ' zł'}">
+        </td>
+        <td sec:authorize="isAuthenticated()">
+          <form th:action="@{/add-to-wishlist}" method="POST">
+            <input type="hidden" th:name="bookId" th:value="${discount.book.id}" />
+            <button type="submit">Dodaj do listy życzeń</button>
+          </form>
+        </td>
+        <td sec:authorize="isAuthenticated()">
+          <form th:if="${discount.book.quantityInStock > 0}"
+                th:action="@{/add-to-cart}"
+                method="POST">
+            <input type="hidden" th:name="bookId" th:value="${discount.book.id}" />
+            <button type="submit">Dodaj do koszyka</button>
+          </form>
         </td>
         <td class="show-discounts_actions" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
           <a class="button-update" th:href="@{/update-discount(discountId=${discount.id})}">Aktualizuj</a>
