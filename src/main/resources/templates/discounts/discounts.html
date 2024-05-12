@@ -88,7 +88,7 @@
         <td sec:authorize="isAuthenticated()">
           <form th:action="@{/add-to-wishlist}" method="POST">
             <input type="hidden" th:name="bookId" th:value="${discount.book.id}" />
-            <button type="submit">Dodaj do listy życzeń</button>
+            <input type="submit" value="Dodaj do listy życzeń" class="button-add" />
           </form>
         </td>
         <td sec:authorize="isAuthenticated()">
@@ -96,7 +96,7 @@
                 th:action="@{/add-to-cart}"
                 method="POST">
             <input type="hidden" th:name="bookId" th:value="${discount.book.id}" />
-            <button type="submit">Dodaj do koszyka</button>
+            <input type="submit" value="Dodaj do koszyka" class="button-add" />
           </form>
         </td>
         <td class="show-discounts_actions" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">
