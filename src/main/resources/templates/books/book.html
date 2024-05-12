@@ -97,9 +97,9 @@
       </section>
 
       <section class="reviews">
-        <h1>Opinie</h1>
+        <h1>Opinie i recenzje</h1>
         <p th:if="${reviews.size() == 0}">Brak opinii!</p>
-        <a sec:authorize="isAuthenticated()" th:href="@{'/add-review-for-' + ${book.id}}">Dodaj opinię</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{'/add-review-for-' + ${book.id}}" class="link-add-review">Dodaj opinię</a>
 
         <ul th:each="review : ${reviews}">
           <li>
@@ -110,10 +110,10 @@
               <li th:text="${review.rating + '/5'}"></li>
               <li th:text="${review.content}"></li>
               <li sec:authorize="isAuthenticated()" th:if="${#authentication.principal.username == review.user.username}">
-                <a th:href="@{/reviews-management/update-review(reviewId=${review.id})}">Edytuj</a>
+                <a th:href="@{/reviews-management/update-review(reviewId=${review.id})}" class="link-edit-review">Edytuj</a>
               </li>
               <li sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{/reviews-management/delete-review(reviewId=${review.id})}" onclick="return confirmDeleteReview()">Usuń</a>
+                <a th:href="@{/reviews-management/delete-review(reviewId=${review.id})}" class="link-remove-review" onclick="return confirmDeleteReview()">Usuń</a>
               </li>
             </ul>
           </li>
