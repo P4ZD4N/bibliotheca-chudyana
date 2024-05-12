@@ -28,4 +28,7 @@ header div {
 header a:hover {
   font-size: 0.95em;
   color: rgb(129, 129, 129);
+}
+header .success {
+  color: #49B454;
 }/*# sourceMappingURL=header.css.map */
