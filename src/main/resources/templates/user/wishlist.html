@@ -44,7 +44,7 @@
     </header>
 
     <main>
-      <p th:if="${userWishlist.size == 0}">Pusta lista życzeń!</p>
+      <h1 th:if="${userWishlist.size == 0}">Pusta lista życzeń!</h1>
 
       <section class="actions">
         <a th:href="@{'/user/' + ${user.username} + '/cart'} ">Koszyk</a>
