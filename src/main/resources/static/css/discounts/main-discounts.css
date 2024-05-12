@@ -76,4 +76,21 @@ main td, main th {
   border: 1px solid black;
   text-align: center;
   max-width: 350px;
+}
+main .button-add {
+  display: block;
+  margin: 0 auto;
+  height: 35px;
+  width: 100%;
+  border: none;
+  color: white;
+  border-radius: 50px;
+  font-size: 1.025em;
+  background-color: #3c8fc7;
+  transition: color 200ms ease-out, background-color 200ms ease-out;
+}
+main .button-add:hover {
+  cursor: pointer;
+  color: #1A1A1A;
+  background-color: white;
 }/*# sourceMappingURL=main-discounts.css.map */
