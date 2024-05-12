@@ -18,17 +18,17 @@ public class User {
     private Integer id;
 
     @Column(name = "username")
-    @NotBlank(message = "Pole 'nazwa użytkownika' jest wymagane!")
+    @NotBlank(message = "Pole 'Nazwa użytkownika' jest wymagane!")
     @Size(max = 16, message = "Nazwa użytkownika powinna składać się maksymalnie z 16 znaków!")
     private String username;
 
     @Column(name = "email")
-    @NotBlank(message = "Pole 'email' jest wymagane!")
+    @NotBlank(message = "Pole 'Email' jest wymagane!")
     @Email( message = "Podany email jest niepoprawny!")
     private String email;
 
     @Column(name = "password")
-    @NotBlank(message = "Pole 'hasło' jest wymagane!")
+    @NotBlank(message = "Pole 'Hasło' jest wymagane!")
     private String password;
 
     @Column(name = "enabled")
