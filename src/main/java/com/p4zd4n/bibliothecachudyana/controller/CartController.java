@@ -38,9 +38,11 @@ public class CartController {
 
         User user = userService.findByUsername(username);
         List<CartItem> userCart = user.getCart().getItems();
+        Double cartValue = userService.getCartValue(userCart);
 
         model.addAttribute("user", user);
         model.addAttribute("userCart", userCart);
+        model.addAttribute("cartValue", cartValue);
 
         return "/user/cart";
     }
