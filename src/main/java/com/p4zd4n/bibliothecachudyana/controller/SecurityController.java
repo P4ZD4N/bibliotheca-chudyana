@@ -20,13 +20,13 @@ public class SecurityController {
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("user", new User());
-        return "security/login";
+        return "/security/login";
     }
 
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());
-        return "security/register";
+        return "/security/register";
     }
 
     @PostMapping("/register")
@@ -37,11 +37,12 @@ public class SecurityController {
 
         if (userService.isUserAlreadyRegistered(user)) {
             model.addAttribute("error", "Użytkownik o podanej nazwie / z podanym adresem email już istnieje!");
-            return "security/register";
+            return "/security/register";
         }
 
         userService.registerUser(user);
+        model.addAttribute("success", "Użytkownik " + user.getUsername() + " zarejestrowany pomyślnie!");
 
-        return "redirect:/";
+        return "/index";
     }
 }
