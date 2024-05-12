@@ -51,5 +51,31 @@ main {
         text-align: center;
         color: #c73c3c;
     }
+
+    .link-add-review {
+        color: #2e7ec9;
+        text-decoration: none;
+        transition: font-size 200ms ease-out,
+                    color 200ms ease-out;;
+    }
+
+    .link-edit-review {
+        color: #2e7ec9;
+        text-decoration: none;
+        transition: font-size 200ms ease-out,
+                    color 200ms ease-out;;
+    }
+
+    .link-remove-review {
+        color: #c73c3c;
+        text-decoration: none;
+        transition: font-size 200ms ease-out,
+                    color 200ms ease-out;;
+    }
+
+    a:hover {
+        font-size: 0.95rem;
+        color: rgb(129, 129, 129);
+    }
 }
 
