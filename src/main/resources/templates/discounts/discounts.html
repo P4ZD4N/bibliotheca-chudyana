@@ -48,7 +48,8 @@
   </section>
 
   <section id="show-discounts">
-    <table>
+    <h1 th:if="${discounts.isEmpty()}">Brak promocji!</h1>
+    <table th:if="${!discounts.isEmpty()}">
       <thead>
       <tr>
         <th></th>
