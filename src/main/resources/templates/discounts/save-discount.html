@@ -59,7 +59,7 @@
 
             <br>
 
-            <label>Zniżka</label><input type="text" th:field="*{discountPercentage}">
+            <label>Zniżka (w %)</label><input type="text" th:field="*{discountPercentage}">
             <span th:if="${#fields.hasErrors('discountPercentage')}" th:errors="*{discountPercentage}" class="error"></span>
 
             <br>
