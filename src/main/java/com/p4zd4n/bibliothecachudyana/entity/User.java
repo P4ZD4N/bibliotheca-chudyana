@@ -29,6 +29,7 @@ public class User {
 
     @Column(name = "password")
     @NotBlank(message = "Pole 'Hasło' jest wymagane!")
+    @Size(min = 5, message = "Hasło musi mieć co najmniej 5 znaków!")
     private String password;
 
     @Column(name = "enabled")

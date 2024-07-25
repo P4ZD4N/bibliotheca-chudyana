@@ -47,4 +47,7 @@ main input[type=submit]:hover {
   color: #1A1A1A;
   background-color: white;
   border-radius: 50px;
+}
+main .error {
+  color: #c73c3c;
 }/*# sourceMappingURL=main-find-book.css.map */

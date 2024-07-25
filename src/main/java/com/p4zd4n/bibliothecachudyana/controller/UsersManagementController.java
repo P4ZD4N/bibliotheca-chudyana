@@ -1,16 +1,15 @@
 package com.p4zd4n.bibliothecachudyana.controller;
 
-import com.p4zd4n.bibliothecachudyana.entity.Authority;
-import com.p4zd4n.bibliothecachudyana.entity.Cart;
-import com.p4zd4n.bibliothecachudyana.entity.User;
-import com.p4zd4n.bibliothecachudyana.entity.Wishlist;
+import com.p4zd4n.bibliothecachudyana.entity.*;
 import com.p4zd4n.bibliothecachudyana.service.AuthorityService;
 import com.p4zd4n.bibliothecachudyana.service.UserService;
 import com.p4zd4n.bibliothecachudyana.util.FindUsersForm;
 import com.p4zd4n.bibliothecachudyana.util.PasswordEncoder;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -134,7 +133,14 @@ public class UsersManagementController {
     }
 
     @PostMapping("/users-management/find-users")
-    public String findUsers(@ModelAttribute("findUsersForm") FindUsersForm findUsersForm) {
+    public String findUsers(
+            @Valid @ModelAttribute("findUsersForm") FindUsersForm findUsersForm,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/usersmanagement/find-users";
+        }
+
         Integer id = findUsersForm.getId();
         String username = findUsersForm.getUsername();
         List<String> authorities = findUsersForm.getAuthorities();

@@ -97,7 +97,14 @@ public class ReviewsManagementController {
     }
 
     @PostMapping("/reviews-management/find-review")
-    public String findReviews(@ModelAttribute("findReviewsForm") FindReviewsForm findReviewsForm) {
+    public String findReviews(
+            @Valid @ModelAttribute("findReviewsForm") FindReviewsForm findReviewsForm,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/reviewsmanagement/find-review";
+        }
+
         Integer id = findReviewsForm.getId();
         String username = findReviewsForm.getUsername();
         Integer bookId = findReviewsForm.getBookId();

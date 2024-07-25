@@ -4,9 +4,11 @@ import com.p4zd4n.bibliothecachudyana.entity.Order;
 import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
 import com.p4zd4n.bibliothecachudyana.service.OrderService;
 import com.p4zd4n.bibliothecachudyana.util.FindOrdersForm;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,7 +96,14 @@ public class OrderManagementController {
     }
 
     @PostMapping("/orders-management/find-orders")
-    public String findOrders(@ModelAttribute("findOrdersForm") FindOrdersForm findOrdersForm) {
+    public String findOrders(
+            @Valid @ModelAttribute("findOrdersForm") FindOrdersForm findOrdersForm,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/ordersmanagement/find-orders";
+        }
+
         Integer id = findOrdersForm.getId();
         String username = findOrdersForm.getUsername();
         LocalDate minDate = findOrdersForm.getMinDate();

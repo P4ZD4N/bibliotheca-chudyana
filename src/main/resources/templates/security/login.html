@@ -44,7 +44,7 @@
         <main>
             <form th:action="@{/}" method="POST" >
                 <div>
-                    <p th:if="${param.error}">Błędna nazwa użytkownika / hasło!</p>
+                    <p th:if="${param.error}" class="error">Błędna nazwa użytkownika / hasło!</p>
                     <label>Nazwa użytkownika</label><input type="text" name="username" required>
 
                     <br>

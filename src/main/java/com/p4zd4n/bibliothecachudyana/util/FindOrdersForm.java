@@ -1,11 +1,13 @@
 package com.p4zd4n.bibliothecachudyana.util;
 
 import com.p4zd4n.bibliothecachudyana.enums.OrderStatus;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
 public class FindOrdersForm {
 
+    @Positive(message = "Pole 'ID' musi być liczbą dodatnią!")
     private Integer id;
 
     private String username;
@@ -14,8 +16,10 @@ public class FindOrdersForm {
 
     private LocalDate maxDate;
 
+    @Positive(message = "Pole 'Minimalna wartość' musi być liczbą dodatnią!")
     private Double minTotalAmount;
 
+    @Positive(message = "Pole 'Maksymalna wartość' musi być liczbą dodatnią!")
     private Double maxTotalAmount;
 
     private OrderStatus status;

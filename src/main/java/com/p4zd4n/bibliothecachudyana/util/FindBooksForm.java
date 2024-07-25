@@ -1,6 +1,7 @@
 package com.p4zd4n.bibliothecachudyana.util;
 
 import com.p4zd4n.bibliothecachudyana.enums.BookStatus;
+import jakarta.validation.constraints.Positive;
 
 public class FindBooksForm {
 
@@ -10,18 +11,24 @@ public class FindBooksForm {
 
     private String authorLastName;
 
+    @Positive(message = "Pole 'Minimalny rok wydania' musi być liczbą dodatnią!")
     private Integer minReleaseYear;
 
+    @Positive(message = "Pole 'Maksymalny rok wydania' musi być liczbą dodatnią!")
     private Integer maxReleaseYear;
 
     private String category;
 
+    @Positive(message = "Pole 'Cena minimalna' musi być liczbą dodatnią!")
     private Double minPrice;
 
+    @Positive(message = "Pole 'Cena maksymalna' musi być liczbą dodatnią!")
     private Double maxPrice;
 
+    @Positive(message = "Pole 'Minimalna liczba stron' musi być liczbą dodatnią!")
     private Integer minPages;
 
+    @Positive(message = "Pole 'Maksymalna liczba stron' musi być liczbą dodatnią!")
     private Integer maxPages;
 
     private BookStatus status;

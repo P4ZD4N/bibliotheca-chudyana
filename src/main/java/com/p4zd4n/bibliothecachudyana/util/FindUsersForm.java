@@ -1,11 +1,12 @@
 package com.p4zd4n.bibliothecachudyana.util;
 
-import com.p4zd4n.bibliothecachudyana.entity.Authority;
+import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 
 public class FindUsersForm {
 
+    @Positive(message = "Pole 'ID' musi być liczbą dodatnią!")
     private Integer id;
 
     private String username;

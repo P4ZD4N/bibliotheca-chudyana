@@ -46,6 +46,7 @@
     <form th:action="@{/reviews-management/find-review}" th:object="${findReviewsForm}" method="POST">
         <div>
             <label>ID</label><input type="text" th:field="*{id}" />
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="error"></p>
 
             <br>
 
@@ -64,6 +65,7 @@
             <br>
 
             <label>Ocena (1-5):<input type="text" th:field="*{rating}" /></label>
+            <p th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="error"></p>
 
             <br>
 

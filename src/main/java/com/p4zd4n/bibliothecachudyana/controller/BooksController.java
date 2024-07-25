@@ -165,7 +165,15 @@ public class BooksController {
     }
 
     @PostMapping("/find-books")
-    public String findBooks(@ModelAttribute("findBooksForm") FindBooksForm findBooksForm) {
+    public String findBooks(
+            @Valid @ModelAttribute("findBooksForm") FindBooksForm findBooksForm,
+            BindingResult bindingResult
+    ) {
+
+        if (bindingResult.hasErrors()) {
+            return "/books/find-books";
+        }
+
         String title = findBooksForm.getTitle();
         String authorName = findBooksForm.getAuthorName();
         String authorLastName = findBooksForm.getAuthorLastName();

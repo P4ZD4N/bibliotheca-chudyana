@@ -46,6 +46,7 @@
     <form th:action="@{/orders-management/find-orders}" th:object="${findOrdersForm}" method="POST">
         <div>
             <label>ID</label><input type="text" th:field="*{id}" />
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="error"></p>
 
             <br>
 
@@ -62,10 +63,12 @@
             <br>
 
             <label>Minimalna wartość<input type="text" th:field="*{minTotalAmount}" /></label>
+            <p th:if="${#fields.hasErrors('minTotalAmount')}" th:errors="*{minTotalAmount}" class="error"></p>
 
             <br>
 
             <label>Maksymalna wartość<input type="text" th:field="*{maxTotalAmount}" /></label>
+            <p th:if="${#fields.hasErrors('maxTotalAmount')}" th:errors="*{maxTotalAmount}" class="error"></p>
 
             <br>
 

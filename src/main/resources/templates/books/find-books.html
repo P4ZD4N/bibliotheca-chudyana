@@ -62,26 +62,32 @@
         <br>
 
         <label>Minimalny rok wydania</label><input type="text" th:field="*{minReleaseYear}" />
+        <p th:if="${#fields.hasErrors('minReleaseYear')}" th:errors="*{minReleaseYear}" class="error"></p>
 
         <br>
 
         <label>Maksymalny rok wydania</label><input type="text" th:field="*{maxReleaseYear}" />
+        <p th:if="${#fields.hasErrors('maxReleaseYear')}" th:errors="*{maxReleaseYear}" class="error"></p>
 
         <br>
 
         <label>Cena minimalna</label><input type="text" th:field="*{minPrice}" />
+        <p th:if="${#fields.hasErrors('minPrice')}" th:errors="*{minPrice}" class="error"></p>
 
         <br>
 
         <label>Cena maksymalna</label><input type="text" th:field="*{maxPrice}" />
+        <p th:if="${#fields.hasErrors('maxPrice')}" th:errors="*{maxPrice}" class="error"></p>
 
         <br>
 
         <label>Minimalna liczba stron</label><input type="text" th:field="*{minPages}" />
+        <p th:if="${#fields.hasErrors('minPages')}" th:errors="*{minPages}" class="error"></p>
 
         <br>
 
         <label>Maksymalna liczba stron</label><input type="text" th:field="*{maxPages}" />
+        <p th:if="${#fields.hasErrors('maxPages')}" th:errors="*{maxPages}" class="error"></p>
 
         <br>
 

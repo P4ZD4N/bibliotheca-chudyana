@@ -102,7 +102,8 @@ public class UserController {
             @RequestParam(value = "currentPassword", required = false) String currentPassword,
             @RequestParam("newPassword") String newPassword,
             @ModelAttribute("user") User user,
-            Authentication authentication
+            Authentication authentication,
+            Model model
     ) {
         boolean isEnteredPasswordEqualToCurrent = PasswordEncoder.checkPassword(currentPassword, user.getPassword().substring(8));
         boolean isAuthenticatedUserEmployee = userService.hasUserEmployeeAuthority(userService.findByUsername(authentication.getName()));
@@ -117,6 +118,7 @@ public class UserController {
 
             return "redirect:/user/" + user.getUsername();
         } else {
+            model.addAttribute("error", "Aktualne hasło jest niepoprawne!");
             return "/user/change-password";
         }
     }

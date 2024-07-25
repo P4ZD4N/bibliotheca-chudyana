@@ -54,6 +54,6 @@ main input[type="submit"]:hover {
     background-color: white;
 }
 
-.error {
+main .error {
     color: #c73c3c;
 }

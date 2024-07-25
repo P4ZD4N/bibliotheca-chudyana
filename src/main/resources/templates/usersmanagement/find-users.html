@@ -46,6 +46,7 @@
     <form th:action="@{/users-management/find-users}" th:object="${findUsersForm}" method="POST">
         <div>
             <label>ID</label><input type="text" th:field="*{id}" />
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="error"></p>
 
             <br>
 

@@ -1,15 +1,22 @@
 package com.p4zd4n.bibliothecachudyana.util;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
+
 import java.time.LocalDate;
 
 public class FindReviewsForm {
 
+    @Positive(message = "Pole 'ID' musi być liczbą dodatnią!")
     private Integer id;
 
     private String username;
 
     private Integer bookId;
 
+    @Min(value = 1, message = "Pole 'ID' musi być liczbą od 1 do 5!")
+    @Max(value = 5, message = "Pole 'ID' musi być liczbą od 1 do 5!")
     private Integer rating;
 
     private LocalDate minAddedDate;

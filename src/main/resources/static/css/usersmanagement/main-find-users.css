@@ -60,3 +60,7 @@ main .checkboxes {
     display: flex;
     justify-content: space-around;
 }
+
+main .error {
+    color: #c73c3c;
+}
