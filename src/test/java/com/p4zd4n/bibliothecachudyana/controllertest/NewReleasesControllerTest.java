@@ -38,7 +38,7 @@ public class NewReleasesControllerTest {
 
         mockMvc.perform(get("/new-releases"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/newreleases/new-releases"))
+                .andExpect(view().name("newreleases/new-releases"))
                 .andExpect(model().attribute("newBooks", newBooks));
     }
 
@@ -48,19 +48,19 @@ public class NewReleasesControllerTest {
 
         mockMvc.perform(get("/new-releases").with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/newreleases/new-releases"));
+                .andExpect(view().name("newreleases/new-releases"));
         mockMvc.perform(get("/new-releases").with(user("manager").roles("MANAGER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/newreleases/new-releases"));
+                .andExpect(view().name("newreleases/new-releases"));
         mockMvc.perform(get("/new-releases").with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/newreleases/new-releases"));
+                .andExpect(view().name("newreleases/new-releases"));
         mockMvc.perform(get("/new-releases").with(user("user").roles("USER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/newreleases/new-releases"));
+                .andExpect(view().name("newreleases/new-releases"));
         mockMvc.perform(get("/new-releases").with(anonymous()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/newreleases/new-releases"));
+                .andExpect(view().name("newreleases/new-releases"));
     }
 
 }

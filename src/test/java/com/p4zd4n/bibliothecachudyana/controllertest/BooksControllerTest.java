@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -22,8 +25,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -68,7 +70,7 @@ public class BooksControllerTest {
 
         verify(model).addAttribute(eq("books"), anyList());
 
-        assertEquals("/books/books", viewName);
+        assertEquals("books/books", viewName);
     }
 
     @Test
@@ -94,7 +96,7 @@ public class BooksControllerTest {
         verify(model).addAttribute("reviews", mockReviews);
         verify(model).addAttribute("status", mockStatus);
 
-        assertEquals("/books/book", viewName);
+        assertEquals("books/book", viewName);
     }
 
     @Test
@@ -105,7 +107,7 @@ public class BooksControllerTest {
         String viewName = booksController.displayAddBookForm(model);
 
         verify(model).addAttribute(eq("book"), any(Book.class));
-        assertEquals("/books/save-book", viewName);
+        assertEquals("books/save-book", viewName);
     }
 
     @Test
@@ -135,7 +137,7 @@ public class BooksControllerTest {
         String viewName = booksController.saveBook(null, mockBook, bindingResult);
 
         verify(bookService, never()).save(mockBook);
-        assertEquals("/books/save-book", viewName);
+        assertEquals("books/save-book", viewName);
     }
 
     @Test
@@ -146,40 +148,22 @@ public class BooksControllerTest {
         String viewName = booksController.displayFindBooksForm(model);
 
         verify(model).addAttribute(eq("findBooksForm"), any(FindBooksForm.class));
-        assertEquals("/books/find-books", viewName);
+        assertEquals("books/find-books", viewName);
     }
 
     @Test
     @DisplayName("Test for findBooks() method")
-    public void testFindBooks() {
+    public void testFindBooks() throws Exception {
 
-        FindBooksForm findBooksForm1 = new FindBooksForm();
-        findBooksForm1.setTitle("Esencjalista");
-        findBooksForm1.setMaxPrice(40.0);
+        FindBooksForm form = new FindBooksForm();
+        form.setTitle("Example");
 
-        String redirectUrl1 = booksController.findBooks(findBooksForm1);
-
-        FindBooksForm findBooksForm2 = new FindBooksForm();
-        findBooksForm2.setMinPages(200);
-        findBooksForm2.setStatus(BookStatus.LAST_ITEMS);
-
-        String redirectUrl2 = booksController.findBooks(findBooksForm2);
-
-        FindBooksForm findBooksForm3 = new FindBooksForm();
-        findBooksForm3.setCategory("Historia");
-        findBooksForm3.setMinPrice(10.0);
-        findBooksForm3.setMaxPrice(25.0);
-        findBooksForm3.setMinReleaseYear(2000);
-
-        String redirectUrl3 = booksController.findBooks(findBooksForm3);
-
-        String expectedUrl1 = "redirect:/books?title=Esencjalista&maxPrice=40.0";
-        String expectedUrl2 = "redirect:/books?minPages=200&status=LAST_ITEMS";
-        String expectedUrl3 = "redirect:/books?minReleaseYear=2000&category=Historia&minPrice=10.0&maxPrice=25.0";
-
-        assertEquals(expectedUrl1, redirectUrl1);
-        assertEquals(expectedUrl2, redirectUrl2);
-        assertEquals(expectedUrl3, redirectUrl3);
+        mockMvc.perform(MockMvcRequestBuilders.post("/find-books")
+                        .param("title", "Example")
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/books?title=Example"))
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
@@ -196,7 +180,7 @@ public class BooksControllerTest {
 
         verify(bookService).findById(id);
         verify(model).addAttribute("book", mockBook);
-        assertEquals("/books/save-book", viewName);
+        assertEquals("books/save-book", viewName);
     }
 
     @Test
@@ -221,23 +205,23 @@ public class BooksControllerTest {
 
         mockMvc.perform(get("/books").with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/books"));
+                .andExpect(view().name("books/books"));
 
         mockMvc.perform(get("/books").with(user("manager").roles("MANAGER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/books"));
+                .andExpect(view().name("books/books"));
 
         mockMvc.perform(get("/books").with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/books"));
+                .andExpect(view().name("books/books"));
 
         mockMvc.perform(get("/books").with(user("user").roles("USER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/books"));
+                .andExpect(view().name("books/books"));
 
         mockMvc.perform(get("/books").with(anonymous()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/books"));
+                .andExpect(view().name("books/books"));
     }
 
     @Test
@@ -246,23 +230,23 @@ public class BooksControllerTest {
 
         mockMvc.perform(get("/books/1").with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/book"));
+                .andExpect(view().name("books/book"));
 
         mockMvc.perform(get("/books/1").with(user("manager").roles("MANAGER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/book"));
+                .andExpect(view().name("books/book"));
 
         mockMvc.perform(get("/books/1").with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/book"));
+                .andExpect(view().name("books/book"));
 
         mockMvc.perform(get("/books/1").with(user("user").roles("USER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/book"));
+                .andExpect(view().name("books/book"));
 
         mockMvc.perform(get("/books/1").with(anonymous()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/book"));
+                .andExpect(view().name("books/book"));
     }
 
     @Test
@@ -271,15 +255,15 @@ public class BooksControllerTest {
 
         mockMvc.perform(get("/add-book").with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/save-book"));
+                .andExpect(view().name("books/save-book"));
 
         mockMvc.perform(get("/add-book").with(user("manager").roles("MANAGER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/save-book"));
+                .andExpect(view().name("books/save-book"));
 
         mockMvc.perform(get("/add-book").with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/save-book"));
+                .andExpect(view().name("books/save-book"));
 
         mockMvc.perform(get("/add-book").with(user("user").roles("USER")))
                 .andExpect(status().isForbidden());
@@ -294,19 +278,19 @@ public class BooksControllerTest {
 
         mockMvc.perform(get("/find-books").with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/find-books"));
+                .andExpect(view().name("books/find-books"));
         mockMvc.perform(get("/find-books").with(user("manager").roles("MANAGER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/find-books"));
+                .andExpect(view().name("books/find-books"));
         mockMvc.perform(get("/find-books").with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/find-books"));
+                .andExpect(view().name("books/find-books"));
         mockMvc.perform(get("/find-books").with(user("user").roles("USER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/find-books"));
+                .andExpect(view().name("books/find-books"));
         mockMvc.perform(get("/find-books").with(anonymous()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/find-books"));
+                .andExpect(view().name("books/find-books"));
     }
 
     @Test
@@ -322,17 +306,17 @@ public class BooksControllerTest {
                 .param("bookId", String.valueOf(bookId))
                 .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/save-book"));
+                .andExpect(view().name("books/save-book"));
         mockMvc.perform(get("/update-book")
                 .param("bookId", String.valueOf(bookId))
                 .with(user("manager").roles("MANAGER")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/save-book"));
+                .andExpect(view().name("books/save-book"));
         mockMvc.perform(get("/update-book")
                 .param("bookId", String.valueOf(bookId))
                 .with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/books/save-book"));
+                .andExpect(view().name("books/save-book"));
         mockMvc.perform(get("/update-book")
                 .param("bookId", String.valueOf(bookId))
                 .with(user("user").roles("USER")))

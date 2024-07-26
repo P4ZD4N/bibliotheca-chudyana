@@ -31,7 +31,7 @@ public class DiscountsController {
 
         model.addAttribute("discounts", discounts);
 
-        return "/discounts/discounts";
+        return "discounts/discounts";
     }
 
     @GetMapping("/add-discount")
@@ -43,7 +43,7 @@ public class DiscountsController {
         model.addAttribute("books", books);
         model.addAttribute("discount", discount);
 
-        return "/discounts/save-discount";
+        return "discounts/save-discount";
     }
 
     @PostMapping("/save-discount")
@@ -63,7 +63,7 @@ public class DiscountsController {
             model.addAttribute("books", books);
             model.addAttribute("bookId", bookId);
 
-            return "/discounts/save-discount";
+            return "discounts/save-discount";
         }
 
         Book book = bookService.findById(bookId);
@@ -84,7 +84,7 @@ public class DiscountsController {
 
         model.addAttribute("discount", discount);
 
-        return "/discounts/save-discount";
+        return "discounts/save-discount";
     }
 
     @GetMapping("/delete-discount")

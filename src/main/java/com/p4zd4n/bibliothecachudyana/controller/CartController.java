@@ -33,7 +33,7 @@ public class CartController {
         if (isAuthenticatedUserUnauthorizedToEnter) {
             model.addAttribute("user", userService.findByUsername(authenticatedUsername));
             model.addAttribute("error", "Brak dostępu!");
-            return "/user/user";
+            return "user/user";
         }
 
         User user = userService.findByUsername(username);
@@ -44,7 +44,7 @@ public class CartController {
         model.addAttribute("userCart", userCart);
         model.addAttribute("cartValue", cartValue);
 
-        return "/user/cart";
+        return "user/cart";
     }
 
     @PostMapping("/add-to-cart")

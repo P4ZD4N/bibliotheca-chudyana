@@ -44,7 +44,7 @@ public class UserController {
         if (orders != null && !orders.isEmpty())
             model.addAttribute("orders", orders);
 
-        return "/user/user";
+        return "user/user";
     }
 
     @GetMapping("/user/{username}/change-email")
@@ -55,21 +55,21 @@ public class UserController {
         if (isAuthenticatedUserUnauthorizedToEnter) {
             model.addAttribute("user", userService.findByUsername(authenticatedUsername));
             model.addAttribute("error", "Brak dostępu!");
-            return "/user/user";
+            return "user/user";
         }
 
         User user = userService.findByUsername(username);
 
         model.addAttribute("user", user);
 
-        return "/user/change-email";
+        return "user/change-email";
     }
 
     @PostMapping("/change-email")
     public String changeEmail(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "/user/change-email";
+            return "user/change-email";
         }
 
         user.setAuthorities(userService.findByUsername(user.getUsername()).getAuthorities());
@@ -87,14 +87,14 @@ public class UserController {
         if (isAuthenticatedUserUnauthorizedToEnter) {
             model.addAttribute("user", userService.findByUsername(authenticatedUsername));
             model.addAttribute("error", "Brak dostępu!");
-            return "/user/user";
+            return "user/user";
         }
 
         User user = userService.findByUsername(username);
 
         model.addAttribute("user", user);
 
-        return "/user/change-password";
+        return "user/change-password";
     }
 
     @PostMapping("/change-password")
@@ -119,7 +119,7 @@ public class UserController {
             return "redirect:/user/" + user.getUsername();
         } else {
             model.addAttribute("error", "Aktualne hasło jest niepoprawne!");
-            return "/user/change-password";
+            return "user/change-password";
         }
     }
 }

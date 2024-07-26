@@ -116,7 +116,7 @@ public class BooksController {
             model.addAttribute("books", commonBooks);
         }
 
-        return "/books/books";
+        return "books/books";
     }
 
     @GetMapping("/books/{id}")
@@ -129,7 +129,7 @@ public class BooksController {
         model.addAttribute("status", status);
         model.addAttribute("reviews", reviews);
 
-        return "/books/book";
+        return "books/book";
     }
 
     @GetMapping("/add-book")
@@ -137,7 +137,7 @@ public class BooksController {
         Book book = new Book();
         book.setAddToLibraryDate(LocalDate.now());
         model.addAttribute("book", book);
-        return "/books/save-book";
+        return "books/save-book";
     }
 
     @PostMapping("/save-book")
@@ -147,7 +147,7 @@ public class BooksController {
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
-            return "/books/save-book";
+            return "books/save-book";
         }
 
         if (id == null)
@@ -161,7 +161,7 @@ public class BooksController {
     @GetMapping("/find-books")
     public String displayFindBooksForm(Model model) {
         model.addAttribute("findBooksForm", new FindBooksForm());
-        return "/books/find-books";
+        return "books/find-books";
     }
 
     @PostMapping("/find-books")
@@ -171,7 +171,7 @@ public class BooksController {
     ) {
 
         if (bindingResult.hasErrors()) {
-            return "/books/find-books";
+            return "books/find-books";
         }
 
         String title = findBooksForm.getTitle();
@@ -245,7 +245,7 @@ public class BooksController {
 
         model.addAttribute("book", book);
 
-        return "/books/save-book";
+        return "books/save-book";
     }
 
     @GetMapping("/delete-book")

@@ -45,7 +45,7 @@ public class ReviewsManagementController {
     ) {
         if (id != null) {
             model.addAttribute("reviews", reviewService.findById(id));
-            return "/reviewsmanagement/reviews-management";
+            return "reviewsmanagement/reviews-management";
         }
 
         List<List<Review>> searchedReviews = new ArrayList<>();
@@ -86,14 +86,14 @@ public class ReviewsManagementController {
             model.addAttribute("reviews", commonReviews);
         }
 
-        return "/reviewsmanagement/reviews-management";
+        return "reviewsmanagement/reviews-management";
     }
 
     @GetMapping("/reviews-management/find-review")
     public String displayFindReviewsForm(Model model) {
         model.addAttribute("findReviewsForm", new FindReviewsForm());
         model.addAttribute("books", bookService.findAll());
-        return "/reviewsmanagement/find-review";
+        return "reviewsmanagement/find-review";
     }
 
     @PostMapping("/reviews-management/find-review")
@@ -102,7 +102,7 @@ public class ReviewsManagementController {
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
-            return "/reviewsmanagement/find-review";
+            return "reviewsmanagement/find-review";
         }
 
         Integer id = findReviewsForm.getId();
@@ -154,7 +154,7 @@ public class ReviewsManagementController {
         model.addAttribute("username", review.getUser().getUsername());
         model.addAttribute("review", review);
 
-        return "/reviewsmanagement/save-review";
+        return "reviewsmanagement/save-review";
     }
 
     @GetMapping("/add-review-for-{bookId}")
@@ -168,7 +168,7 @@ public class ReviewsManagementController {
                 model.addAttribute("book", bookService.findById(bookId));
                 model.addAttribute("reviews", reviewService.findByBook(bookService.findById(bookId)));
                 model.addAttribute("error", "Dodałeś już opinię dla tej książki!");
-                return "/books/book";
+                return "books/book";
             }
         }
 
@@ -178,7 +178,7 @@ public class ReviewsManagementController {
         model.addAttribute("bookId", bookId);
         model.addAttribute("username", authentication.getName());
 
-        return "/reviewsmanagement/save-review";
+        return "reviewsmanagement/save-review";
     }
 
     @PostMapping("/reviews-management/save-review")
@@ -193,7 +193,7 @@ public class ReviewsManagementController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("bookId", bookId);
             model.addAttribute("username", username);
-            return "/reviewsmanagement/save-review";
+            return "reviewsmanagement/save-review";
         }
 
         User user = userService.findByUsername(username);

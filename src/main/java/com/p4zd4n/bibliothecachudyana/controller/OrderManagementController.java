@@ -37,7 +37,7 @@ public class OrderManagementController {
     ) {
         if (id != null) {
             model.addAttribute("orders", orderService.findById(id));
-            return "/ordersmanagement/orders-management";
+            return "ordersmanagement/orders-management";
         }
 
         List<List<Order>> searchedOrders = new ArrayList<>();
@@ -86,13 +86,13 @@ public class OrderManagementController {
             model.addAttribute("orders", commonOrders);
         }
 
-        return "/ordersmanagement/orders-management";
+        return "ordersmanagement/orders-management";
     }
 
     @GetMapping("/orders-management/find-orders")
     public String displayFindOrdersForm(Model model) {
         model.addAttribute("findOrdersForm", new FindOrdersForm());
-        return "/ordersmanagement/find-orders";
+        return "ordersmanagement/find-orders";
     }
 
     @PostMapping("/orders-management/find-orders")
@@ -101,7 +101,7 @@ public class OrderManagementController {
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
-            return "/ordersmanagement/find-orders";
+            return "ordersmanagement/find-orders";
         }
 
         Integer id = findOrdersForm.getId();
@@ -156,7 +156,7 @@ public class OrderManagementController {
 
         model.addAttribute("order", order);
 
-        return "/ordersmanagement/save-order";
+        return "ordersmanagement/save-order";
     }
 
     @PostMapping("/orders-management/save-order")

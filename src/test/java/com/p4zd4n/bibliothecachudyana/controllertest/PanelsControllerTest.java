@@ -25,8 +25,7 @@ public class PanelsControllerTest {
 
         mockMvc.perform(get("/admin"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/panels/admin"));
-
+                .andExpect(view().name("panels/admin"));
     }
 
     @Test
@@ -69,7 +68,7 @@ public class PanelsControllerTest {
 
         mockMvc.perform(get("/manager"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/panels/manager"));
+                .andExpect(view().name("panels/manager"));
 
     }
 
@@ -80,7 +79,7 @@ public class PanelsControllerTest {
 
         mockMvc.perform(get("/manager"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/panels/manager"));
+                .andExpect(view().name("panels/manager"));
     }
 
     @Test
@@ -115,7 +114,7 @@ public class PanelsControllerTest {
 
         mockMvc.perform(get("/employee"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/panels/employee"));
+                .andExpect(view().name("panels/employee"));
 
     }
 
@@ -126,7 +125,7 @@ public class PanelsControllerTest {
 
         mockMvc.perform(get("/employee"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/panels/employee"));
+                .andExpect(view().name("panels/employee"));
     }
 
     @Test
@@ -136,7 +135,7 @@ public class PanelsControllerTest {
 
         mockMvc.perform(get("/employee"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/panels/employee"));
+                .andExpect(view().name("panels/employee"));
     }
 
     @Test

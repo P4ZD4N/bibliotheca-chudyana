@@ -38,12 +38,12 @@ public class UsersManagementController {
 
         if (id != null) {
             model.addAttribute("users", userService.findById(id));
-            return "/usersmanagement/users-management";
+            return "usersmanagement/users-management";
         }
 
         if (username != null) {
             model.addAttribute("users", userService.findByUsername(username));
-            return "/usersmanagement/users-management";
+            return "usersmanagement/users-management";
         }
 
         List<List<User>> searchedUsers = new ArrayList<>();
@@ -68,7 +68,7 @@ public class UsersManagementController {
             model.addAttribute("users", commonUsers);
         }
 
-        return "/usersmanagement/users-management";
+        return "usersmanagement/users-management";
     }
 
     @GetMapping("/users-management/add-user")
@@ -77,7 +77,7 @@ public class UsersManagementController {
 
         model.addAttribute("user", user);
 
-        return "/usersmanagement/save-user";
+        return "usersmanagement/save-user";
     }
 
     @PostMapping("/users-management/save-user")
@@ -91,7 +91,7 @@ public class UsersManagementController {
             boolean isUserAlreadyRegistered = userService.isUserAlreadyRegistered(user);
             if (isUserAlreadyRegistered) {
                 model.addAttribute("error", "Użytkownik o podanej nazwie już istnieje!");
-                return "/admin/save-user";
+                return "usersmanagement/save-user";
             } else {
                 String hashedPassword = PasswordEncoder.encodePassword(user.getPassword());
                 user.setPassword("{bcrypt}" + hashedPassword);
@@ -129,7 +129,7 @@ public class UsersManagementController {
     @GetMapping("/users-management/find-users")
     public String displayFindUsersForm(Model model) {
         model.addAttribute("findUsersForm", new FindUsersForm());
-        return "/usersmanagement/find-users";
+        return "usersmanagement/find-users";
     }
 
     @PostMapping("/users-management/find-users")
@@ -138,7 +138,7 @@ public class UsersManagementController {
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
-            return "/usersmanagement/find-users";
+            return "usersmanagement/find-users";
         }
 
         Integer id = findUsersForm.getId();
@@ -184,7 +184,7 @@ public class UsersManagementController {
         model.addAttribute("user", user);
         model.addAttribute("userAuthorities", userAuthorities);
 
-        return "/usersmanagement/save-user";
+        return "usersmanagement/save-user";
     }
 
     @GetMapping("/users-management/delete-user")

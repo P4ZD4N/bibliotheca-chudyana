@@ -19,6 +19,6 @@ public class NewReleasesController {
     public String displayNewReleases(Model model) {
         List<Book> newBooks = bookService.getNewReleases();
         model.addAttribute("newBooks", newBooks);
-        return "/newreleases/new-releases";
+        return "newreleases/new-releases";
     }
 }

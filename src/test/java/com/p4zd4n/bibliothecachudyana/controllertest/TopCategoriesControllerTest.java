@@ -38,7 +38,7 @@ public class TopCategoriesControllerTest {
 
         mockMvc.perform(get("/top-categories"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/topcategories/top-categories"))
+                .andExpect(view().name("topcategories/top-categories"))
                 .andExpect(model().attribute("topCategories", topCategories));
     }
 
@@ -48,7 +48,7 @@ public class TopCategoriesControllerTest {
 
         mockMvc.perform(get("/top-categories"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/topcategories/top-categories"));
+                .andExpect(view().name("topcategories/top-categories"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TopCategoriesControllerTest {
 
         mockMvc.perform(get("/top-categories"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/topcategories/top-categories"));
+                .andExpect(view().name("topcategories/top-categories"));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class TopCategoriesControllerTest {
 
         mockMvc.perform(get("/top-categories"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/topcategories/top-categories"));
+                .andExpect(view().name("topcategories/top-categories"));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class TopCategoriesControllerTest {
 
         mockMvc.perform(get("/top-categories"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/topcategories/top-categories"));
+                .andExpect(view().name("topcategories/top-categories"));
     }
 
     @Test
@@ -84,6 +84,6 @@ public class TopCategoriesControllerTest {
 
         mockMvc.perform(get("/top-categories"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/topcategories/top-categories"));
+                .andExpect(view().name("topcategories/top-categories"));
     }
 }

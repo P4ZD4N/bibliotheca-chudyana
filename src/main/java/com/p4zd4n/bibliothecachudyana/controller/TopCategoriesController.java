@@ -20,6 +20,6 @@ public class TopCategoriesController {
 
         model.addAttribute("topCategories", topCategories);
 
-        return "/topcategories/top-categories";
+        return "topcategories/top-categories";
     }
 }

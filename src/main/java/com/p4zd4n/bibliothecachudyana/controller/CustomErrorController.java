@@ -20,17 +20,17 @@ public class CustomErrorController implements ErrorController {
             switch (statusCode) {
 
                 case 403 -> {
-                    return "/error/error403";
+                    return "error/error403";
                 }
                 case 404 -> {
-                    return "/error/error404";
+                    return "error/error404";
                 }
                 default -> {
-                    return "/error/error";
+                    return "error/error";
                 }
             }
         }
 
-        return "/error/error";
+        return "error/error";
     }
 }

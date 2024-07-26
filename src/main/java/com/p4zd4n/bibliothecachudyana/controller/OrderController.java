@@ -38,7 +38,7 @@ public class OrderController {
                 model.addAttribute("user", userService.findByUsername(username));
                 model.addAttribute("userCart", cartItems);
                 model.addAttribute("unavailableBookError", "Posiadasz w koszyku niedostępne książki!");
-                return "/user/cart";
+                return "user/cart";
             }
 
         Order order = orderService.createOrder(username);
@@ -46,7 +46,7 @@ public class OrderController {
         model.addAttribute("order", order);
         model.addAttribute("username", username);
 
-        return "/order/order-form";
+        return "order/order-form";
     }
 
     @PostMapping("/order-confirmation")
@@ -59,7 +59,7 @@ public class OrderController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("order", order);
             model.addAttribute("username", username);
-            return "/order/order-form";
+            return "order/order-form";
         }
 
         User user = userService.findByUsername(username);
@@ -75,7 +75,7 @@ public class OrderController {
         model.addAttribute("order", order);
         model.addAttribute("username", username);
 
-        return "/order/order-confirmation";
+        return "order/order-confirmation";
     }
 
     @PostMapping("/order")

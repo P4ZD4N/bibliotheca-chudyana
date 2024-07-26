@@ -33,7 +33,7 @@ public class WishlistController {
         if (isAuthenticatedUserUnauthorizedToEnter) {
             model.addAttribute("user", userService.findByUsername(authenticatedUsername));
             model.addAttribute("error", "Brak dostępu!");
-            return "/user/user";
+            return "user/user";
         }
 
         User user = userService.findByUsername(username);
@@ -42,7 +42,7 @@ public class WishlistController {
         model.addAttribute("user", user);
         model.addAttribute("userWishlist", userWishlist);
 
-        return "/user/wishlist";
+        return "user/wishlist";
     }
 
     @PostMapping("/add-to-wishlist")
