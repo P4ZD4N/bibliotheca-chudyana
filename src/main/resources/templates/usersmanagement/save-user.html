@@ -102,8 +102,8 @@
 
             <br><br>
 
-            <a th:href="'/user/' + ${user.username} + '/change-email'">Zmień email</a>
-            <a th:href="'/user/' + ${user.username} + '/change-password'">Zmień hasło</a>
+            <a th:href="'/user/' + ${user.username} + '/change-email'" th:if="${user.username != null}">Zmień email</a>
+            <a th:href="'/user/' + ${user.username} + '/change-password'" th:if="${user.username != null}">Zmień hasło</a>
             <input type="submit" value="Zapisz">
         </div>
     </form>
