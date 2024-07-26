@@ -44,7 +44,9 @@
     </header>
 
     <main>
-      <section class="actions">
+      <h1 th:if="${books.isEmpty()}">Brak książek!</h1>
+
+      <section class="actions" th:if="${!books.isEmpty()}">
           <a href="/find-books">Znajdź książkę</a>
           <br>
           <a href="/add-book" sec:authorize="hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')">Dodaj książkę</a>
@@ -52,7 +54,7 @@
           <a href="/">Strona główna</a>
       </section>
       
-      <section class="show-books">
+      <section class="show-books" th:if="${!books.isEmpty()}">
         <table>
           <thead>
             <tr>

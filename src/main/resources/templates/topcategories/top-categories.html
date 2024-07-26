@@ -43,7 +43,9 @@
         </header>
 
         <main>
-            <section id="show-categories">
+            <h1 th:if="${topCategories.isEmpty()}">Brak top kategorii (Brak książek)!</h1>
+
+            <section id="show-categories" th:if="${!topCategories.isEmpty()}">
                 <table>
                     <thead>
                         <th>Pozycja</th>

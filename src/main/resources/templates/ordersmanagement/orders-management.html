@@ -44,13 +44,15 @@
 </header>
 
 <main>
-    <section id="actions">
+    <h1 th:if="${orders.isEmpty()}">Brak zamówień!</h1>
+
+    <section id="actions" th:if="${!orders.isEmpty()}">
         <a href="/orders-management/find-orders">Znajdź zamówienie</a>
         <br>
         <a href="/">Strona główna</a>
     </section>
 
-    <section id="show-orders">
+    <section id="show-orders" th:if="${!orders.isEmpty()}">
         <table>
             <thead>
             <tr>

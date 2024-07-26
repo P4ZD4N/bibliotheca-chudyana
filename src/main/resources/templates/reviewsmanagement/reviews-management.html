@@ -18,6 +18,13 @@
         </h1>
     </a>
 
+    <a href="/reviews-management">
+        <h1>
+            <span>Wszystkie</span>
+            <span>recenzje</span>
+        </h1>
+    </a>
+
     <div>
         <a sec:authorize="!isAuthenticated()" href="/login">Zaloguj</a>
         <a sec:authorize="!isAuthenticated()" href="/register">Zarejestruj</a>
@@ -37,13 +44,15 @@
 </header>
 
 <main>
-    <section id="actions">
+    <h1 th:if="${reviews.isEmpty()}">Brak recenzji!</h1>
+
+    <section id="actions" th:if="${!reviews.isEmpty()}">
         <a href="/reviews-management/find-review">Znajdź recenzję</a>
         <br>
         <a href="/">Strona główna</a>
     </section>
 
-    <section id="show-reviews">
+    <section id="show-reviews" th:if="${!reviews.isEmpty()}">
         <table>
             <thead>
             <tr>
