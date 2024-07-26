@@ -78,7 +78,10 @@
                 <td th:text="${order.phoneNumber}"></td>
                 <td th:text="${order.user.username}"></td>
                 <td th:text="${order.orderDate}"></td>
-                <td th:text="${order.totalAmount + ' zł'}"></td>
+                <td th:if="${order.totalAmount >= 1}"
+                    th:text="${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT') + ' zł'}"></td>
+                <td th:if="${order.totalAmount < 1}"
+                    th:text="'0' + ${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 2, 'POINT') + ' zł'}"></td>
                 <td th:text="'ul. ' + ${order.street} + ' ' + ${order.houseNumber} + ', ' + ${order.postalCode} + ' ' + ${order.city}"></td>
                 <td th:text="${order.status.descriptionInPolish}"></td>
                 <td>
