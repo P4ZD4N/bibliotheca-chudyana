@@ -1,43 +1,44 @@
 
 # 💻 Bibliotheca Chudyana
 
+![](./images/logo.png)
+
 ## 👀 About
 
-I am delighted, that I can present my first big app with usage of Spring Framework. Backend app called "Bibliotheca Chudyana" is library management system for fictional library "Bibliotheca Chudyana", which implements a lot of functionalities, that allows to effectively manage company. Created and designed with a thought of meeting all the requirements of a potential customer, who would be interested in ordering such an application. With Figma, I developed an eye-catching and convenient UI to ensure efficient use of all functionalities and problemless use of the library.
+Backend app with sublte frontend elements created to solve problems typical for companies from library/bookstore industries. System offers a lot of features, that allow effective business management and seamless interaction with customers. Architected with great consideration for meeting all the requirements of a potential entrepreneur, who would be interested in digitalization of common business scenarios. Automating processes like book and order management, user registration saves time for both employees and customers. Application also improves customer experience by making it easier to search for books, place orders, or leave reviews, leading to higher satisfaction and convenience. Digitization of such library services is attractive to new customers because of easy access to its resources online. Users can browse the library 24/7, which can increase the number of orders placed. 
 
 ## 🔧 Tech Stack
 
-- Java 21
-- Spring Boot 3
-- Spring Security
-- Spring MVC
-- Hibernate
-- Thymeleaf
-- Maven
-- JUnit
-- Mockito
-- MySQL
-- SQL
-- JavaScript
-- HTML
-- SCSS
-- Docker
+**Backend:** Java 21, Spring Boot 3, Spring Security, Spring MVC, Hibernate, Thymeleaf
+
+**Frontend:** HTML, SCSS, JavaScript
+
+**Testing:** JUnit, Mockito
+
+**Databases:** MySQL, SQL
+
+**Build tools:** Maven
+
+**DevOps:** Docker
+
+**Other tools used during development:** phpMyAdmin, Figma
 
 ## 💡 Features
 
--  Registration and authentication system, taking into data security. For this purpose, the bcrypt encryption algorithm was used.
--  Possibility to change password and email by each user.
-- Displaying all books, which are in the database, searching them according to selected criteria and based on keywords, adding new and updating existing books by users with appropriate roles.
-- Possibility to check the most popular categories and check new releases (books, which were added to library in past 7 days)
--  Possibility to check discounts, and also add new or update existing by users with appropriate roles.
-- Possibility to add review or rating for each book by authenticated users, and also updating or delete them.
-- Possibility to view own profile for authenticated users
-- Adding and removing books from wishlist.
-- Adding and removing books from cart.
-- Placing orders from books in cart.
-- Admin panel enabling administrators to: manage books, users, orders, reviews, and discounts.
-- Manager panel enabling managers to: manage books, orders, reviews and discounts.
-- Employee panel enabling employees to: manage books and orders.
+-  Secure user registration and authentication system, which use bcrypt encryption algorithm to ensure data protection.
+-  Ability for users to change the email address and password.
+- Browsing full catalog of books and searching them based on selected criteria and keywords.
+- Adding new books and updating existing ones by users with appropriate roles.
+- Viewing most popular categories and newly added books (books, which were added to library in past 7 days)
+-  Viewing available discounts, with option to add new or update existing by users with appropriate roles.
+- Adding, updating or deleting. review or rating for each book by authenticated users.
+- Viewing and managing own profile for authenticated users.
+- Adding or removing books from wishlist.
+- Adding or removing books from cart.
+- Placing orders using items from cart.
+- Admin panel enabling administrators to manage books, users, orders, reviews, and discounts.
+- Manager panel enabling managers to manage books, orders, reviews and discounts.
+- Employee panel enabling employees to manage books and orders.
 
 ## 📺 Demo
 
@@ -111,7 +112,7 @@ Navigate to the following URL in your web browser
 http://localhost:8080
 ```
 
-That's It! You can start using app with a user-friendly interface built with HTML and CSS, which allows you to interact with all features.
+That's It! You can start using app with a user-friendly interface which allows you to interact with all features.
 
 ## 💳 Example login data
 
