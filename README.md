@@ -7,7 +7,13 @@
 
 ## 👀 About
 
-Backend app with sublte frontend elements created to solve problems typical for companies from library/bookstore industries. System offers a lot of features, that allow effective business management and seamless interaction with customers. Architected with great consideration for meeting all the requirements of a potential entrepreneur, who would be interested in digitalization of common business scenarios. Automating processes like book and order management, user registration saves time for both employees and customers. Application also improves customer experience by making it easier to search for books, place orders, or leave reviews, leading to higher satisfaction and convenience. Digitization of such library services is attractive to new customers because of easy access to its resources online. Users can browse the library 24/7, which can increase the number of orders placed. 
+Backend application (Spring) created to facilitate Library / Bookstore business management and to make interaction with potential customers more effective. A subtle dark-themed interface was also implemented to ensure a better user experience.
+
+Idea behind the application is obvious - digitization process significantly simplifies the provision of library services what can lead to increases in revenues and customer loyalty. Because of easy access to bookstore resources online, customers can browse books whenever they want and search desired ones by filtering to familiarise with book collection without leaving home. There are also carts and wishlists feature available, allowing even more to better reconsider order and return to completing it at any time.
+
+To enhance user experience and make using system more enjoyable application includes dedicated satisfaction-oriented features. First worth to mention are discounts, which can be tracked by each customer in appropriate section on website. There was also rating system implemented, which gives customers possibility to share thoughts about book with others by leaving review or rating. Additionally system offers special views where customers can display their order statuses, most popular book categories or newly added books.
+
+Staff of bookstore (employees and managers) have access to management panels through user profile. They can easily manage among others books, users, orders or discount.
 
 ## 🔧 Tech Stack
 
