@@ -7,13 +7,17 @@
 
 ## 👀 About
 
-Backend application (Spring) created to facilitate Library / Bookstore business management and to make interaction with potential customers more effective. A subtle dark-themed interface was also implemented to ensure a better user experience.
+Backend web application designed to digitalize library / bookstore operations and make them available 24/7. Enhances user experience by allowing customers to effortlessly browse book collections, manage wishlists or carts and track orders from home, increasing revenues and building customer loyalty.
 
-Idea behind the application is obvious - digitization process significantly simplifies the provision of library services what can lead to increases in revenues and customer loyalty. Because of easy access to bookstore resources online, customers can browse books whenever they want and search desired ones by filtering to familiarise with book collection without leaving home. There are also carts and wishlists feature available, allowing even more to better reconsider order and return to completing it at any time.
+What sets project apart?
 
-To enhance user experience and make using system more enjoyable application includes dedicated satisfaction-oriented features. First worth to mention are discounts, which can be tracked by each customer in appropriate section on website. There was also rating system implemented, which gives customers possibility to share thoughts about book with others by leaving review or rating. Additionally system offers special views where customers can display their order statuses, most popular book categories or newly added books.
+— E-Commerce & Customer Engagement: Features like intuitive shopping cart and wishlist system that allows users to seamlessly plan their purchases. Customers can track available discounts, explore newly added books (within the last 7 days) and popular categories, and interact with the book catalog through review system.
 
-Staff of bookstore (employees and managers) have access to management panels through user profile. They can easily manage among others books, users, orders or discount.
+— Role-Based Access Control (RBAC): Management panels tailored to specific staff roles. Administrators have full control over books, users, orders, reviews, and discounts; Managers oversee book catalog and sales data; Employees are granted to handle book and order management.
+
+— Security & Profile Management: Session-based authentication and registration system which use Bcrypt password encryption. Authenticated users can manage their profiles, update credentials and monitor order statuses.
+
+— UI Rendering: Used Spring MVC to implement server-side rendering and deliver fast, SEO-friendly and responsive interface, ensuring easy navigation across the entire book catalog and dashboards.
 
 ## 🔧 Tech Stack
 
